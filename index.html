@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veloura — Clean Botanical Skincare</title>
+  <meta name="description" content="Slow-made botanical skincare in refillable glass vessels. Formulated with cold-pressed plant actives to nourish your natural skin barrier.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="veloura.css">
+  <script src="veloura.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
+  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
+  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
+</symbol></svg>
+
+<nav>
+  <div class="navin">
+    <a class="brand" href="index.html">Veloura</a>
+    <ul class="navlinks">
+      <li><a class="on" href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="product.html?id=bloom-serum">Product</a></li>
+      <li><a href="ritual.html">Ritual</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section>
+    <div class="hero">
+      <div>
+        <p class="kicker">Clean beauty, slow made</p>
+        <h1>Skincare that lets<br>your skin breathe.</h1>
+        <p>Plant-based formulas in refillable glass, made in slow small batches so nothing sits on a warehouse shelf too long.</p>
+        <div class="actions">
+          <a class="btn" href="shop.html">Shop bestsellers</a>
+          <a class="btn ghost" href="ritual.html">Our 3-step ritual</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg class="bottle"><use href="#bottle"/></svg>
+      </div>
+    </div>
+
+    <div class="values">
+      <span class="pill">✦ 100% Vegan</span>
+      <span class="pill">✦ Cruelty-Free Certified</span>
+      <span class="pill">✦ Infinitely Refillable Glass</span>
+      <span class="pill">✦ Cold-Pressed Botanical Actives</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-head">
+      <p class="kicker">Bestsellers</p>
+      <h2>Loved on repeat</h2>
+      <p>Our most cherished botanical formulations, poured fresh in small batches.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <a href="product.html?id=bloom-serum"><svg class="bottle"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=bloom-serum">Bloom Serum</a></div>
+        <div class="pnote">Vitamin C + squalane</div>
+        <div class="prow">
+          <span class="price">$42</span>
+          <div style="display:flex;gap:0.4rem">
+            <a class="pill" href="product.html?id=bloom-serum">View</a>
+            <button class="pill home-quick-add" data-id="bloom-serum" style="background:var(--ink);color:var(--cream);border-color:var(--ink)">+ Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="product.html?id=calm-cream"><svg class="bottle sage"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=calm-cream">Calm Cream</a></div>
+        <div class="pnote">Centella + oat milk</div>
+        <div class="prow">
+          <span class="price">$38</span>
+          <div style="display:flex;gap:0.4rem">
+            <a class="pill" href="product.html?id=calm-cream">View</a>
+            <button class="pill home-quick-add" data-id="calm-cream" style="background:var(--ink);color:var(--cream);border-color:var(--ink)">+ Bag</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="product.html?id=dew-mist"><svg class="bottle blush"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=dew-mist">Dew Mist</a></div>
+        <div class="pnote">Rosewater + aloe</div>
+        <div class="prow">
+          <span class="price">$26</span>
+          <div style="display:flex;gap:0.4rem">
+            <a class="pill" href="product.html?id=dew-mist">View</a>
+            <button class="pill home-quick-add" data-id="dew-mist" style="background:var(--ink);color:var(--cream);border-color:var(--ink)">+ Bag</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="quote">
+  <p>"The first cream that didn't make my skin pick a fight with me."</p>
+  <span>— Nina R., verified customer</span>
+</div>
+
+</body>
+</html>

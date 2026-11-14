@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop Collection — Veloura</title>
+  <meta name="description" content="Explore our full collection of clean botanical skincare, body care, and hair treatments in refillable glass.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="veloura.css">
+  <script src="veloura.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
+  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
+  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
+</symbol></svg>
+
+<nav>
+  <div class="navin">
+    <a class="brand" href="index.html">Veloura</a>
+    <ul class="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a class="on" href="shop.html">Shop</a></li>
+      <li><a href="product.html?id=bloom-serum">Product</a></li>
+      <li><a href="ritual.html">Ritual</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="block">
+    <div class="section-head">
+      <p class="kicker">Full collection</p>
+      <h2>Shop all formulas</h2>
+      <p>Face, body, and hair treatments formulated to be used together or individually in your daily ritual.</p>
+    </div>
+
+    <div class="chips">
+      <button class="chip on">All</button>
+      <button class="chip">Face</button>
+      <button class="chip">Body</button>
+      <button class="chip">Hair</button>
+      <button class="chip">Gift sets</button>
+    </div>
+
+    <div class="grid g6">
+      <div class="card" data-category="face" data-id="bloom-serum">
+        <a href="product.html?id=bloom-serum"><svg class="bottle"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=bloom-serum">Bloom Serum</a></div>
+        <div class="pnote">Face · Vitamin C + Squalane</div>
+        <div class="prow">
+          <span class="price">$42</span>
+          <button class="pill quick-add-btn" data-id="bloom-serum">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="face" data-id="calm-cream">
+        <a href="product.html?id=calm-cream"><svg class="bottle sage"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=calm-cream">Calm Cream</a></div>
+        <div class="pnote">Face · Centella + Oat Milk</div>
+        <div class="prow">
+          <span class="price">$38</span>
+          <button class="pill quick-add-btn" data-id="calm-cream">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="face" data-id="dew-mist">
+        <a href="product.html?id=dew-mist"><svg class="bottle blush"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=dew-mist">Dew Mist</a></div>
+        <div class="pnote">Face · Rosewater + Aloe</div>
+        <div class="prow">
+          <span class="price">$26</span>
+          <button class="pill quick-add-btn" data-id="dew-mist">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="body" data-id="velvet-oil">
+        <a href="product.html?id=velvet-oil"><svg class="bottle ink"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=velvet-oil">Velvet Oil</a></div>
+        <div class="pnote">Body · Cold-Pressed Jojoba</div>
+        <div class="prow">
+          <span class="price">$34</span>
+          <button class="pill quick-add-btn" data-id="velvet-oil">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="body" data-id="soft-wash">
+        <a href="product.html?id=soft-wash"><svg class="bottle"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=soft-wash">Soft Wash</a></div>
+        <div class="pnote">Body · Soothing Oat Milk</div>
+        <div class="prow">
+          <span class="price">$24</span>
+          <button class="pill quick-add-btn" data-id="soft-wash">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="hair" data-id="silk-mask">
+        <a href="product.html?id=silk-mask"><svg class="bottle sage"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=silk-mask">Silk Mask</a></div>
+        <div class="pnote">Hair · Pure Moroccan Argan</div>
+        <div class="prow">
+          <span class="price">$30</span>
+          <button class="pill quick-add-btn" data-id="silk-mask">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="gift sets" data-id="ritual-duo">
+        <a href="product.html?id=ritual-duo"><svg class="bottle blush"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=ritual-duo">Daily Glow Duo</a></div>
+        <div class="pnote">Gift sets · Serum + Cream</div>
+        <div class="prow">
+          <span class="price">$72</span>
+          <button class="pill quick-add-btn" data-id="ritual-duo">Add</button>
+        </div>
+      </div>
+
+      <div class="card" data-category="gift sets" data-id="full-ritual-set">
+        <a href="product.html?id=full-ritual-set"><svg class="bottle ink"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=full-ritual-set">The Slow Ritual Set</a></div>
+        <div class="pnote">Gift sets · 4 Full Sizes + Pouch</div>
+        <div class="prow">
+          <span class="price">$118</span>
+          <button class="pill quick-add-btn" data-id="full-ritual-set">Add</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

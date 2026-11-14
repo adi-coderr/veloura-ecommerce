@@ -1,0 +1,18 @@
+{
+  "name": "veloura-beauty-brand",
+  "version": "1.0.0",
+  "description": "Veloura - Clean Botanical Skincare in Refillable Glass",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "python3 server.py"
+  },
+  "keywords": [
+    "skincare",
+    "beauty",
+    "ecommerce",
+    "botanical"
+  ],
+  "author": "Veloura",
+  "license": "ISC"
+}

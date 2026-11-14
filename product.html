@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloom Serum — Veloura</title>
+  <meta name="description" content="Bloom Serum - A lightweight vitamin C serum with squalane, built to brighten without stripping moisture.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="veloura.css">
+  <script src="veloura.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
+  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
+  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
+</symbol></svg>
+
+<nav>
+  <div class="navin">
+    <a class="brand" href="index.html">Veloura</a>
+    <ul class="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a class="on" href="product.html">Product</a></li>
+      <li><a href="ritual.html">Ritual</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="block">
+    <div class="pd">
+      <div class="pd-visual">
+        <svg class="bottle"><use href="#bottle"/></svg>
+      </div>
+
+      <div>
+        <p class="stars">★★★★★ <span style="color:var(--mute);font-size:.85rem">(214 verified reviews)</span></p>
+        <h1>Bloom Serum</h1>
+        <p class="price">$42</p>
+        <p class="desc">A lightweight vitamin C serum with squalane, built to brighten without stripping your skin's own moisture barrier.</p>
+        
+        <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.6rem;color:var(--ink)">
+          Vessel Finish &amp; Tone
+        </div>
+        <div class="swatches">
+          <div class="swatch on" style="background:var(--rose)" title="Classic Rose" role="button" tabindex="0"></div>
+          <div class="swatch" style="background:var(--sage)" title="Frosted Sage" role="button" tabindex="0"></div>
+          <div class="swatch" style="background:#D79A8C" title="Clay Blush" role="button" tabindex="0"></div>
+        </div>
+
+        <div class="qty">
+          <div class="qty-control-box">
+            <button class="pd-qty-btn dec" aria-label="Decrease quantity">−</button>
+            <span class="pd-qty-val">1</span>
+            <button class="pd-qty-btn inc" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn pd-add-btn" style="flex:1">Add to bag — $42</button>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Full ingredient list</span>
+              <span class="symbol">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Water/Aqua, Squalane, Tetrahexyldecyl Ascorbate (Lipid-Soluble Vitamin C), Glycerin, Rosa Damascena Flower Water, Simmondsia Chinensis (Jojoba) Seed Oil, Sodium Hyaluronate, Tocopherol (Vitamin E), Centella Asiatica Extract.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>How to use</span>
+              <span class="symbol">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Warm 3–4 drops between clean palms and press gently into face, neck, and décolletage every morning before moisturizer and SPF.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" aria-expanded="false">
+              <span>Shipping &amp; Refill Program</span>
+              <span class="symbol">+</span>
+            </button>
+            <div class="accordion-content">
+              <p>Complimentary carbon-neutral shipping on orders over $50. All vessels are eligible for our snap-in refill pod service at a 20% discount.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block related-products-section">
+    <div class="section-head">
+      <p class="kicker">Complete the Ritual</p>
+      <h2>Pairs beautifully with</h2>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <a href="product.html?id=calm-cream"><svg class="bottle sage"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=calm-cream">Calm Cream</a></div>
+        <div class="pnote">Centella + oat milk</div>
+        <div class="prow"><span class="price">$38</span><a class="pill" href="product.html?id=calm-cream">View</a></div>
+      </div>
+      <div class="card">
+        <a href="product.html?id=dew-mist"><svg class="bottle blush"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=dew-mist">Dew Mist</a></div>
+        <div class="pnote">Rosewater + aloe</div>
+        <div class="prow"><span class="price">$26</span><a class="pill" href="product.html?id=dew-mist">View</a></div>
+      </div>
+      <div class="card">
+        <a href="product.html?id=soft-wash"><svg class="bottle"><use href="#bottle"/></svg></a>
+        <div class="pname"><a href="product.html?id=soft-wash">Soft Wash</a></div>
+        <div class="pnote">Body · Oat milk</div>
+        <div class="prow"><span class="price">$24</span><a class="pill" href="product.html?id=soft-wash">View</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

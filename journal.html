@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Journal — Veloura</title>
+  <meta name="description" content="Essays, formulation insights, and reflections on slow skincare and sustainable circular design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="veloura.css">
+  <script src="veloura.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
+  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
+  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
+</symbol></svg>
+
+<nav>
+  <div class="navin">
+    <a class="brand" href="index.html">Veloura</a>
+    <ul class="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="product.html?id=bloom-serum">Product</a></li>
+      <li><a href="ritual.html">Ritual</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a class="on" href="journal.html">Journal</a></li>
+    </ul>
+    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="block">
+    <div class="section-head">
+      <p class="kicker">The Journal</p>
+      <h2>Notes on slow skincare</h2>
+      <p>Essays, formulation insights, and honest discussions on what truly nourishes human skin.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="jcard" role="button" tabindex="0" onclick="Veloura.Article.open('refill')">
+        <div class="jthumb"><svg class="bottle"><use href="#bottle"/></svg></div>
+        <h3>Why we refill, not recycle</h3>
+        <p>4 min read · By Elena Vance</p>
+      </div>
+
+      <div class="jcard" role="button" tabindex="0" onclick="Veloura.Article.open('ingredients')">
+        <div class="jthumb"><svg class="bottle sage"><use href="#bottle"/></svg></div>
+        <h3>Reading an ingredient label</h3>
+        <p>6 min read · By Dr. Maya Lin</p>
+      </div>
+
+      <div class="jcard" role="button" tabindex="0" onclick="Veloura.Article.open('morning')">
+        <div class="jthumb"><svg class="bottle blush"><use href="#bottle"/></svg></div>
+        <h3>A simpler morning routine</h3>
+        <p>3 min read · By Elena Vance</p>
+      </div>
+    </div>
+
+    <div class="news">
+      <div>
+        <p class="kicker" style="color:var(--blush)">Private Newsletter</p>
+        <h2>Get first access to new formulas &amp; batch runs.</h2>
+      </div>
+      <form class="newsform" onsubmit="return false">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit" class="btn" style="background:var(--cream);color:var(--ink)">Join</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

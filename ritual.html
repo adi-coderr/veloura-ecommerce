@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Daily Ritual — Veloura</title>
+  <meta name="description" content="A simple 3-step morning and evening botanical skincare ritual designed to restore and nourish your skin barrier.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="veloura.css">
+  <script src="veloura.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
+  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
+  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
+  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
+</symbol></svg>
+
+<nav>
+  <div class="navin">
+    <a class="brand" href="index.html">Veloura</a>
+    <ul class="navlinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="product.html?id=bloom-serum">Product</a></li>
+      <li><a class="on" href="ritual.html">Ritual</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="block">
+    <div class="section-head">
+      <p class="kicker">Morning &amp; night protocol</p>
+      <h2>The three-step ritual</h2>
+      <p>Clean botanical skincare should never feel complicated. Three intentional steps to nourish and protect.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Cleanse</h3>
+        <p>Soft Wash lifts impurities and excess sebum without stripping the protective acid mantle.</p>
+        <div style="margin-top:1.2rem">
+          <a href="product.html?id=soft-wash" class="pill">View Soft Wash ($24)</a>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Treat</h3>
+        <p>Bloom Serum in the morning for antioxidant glow; Calm Cream at night for barrier repair.</p>
+        <div style="margin-top:1.2rem;display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap">
+          <a href="product.html?id=bloom-serum" class="pill">Bloom ($42)</a>
+          <a href="product.html?id=calm-cream" class="pill">Calm ($38)</a>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Seal</h3>
+        <p>Dew Mist micro-droplets lock active botanicals in place and maintain hydration all day long.</p>
+        <div style="margin-top:1.2rem">
+          <a href="product.html?id=dew-mist" class="pill">View Dew Mist ($26)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <p class="kicker">Botanical Spotlight</p>
+      <h2>What is inside the bottle</h2>
+      <p>Pure, bio-compatible ingredients selected for efficacy, gentle absorption, and clean sustainability.</p>
+    </div>
+
+    <div class="ing">
+      <div class="card">
+        <div class="dot"></div>
+        <div>
+          <h3>Olive Squalane</h3>
+          <p>Mimics the skin's natural lipid structure so moisture absorbs instantly without greasy residue.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dot"></div>
+        <div>
+          <h3>Niacinamide (B3)</h3>
+          <p>Strengthens ceramides, clarifies pore texture, and evens post-inflammatory redness over time.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="dot"></div>
+        <div>
+          <h3>Centella Asiatica</h3>
+          <p>An ancient restorative botanical packed with madecassoside that soothes stressed skin barriers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ritual-bundle-card">
+      <p class="kicker">Curated Ceremony</p>
+      <h2>The Slow Ritual Complete Box</h2>
+      <p>Receive all four core full-size products plus our organic linen pouch at an exclusive bundled savings of $22.</p>
+      <div class="bundle-actions">
+        <button class="btn add-bundle-btn" onclick="Veloura.Cart.addItem('full-ritual-set', 1)">
+          Add Ritual Box to Bag — $118
+        </button>
+        <a href="product.html?id=full-ritual-set" class="btn ghost">Explore Set Details</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
