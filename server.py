@@ -15,6 +15,7 @@ from urllib.parse import urlparse, parse_qs
 
 DEFAULT_PORT = 8000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.join(DIRECTORY, "frontend")
 DATA_DIR = os.path.join(DIRECTORY, "backend", "data")
 STORAGE_DIR = os.path.join(DATA_DIR, "storage")
 
@@ -40,7 +41,7 @@ def save_json(filepath, data):
 
 class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
+        super().__init__(*args, directory=FRONTEND_DIR, **kwargs)
 
     def end_headers(self):
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')

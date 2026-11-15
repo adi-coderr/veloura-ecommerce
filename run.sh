@@ -9,6 +9,6 @@ if command -v python3 >/dev/null 2>&1; then
 elif command -v node >/dev/null 2>&1; then
     node server.js
 else
-    echo "Opening index.html in your default browser..."
-    open index.html
+    echo "Opening frontend/index.html in your default browser..."
+    open frontend/index.html
 fi

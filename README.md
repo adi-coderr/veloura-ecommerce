@@ -102,15 +102,18 @@ Double-click `start.command` in the project folder to start the server in Termin
 │       └── reviewRoutes.js
 ├── .env                     # Environment variables (PORT, free shipping threshold)
 ├── .env.example             # Example environment configuration
-├── admin.html               # Real-time store analytics and order management dashboard
-├── index.html               # Home page
-├── shop.html                # Catalog grid with filtering
-├── product.html             # Dynamic product detail view
-├── ritual.html              # 3-step skincare ritual
-├── about.html               # Brand founding story
-├── journal.html             # Editorial notes and modal reader
-├── veloura.css              # Master styling
-├── veloura.js               # Frontend store engine (cart, checkout, API integration)
+├── frontend/
+│   ├── css/
+│   │   └── veloura.css      # Master styling
+│   ├── js/
+│   │   └── veloura.js       # Frontend store engine (cart, checkout, API integration)
+│   ├── about.html           # Brand founding story
+│   ├── admin.html           # Real-time store analytics and order management dashboard
+│   ├── index.html           # Home page
+│   ├── journal.html         # Editorial notes and modal reader
+│   ├── product.html         # Dynamic product detail view
+│   ├── ritual.html          # 3-step skincare ritual
+│   └── shop.html            # Catalog grid with filtering
 ├── server.js                # Fullstack Node.js server entrypoint
 ├── server.py                # Zero-dependency Python server & API
 ├── package.json             # NPM dependencies & scripts

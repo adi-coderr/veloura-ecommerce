@@ -15,6 +15,7 @@ module.exports = {
   autoOpenBrowser: process.env.AUTO_OPEN_BROWSER !== 'false',
   paths: {
     root: path.resolve(__dirname, '../../'),
+    frontend: path.resolve(__dirname, '../../frontend'),
     data: path.resolve(__dirname, '../data'),
     storage: path.resolve(__dirname, '../data/storage')
   }

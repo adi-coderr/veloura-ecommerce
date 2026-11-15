@@ -20,8 +20,8 @@ app.use(logger);
 // Mount API Endpoints
 app.use('/api', apiRouter);
 
-// Serve Frontend Static Files from project root
-app.use(express.static(config.paths.root, {
+// Serve Frontend Static Files from frontend/ directory
+app.use(express.static(config.paths.frontend, {
   extensions: ['html'],
   index: 'index.html'
 }));
@@ -36,8 +36,8 @@ app.use((req, res) => {
     });
   }
 
-  // Otherwise, serve index.html
-  const indexFile = path.join(config.paths.root, 'index.html');
+  // Otherwise, serve index.html from frontend
+  const indexFile = path.join(config.paths.frontend, 'index.html');
   res.sendFile(indexFile);
 });
 
