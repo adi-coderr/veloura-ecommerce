@@ -1326,7 +1326,177 @@
   }
 
   // =========================================================================
-  // 11. INITIALIZATION ON DOM READY
+  // 11. SCROLL ANIMATIONS & INTERACTIONS MANAGER
+  // =========================================================================
+  const ScrollManager = {
+    init: function () {
+      this.initProgressBar();
+      this.initBackToTop();
+      this.initNavScroll();
+      this.initScrollReveal();
+    },
+
+    // 1. Reading / Page scroll progress bar at the very top
+    initProgressBar: function () {
+      if (document.querySelector('.scroll-progress-bar')) return;
+      const bar = document.createElement('div');
+      bar.className = 'scroll-progress-bar';
+      document.body.prepend(bar);
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+              const progress = (window.scrollY / docHeight) * 100;
+              bar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    },
+
+    // 2. Sticky navigation elevation on scroll
+    initNavScroll: function () {
+      const nav = document.querySelector('nav');
+      if (!nav) return;
+
+      const onScroll = () => {
+        if (window.scrollY > 30) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    },
+
+    // 3. Floating back-to-top button
+    initBackToTop: function () {
+      if (document.querySelector('.back-to-top')) return;
+
+      const btn = document.createElement('button');
+      btn.className = 'back-to-top';
+      btn.setAttribute('aria-label', 'Scroll to top');
+      btn.innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      `;
+      document.body.appendChild(btn);
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 320) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    },
+
+    // 4. Scroll Reveal via IntersectionObserver
+    initScrollReveal: function () {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      // Auto-assign animation classes across all pages
+      const heroText = document.querySelector('.hero > div:first-child');
+      if (heroText && !heroText.classList.contains('reveal-left')) {
+        heroText.classList.add('reveal-left');
+      }
+
+      const heroVisual = document.querySelector('.hero-visual');
+      if (heroVisual && !heroVisual.classList.contains('reveal-scale')) {
+        heroVisual.classList.add('reveal-scale');
+      }
+
+      const pdVisual = document.querySelector('.pd-visual');
+      if (pdVisual && !pdVisual.classList.contains('reveal-scale')) {
+        pdVisual.classList.add('reveal-scale');
+      }
+
+      const abPort = document.querySelector('.ab-port');
+      if (abPort && !abPort.classList.contains('reveal-scale')) {
+        abPort.classList.add('reveal-scale');
+      }
+
+      const quote = document.querySelector('.quote');
+      if (quote && !quote.classList.contains('reveal')) {
+        quote.classList.add('reveal');
+      }
+
+      const bundleCard = document.querySelector('.ritual-bundle-card');
+      if (bundleCard && !bundleCard.classList.contains('reveal-scale')) {
+        bundleCard.classList.add('reveal-scale');
+      }
+
+      const newsBanner = document.querySelector('.news');
+      if (newsBanner && !newsBanner.classList.contains('reveal-scale')) {
+        newsBanner.classList.add('reveal-scale');
+      }
+
+      const values = document.querySelector('.values');
+      if (values && !values.classList.contains('reveal')) {
+        values.classList.add('reveal');
+      }
+
+      document.querySelectorAll('.section-head').forEach(el => {
+        if (!el.classList.contains('reveal')) el.classList.add('reveal');
+      });
+
+      const gridSelectors = ['.grid.g3', '.grid.g6', '.steps', '.ing', '.stats'];
+      gridSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(container => {
+          const children = Array.from(container.children);
+          children.forEach((child, idx) => {
+            if (!child.classList.contains('reveal')) {
+              child.classList.add('reveal');
+              const delayClass = `reveal-delay-${Math.min(6, (idx % 6) + 1)}`;
+              child.classList.add(delayClass);
+            }
+          });
+        });
+      });
+
+      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
+      if (!revealElements.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        revealElements.forEach(el => el.classList.add('revealed'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealElements.forEach(el => observer.observe(el));
+    }
+  };
+
+  // =========================================================================
+  // 12. INITIALIZATION ON DOM READY
   // =========================================================================
   function init() {
     setupHeader();
@@ -1343,6 +1513,7 @@
     Drawer.init();
     CheckoutModal.init();
     ArticleModal.init();
+    ScrollManager.init();
   }
 
   if (document.readyState === 'loading') {
