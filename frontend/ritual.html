@@ -12,112 +12,275 @@
   <script src="js/veloura.js" defer></script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
-  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
-  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
-  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
-  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
-  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
-</symbol></svg>
+  <!-- Master Luxury Botanical Vessel SVG Symbols -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden">
+    <!-- SERUM DROPPER BOTTLE -->
+    <symbol id="bottle" viewBox="0 0 100 170">
+      <path d="M42 4 C42 1, 58 1, 58 4 L60 22 L40 22 Z" fill="currentColor" opacity="0.95"/>
+      <rect x="36" y="22" width="28" height="9" rx="2" fill="currentColor"/>
+      <line x1="36" y1="26" x2="64" y2="26" stroke="#fff" stroke-width="0.8" opacity="0.3"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="currentColor" opacity="0.18"/>
+      <path d="M26 62 C32 60, 45 61, 50 61 C55 61, 68 60, 74 62 L74 146 C74 154, 66 160, 50 160 C34 160, 26 154, 26 146 Z" fill="currentColor" opacity="0.32"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M27 148 C36 153, 64 153, 73 148 L73 154 C67 160, 33 160, 27 154 Z" fill="currentColor" opacity="0.4"/>
+      <rect x="29" y="80" width="42" height="46" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="94" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="37" y1="98" x2="63" y2="98" stroke="#B5695C" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">SLOW BOTANICAL</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">30 ml · 1.0 fl oz</text>
+      <path d="M28 42 L28 144" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M32 46 L32 136" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    </symbol>
 
-<nav>
-  <div class="navin">
-    <a class="brand" href="index.html">Veloura</a>
-    <ul class="navlinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="product.html?id=bloom-serum">Product</a></li>
-      <li><a class="on" href="ritual.html">Ritual</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="journal.html">Journal</a></li>
-    </ul>
-    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
-  </div>
-</nav>
+    <!-- CREAM JAR -->
+    <symbol id="cream-jar" viewBox="0 0 120 120">
+      <rect x="22" y="18" width="76" height="20" rx="4" fill="currentColor"/>
+      <rect x="24" y="22" width="72" height="3" rx="1.5" fill="#fff" opacity="0.25"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M22 52 L98 52 L96 95 C96 102, 90 106, 80 106 L40 106 C30 106, 24 102, 24 95 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M22 96 C36 102, 84 102, 98 96 L96 104 C88 110, 32 110, 24 104 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="26" y="58" width="68" height="30" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="60" y="70" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="44" y1="73" x2="76" y2="73" stroke="#9DAC87" stroke-width="0.6"/>
+      <text x="60" y="80" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">CALM BARRIER · 50ml</text>
+      <path d="M20 44 L22 94" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
 
-<main class="wrap">
-  <section class="block">
-    <div class="section-head">
-      <p class="kicker">Morning &amp; night protocol</p>
-      <h2>The three-step ritual</h2>
-      <p>Clean botanical skincare should never feel complicated. Three intentional steps to nourish and protect.</p>
+    <!-- MIST SPRAY BOTTLE -->
+    <symbol id="mist-bottle" viewBox="0 0 100 180">
+      <rect x="36" y="6" width="28" height="26" rx="3" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="42" y="16" width="16" height="14" rx="2" fill="currentColor" opacity="0.85"/>
+      <rect x="46" y="10" width="8" height="6" rx="1" fill="currentColor"/>
+      <rect x="34" y="32" width="32" height="8" rx="2" fill="currentColor"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="currentColor" opacity="0.2"/>
+      <rect x="26" y="68" width="48" height="94" rx="8" fill="currentColor" opacity="0.32"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M26 154 C36 160, 64 160, 74 154 L74 158 C68 164, 32 164, 26 158 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="28" y="76" width="44" height="52" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="92" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="96" x2="64" y2="96" stroke="#D79A8C" stroke-width="0.6"/>
+      <text x="50" y="104" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">DEW MIST</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">ROSEWATER · 100ml</text>
+      <path d="M28 46 L28 152" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- ELIXIR OIL FLACON -->
+    <symbol id="oil-flacon" viewBox="0 0 100 170">
+      <rect x="40" y="6" width="20" height="22" rx="3" fill="currentColor"/>
+      <rect x="36" y="26" width="28" height="6" rx="1.5" fill="currentColor" opacity="0.75"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M25 64 C34 62, 66 62, 75 64 L75 146 C75 154, 67 160, 50 160 C33 160, 25 154, 25 146 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <rect x="28" y="78" width="44" height="48" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="93" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="97" x2="64" y2="97" stroke="#2A211D" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">VELVET OIL</text>
+      <text x="50" y="117" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">JOJOBA · 100ml</text>
+      <path d="M27 44 L27 148" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- LUXURY GIFT BOX -->
+    <symbol id="gift-box" viewBox="0 0 130 130">
+      <rect x="18" y="34" width="94" height="80" rx="10" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M14 26 L116 26 L114 42 L16 42 Z" fill="currentColor" opacity="0.85"/>
+      <rect x="58" y="26" width="14" height="88" fill="currentColor" opacity="0.6"/>
+      <circle cx="65" cy="22" r="8" fill="currentColor" opacity="0.9"/>
+      <rect x="36" y="60" width="58" height="28" rx="3" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="65" y="73" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D">VELOURA</text>
+      <text x="65" y="82" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72">RITUAL SET</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="navin">
+      <a class="brand" href="index.html">Veloura</a>
+      <ul class="navlinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="product.html?id=bloom-serum">Product</a></li>
+        <li><a class="on" href="ritual.html">Ritual</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="journal.html">Journal</a></li>
+      </ul>
+      <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
     </div>
+  </nav>
 
-    <div class="steps">
-      <div class="step">
-        <div class="num">01</div>
-        <h3>Cleanse</h3>
-        <p>Soft Wash lifts impurities and excess sebum without stripping the protective acid mantle.</p>
-        <div style="margin-top:1.2rem">
-          <a href="product.html?id=soft-wash" class="pill">View Soft Wash ($24)</a>
-        </div>
+  <main class="wrap">
+    <section class="block">
+      <div class="section-head reveal">
+        <p class="kicker">Morning &amp; Night Protocol</p>
+        <h2>The Three-Step Slow Ritual</h2>
+        <p>Clean botanical skincare should never feel complicated. Three intentional steps to nourish, protect, and restore your skin barrier.</p>
       </div>
 
-      <div class="step">
-        <div class="num">02</div>
-        <h3>Treat</h3>
-        <p>Bloom Serum in the morning for antioxidant glow; Calm Cream at night for barrier repair.</p>
-        <div style="margin-top:1.2rem;display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap">
-          <a href="product.html?id=bloom-serum" class="pill">Bloom ($42)</a>
-          <a href="product.html?id=calm-cream" class="pill">Calm ($38)</a>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="num">03</div>
-        <h3>Seal</h3>
-        <p>Dew Mist micro-droplets lock active botanicals in place and maintain hydration all day long.</p>
-        <div style="margin-top:1.2rem">
-          <a href="product.html?id=dew-mist" class="pill">View Dew Mist ($26)</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-head">
-      <p class="kicker">Botanical Spotlight</p>
-      <h2>What is inside the bottle</h2>
-      <p>Pure, bio-compatible ingredients selected for efficacy, gentle absorption, and clean sustainability.</p>
-    </div>
-
-    <div class="ing">
-      <div class="card">
-        <div class="dot"></div>
-        <div>
-          <h3>Olive Squalane</h3>
-          <p>Mimics the skin's natural lipid structure so moisture absorbs instantly without greasy residue.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="dot"></div>
-        <div>
-          <h3>Niacinamide (B3)</h3>
-          <p>Strengthens ceramides, clarifies pore texture, and evens post-inflammatory redness over time.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="dot"></div>
-        <div>
-          <h3>Centella Asiatica</h3>
-          <p>An ancient restorative botanical packed with madecassoside that soothes stressed skin barriers.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="ritual-bundle-card">
-      <p class="kicker">Curated Ceremony</p>
-      <h2>The Slow Ritual Complete Box</h2>
-      <p>Receive all four core full-size products plus our organic linen pouch at an exclusive bundled savings of $22.</p>
-      <div class="bundle-actions">
-        <button class="btn add-bundle-btn" onclick="Veloura.Cart.addItem('full-ritual-set', 1)">
-          Add Ritual Box to Bag — $118
+      <!-- Protocol Navigation Tabs -->
+      <div class="protocol-nav reveal">
+        <button class="protocol-tab active" data-target="am-protocol" aria-label="Morning ritual protocol">
+          ✦ Morning (Shield &amp; Glow)
         </button>
-        <a href="product.html?id=full-ritual-set" class="btn ghost">Explore Set Details</a>
+        <button class="protocol-tab" data-target="pm-protocol" aria-label="Evening ritual protocol">
+          ☾ Evening (Restore &amp; Repair)
+        </button>
       </div>
-    </div>
-  </section>
-</main>
 
+      <!-- AM Protocol Panel -->
+      <div id="am-protocol" class="protocol-panel">
+        <div class="steps">
+          <div class="step reveal reveal-delay-1">
+            <div class="step-num-badge">01</div>
+            <div class="step-stage">
+              <svg class="bottle sage"><use href="#bottle"/></svg>
+            </div>
+            <span class="step-duration">30 Sec · Refresh</span>
+            <h3>Cleanse</h3>
+            <p>Soft Wash gently lifts impurities and nocturnal sebum without stripping the protective acidic barrier.</p>
+            <a href="product.html?id=soft-wash" class="step-action-pill">Explore Soft Wash — $24</a>
+          </div>
+
+          <div class="step reveal reveal-delay-2">
+            <div class="step-num-badge">02</div>
+            <div class="step-stage">
+              <svg class="bottle"><use href="#bottle"/></svg>
+            </div>
+            <span class="step-duration">45 Sec · Nourish</span>
+            <h3>Treat</h3>
+            <p>Bloom Serum infuses pure olive squalane and green tea polyphenols to shield skin from daily oxidative pollution.</p>
+            <a href="product.html?id=bloom-serum" class="step-action-pill">Explore Bloom Serum — $42</a>
+          </div>
+
+          <div class="step reveal reveal-delay-3">
+            <div class="step-num-badge">03</div>
+            <div class="step-stage">
+              <svg class="bottle blush"><use href="#mist-bottle"/></svg>
+            </div>
+            <span class="step-duration">15 Sec · Seal</span>
+            <h3>Seal &amp; Mist</h3>
+            <p>Dew Mist micro-droplets lock in active botanical lipids and set a fresh, supple glow throughout the entire day.</p>
+            <a href="product.html?id=dew-mist" class="step-action-pill">Explore Dew Mist — $26</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PM Protocol Panel -->
+      <div id="pm-protocol" class="protocol-panel hidden">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num-badge">01</div>
+            <div class="step-stage">
+              <svg class="bottle sage"><use href="#bottle"/></svg>
+            </div>
+            <span class="step-duration">60 Sec · Dissolve</span>
+            <h3>Cleanse &amp; Prep</h3>
+            <p>Massage Soft Wash over dry face to break down sunscreen and airborne dirt, rinse with lukewarm filtered water.</p>
+            <a href="product.html?id=soft-wash" class="step-action-pill">Explore Soft Wash — $24</a>
+          </div>
+
+          <div class="step">
+            <div class="step-num-badge">02</div>
+            <div class="step-stage">
+              <svg class="bottle"><use href="#cream-jar"/></svg>
+            </div>
+            <span class="step-duration">60 Sec · Recovery</span>
+            <h3>Barrier Repair</h3>
+            <p>Calm Cream blankets skin in bio-identical ceramides and centella asiatica to accelerate cellular repair as you sleep.</p>
+            <a href="product.html?id=calm-cream" class="step-action-pill">Explore Calm Cream — $38</a>
+          </div>
+
+          <div class="step">
+            <div class="step-num-badge">03</div>
+            <div class="step-stage">
+              <svg class="bottle blush"><use href="#oil-flacon"/></svg>
+            </div>
+            <span class="step-duration">30 Sec · Lock</span>
+            <h3>Lipid Lock</h3>
+            <p>Press 2 to 3 drops of Velvet Oil into palms and gently pat into skin to seal moisture against nocturnal dry air.</p>
+            <a href="product.html?id=velvet-oil" class="step-action-pill">Explore Velvet Oil — $36</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botanical Spotlight -->
+      <div class="section-head reveal" style="margin-top:2rem">
+        <p class="kicker">Botanical Spotlight</p>
+        <h2>What is inside every bottle</h2>
+        <p>Pure, bio-compatible ingredients selected for cellular affinity, gentle absorption, and zero filler burden.</p>
+      </div>
+
+      <div class="ing reveal">
+        <div class="card">
+          <div class="dot"></div>
+          <div>
+            <h3>Olive Squalane (Cold-Pressed)</h3>
+            <p>Mimics the skin's natural lipid structure so moisture absorbs instantly without greasy residue or clogging pores.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="dot"></div>
+          <div>
+            <h3>Niacinamide (Vitamin B3)</h3>
+            <p>Fortifies intercellular ceramides, calms redness, clarifies pore appearance, and balances sebum production.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="dot"></div>
+          <div>
+            <h3>Centella Asiatica (Gotu Kola)</h3>
+            <p>An ancient Ayurvedic botanical rich in madecassoside that deeply comforts inflamed, sensitive, and over-treated skin.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Luxury Ritual Set Showcase Banner -->
+      <div class="ritual-bundle-card reveal">
+        <div class="bundle-visual-col">
+          <div class="bundle-stage">
+            <svg class="bottle"><use href="#gift-box"/></svg>
+          </div>
+          <span class="bundle-badge">All 4 Full Sizes + Linen Bag</span>
+        </div>
+
+        <div class="bundle-info-col">
+          <p class="kicker">Curated Ceremony</p>
+          <h2>The Slow Ritual Complete Box</h2>
+          <p>
+            Everything you need for an intentional morning and evening regimen. Four full-size botanical treatments housed in heavy refillable Italian glass, accompanied by our unbleached organic linen toiletry pouch.
+          </p>
+
+          <ul class="bundle-perks-list">
+            <li><span class="check">✓</span> Soft Wash Gel Cleanser (100ml)</li>
+            <li><span class="check">✓</span> Bloom Botanical Serum (30ml)</li>
+            <li><span class="check">✓</span> Calm Barrier Cream (50ml)</li>
+            <li><span class="check">✓</span> Dew Rosewater Mist (100ml)</li>
+            <li><span class="check">✓</span> Organic Woven Linen Pouch</li>
+            <li><span class="check">✓</span> Snap-in Refill Pod Eligible</li>
+          </ul>
+
+          <div class="bundle-pricing">
+            <span class="bundle-price-now">$118</span>
+            <span class="bundle-price-orig">$140 Value</span>
+            <span class="bundle-savings-tag">Save $22 Complete Set</span>
+          </div>
+
+          <div class="bundle-actions">
+            <button class="btn add-bundle-btn" onclick="Veloura.Cart.addItem('full-ritual-set', 1)">
+              Add Ritual Box to Bag — $118
+            </button>
+            <a href="product.html?id=full-ritual-set" class="btn ghost">Explore Set Details</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Editorial Quote -->
+  <div class="quote reveal">
+    <div style="color:var(--gold);margin-bottom:1rem;font-size:1.2rem">★★★★★</div>
+    <p>"The 3-step ritual transformed my morning. It feels less like a chore and more like a grounding five-minute meditation."</p>
+    <span>— Chloe M., Verified Subscriber · San Francisco, CA</span>
+  </div>
 </body>
 </html>

@@ -17,15 +17,83 @@
 </head>
 
 <body>
-  <svg width="0" height="0" style="position:absolute">
-    <symbol id="bottle" viewBox="0 0 100 160">
-      <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor" />
-      <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7" />
-      <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor"
-        opacity=".16" />
-      <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none"
-        stroke="currentColor" stroke-width="2.5" />
-      <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9" />
+  <!-- Master Luxury Botanical Vessel SVG Symbols -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden">
+    <!-- SERUM DROPPER BOTTLE -->
+    <symbol id="bottle" viewBox="0 0 100 170">
+      <path d="M42 4 C42 1, 58 1, 58 4 L60 22 L40 22 Z" fill="currentColor" opacity="0.95"/>
+      <rect x="36" y="22" width="28" height="9" rx="2" fill="currentColor"/>
+      <line x1="36" y1="26" x2="64" y2="26" stroke="#fff" stroke-width="0.8" opacity="0.3"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="currentColor" opacity="0.18"/>
+      <path d="M26 62 C32 60, 45 61, 50 61 C55 61, 68 60, 74 62 L74 146 C74 154, 66 160, 50 160 C34 160, 26 154, 26 146 Z" fill="currentColor" opacity="0.32"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M27 148 C36 153, 64 153, 73 148 L73 154 C67 160, 33 160, 27 154 Z" fill="currentColor" opacity="0.4"/>
+      <rect x="29" y="80" width="42" height="46" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="94" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="37" y1="98" x2="63" y2="98" stroke="#B5695C" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">SLOW BOTANICAL</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">30 ml · 1.0 fl oz</text>
+      <path d="M28 42 L28 144" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M32 46 L32 136" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    </symbol>
+
+    <!-- CREAM JAR -->
+    <symbol id="cream-jar" viewBox="0 0 120 120">
+      <rect x="22" y="18" width="76" height="20" rx="4" fill="currentColor"/>
+      <rect x="24" y="22" width="72" height="3" rx="1.5" fill="#fff" opacity="0.25"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M22 52 L98 52 L96 95 C96 102, 90 106, 80 106 L40 106 C30 106, 24 102, 24 95 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M22 96 C36 102, 84 102, 98 96 L96 104 C88 110, 32 110, 24 104 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="26" y="58" width="68" height="30" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="60" y="70" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="44" y1="73" x2="76" y2="73" stroke="#9DAC87" stroke-width="0.6"/>
+      <text x="60" y="80" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">CALM BARRIER · 50ml</text>
+      <path d="M20 44 L22 94" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- MIST SPRAY BOTTLE -->
+    <symbol id="mist-bottle" viewBox="0 0 100 180">
+      <rect x="36" y="6" width="28" height="26" rx="3" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="42" y="16" width="16" height="14" rx="2" fill="currentColor" opacity="0.85"/>
+      <rect x="46" y="10" width="8" height="6" rx="1" fill="currentColor"/>
+      <rect x="34" y="32" width="32" height="8" rx="2" fill="currentColor"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="currentColor" opacity="0.2"/>
+      <rect x="26" y="68" width="48" height="94" rx="8" fill="currentColor" opacity="0.32"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M26 154 C36 160, 64 160, 74 154 L74 158 C68 164, 32 164, 26 158 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="28" y="76" width="44" height="52" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="92" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="96" x2="64" y2="96" stroke="#D79A8C" stroke-width="0.6"/>
+      <text x="50" y="104" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">DEW MIST</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">ROSEWATER · 100ml</text>
+      <path d="M28 46 L28 152" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- ELIXIR OIL FLACON -->
+    <symbol id="oil-flacon" viewBox="0 0 100 170">
+      <rect x="40" y="6" width="20" height="22" rx="3" fill="currentColor"/>
+      <rect x="36" y="26" width="28" height="6" rx="1.5" fill="currentColor" opacity="0.75"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M25 64 C34 62, 66 62, 75 64 L75 146 C75 154, 67 160, 50 160 C33 160, 25 154, 25 146 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <rect x="28" y="78" width="44" height="48" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="93" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="97" x2="64" y2="97" stroke="#2A211D" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">VELVET OIL</text>
+      <text x="50" y="117" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">JOJOBA · 100ml</text>
+      <path d="M27 44 L27 148" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- LUXURY GIFT BOX -->
+    <symbol id="gift-box" viewBox="0 0 130 130">
+      <rect x="18" y="34" width="94" height="80" rx="10" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M14 26 L116 26 L114 42 L16 42 Z" fill="currentColor" opacity="0.85"/>
+      <rect x="58" y="26" width="14" height="88" fill="currentColor" opacity="0.6"/>
+      <circle cx="65" cy="22" r="8" fill="currentColor" opacity="0.9"/>
+      <rect x="36" y="60" width="58" height="28" rx="3" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="65" y="73" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D">VELOURA</text>
+      <text x="65" y="82" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72">RITUAL SET</text>
     </symbol>
   </svg>
 
@@ -45,19 +113,24 @@
   </nav>
 
   <main class="wrap">
+    <!-- Hero Section -->
     <section>
       <div class="hero">
         <div>
+          <div class="award-pill">
+            <span>✦</span> Winner — 2026 Sustainable Beauty Awards
+          </div>
           <p class="kicker">Clean beauty, slow made</p>
           <h1>Skincare that lets<br>your skin breathe.</h1>
-          <p>Plant-based formulas in refillable glass, made in slow small batches so nothing sits on a warehouse shelf
-            too long.</p>
+          <p>Nutrient-dense botanical formulas poured fresh in infinitely refillable Italian glass. Made in slow, small runs so active plant flavonoids never sit on a warehouse shelf.</p>
           <div class="actions">
             <a class="btn" href="shop.html">Shop bestsellers</a>
             <a class="btn ghost" href="ritual.html">Our 3-step ritual</a>
           </div>
         </div>
         <div class="hero-visual">
+          <div class="floating-hero-badge">✦ Cold-Pressed Pure Squalane</div>
+          <div class="floating-hero-badge-right">30ml · Refillable Glass</div>
           <svg class="bottle">
             <use href="#bottle" />
           </svg>
@@ -69,9 +142,23 @@
         <span class="pill">✦ Cruelty-Free Certified</span>
         <span class="pill">✦ Infinitely Refillable Glass</span>
         <span class="pill">✦ Cold-Pressed Botanical Actives</span>
+        <span class="pill">✦ Carbon-Neutral Shipping</span>
       </div>
     </section>
 
+    <!-- Editorial Press Mentions -->
+    <section class="press-bar">
+      <p class="press-title">As celebrated in</p>
+      <div class="press-logos">
+        <span>VOGUE</span>
+        <span>ELLE</span>
+        <span>VANITY FAIR</span>
+        <span>HARPER'S BAZAAR</span>
+        <span>DAZED</span>
+      </div>
+    </section>
+
+    <!-- Bestsellers Grid -->
     <section class="block">
       <div class="section-head">
         <p class="kicker">Bestsellers</p>
@@ -80,11 +167,11 @@
       </div>
       <div class="grid g3">
         <div class="card">
-          <a href="product.html?id=bloom-serum"><svg class="bottle">
-              <use href="#bottle" />
-            </svg></a>
+          <div class="card-bottle-stage">
+            <a href="product.html?id=bloom-serum"><svg class="bottle"><use href="#bottle" /></svg></a>
+          </div>
           <div class="pname"><a href="product.html?id=bloom-serum">Bloom Serum</a></div>
-          <div class="pnote">Vitamin C + squalane</div>
+          <div class="pnote">Face · Vitamin C + Squalane</div>
           <div class="prow">
             <span class="price">$42</span>
             <div style="display:flex;gap:0.4rem">
@@ -96,11 +183,11 @@
         </div>
 
         <div class="card">
-          <a href="product.html?id=calm-cream"><svg class="bottle sage">
-              <use href="#bottle" />
-            </svg></a>
+          <div class="card-bottle-stage">
+            <a href="product.html?id=calm-cream"><svg class="bottle sage"><use href="#cream-jar" /></svg></a>
+          </div>
           <div class="pname"><a href="product.html?id=calm-cream">Calm Cream</a></div>
-          <div class="pnote">Centella + oat milk</div>
+          <div class="pnote">Face · Centella + Oat Milk</div>
           <div class="prow">
             <span class="price">$38</span>
             <div style="display:flex;gap:0.4rem">
@@ -112,11 +199,11 @@
         </div>
 
         <div class="card">
-          <a href="product.html?id=dew-mist"><svg class="bottle blush">
-              <use href="#bottle" />
-            </svg></a>
+          <div class="card-bottle-stage">
+            <a href="product.html?id=dew-mist"><svg class="bottle blush"><use href="#mist-bottle" /></svg></a>
+          </div>
           <div class="pname"><a href="product.html?id=dew-mist">Dew Mist</a></div>
-          <div class="pnote">Rosewater + aloe</div>
+          <div class="pnote">Face · Rosewater + Aloe</div>
           <div class="prow">
             <span class="price">$26</span>
             <div style="display:flex;gap:0.4rem">
@@ -128,11 +215,45 @@
         </div>
       </div>
     </section>
+
+    <!-- Why Slow Skincare Pillars -->
+    <section class="block" style="padding-top:1rem">
+      <div class="section-head">
+        <p class="kicker">The Slow Standard</p>
+        <h2>Why slow beauty matters</h2>
+        <p>Three biological commitments behind every formula we craft.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card" style="background:#fff">
+          <div style="font-size:1.8rem;color:var(--rose);margin-bottom:0.8rem">✦</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">Circular Heavy Glass</h3>
+          <p style="color:var(--mute);font-size:0.92rem;line-height:1.6">
+            We designed heavy Italian vessels that you keep forever. When empty, snap-in lightweight refill pods save 86% carbon per shipment.
+          </p>
+        </div>
+        <div class="card" style="background:#fff">
+          <div style="font-size:1.8rem;color:var(--sage);margin-bottom:0.8rem">✦</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">Cold-Pressed Potency</h3>
+          <p style="color:var(--mute);font-size:0.92rem;line-height:1.6">
+            Never heat-extracted or bleached. Our botanical oils preserve natural enzymes, polyphenols, and essential lipid acids.
+          </p>
+        </div>
+        <div class="card" style="background:#fff">
+          <div style="font-size:1.8rem;color:var(--gold);margin-bottom:0.8rem">✦</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">Zero Silicones or Fillers</h3>
+          <p style="color:var(--mute);font-size:0.92rem;line-height:1.6">
+            No dimethicone or synthetic fragrance that masks irritation. Every ingredient has a direct biological function for your skin barrier.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Editorial Customer Quote -->
   <div class="quote">
-    <p>"The first cream that didn't make my skin pick a fight with me."</p>
-    <span>— Nina R., verified customer</span>
+    <div style="color:var(--gold);margin-bottom:1rem;font-size:1.2rem">★★★★★</div>
+    <p>"The first cream that didn't make my skin pick a fight with me. My natural barrier has never looked this calm and luminous."</p>
+    <span>— Nina R., Verified Customer · London, UK</span>
   </div>
 
 </body>

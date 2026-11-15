@@ -12,69 +12,206 @@
   <script src="js/veloura.js" defer></script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
-  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
-  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
-  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
-  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
-  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
-</symbol></svg>
+  <!-- Master Luxury Botanical Vessel SVG Symbols -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden">
+    <!-- SERUM DROPPER BOTTLE -->
+    <symbol id="bottle" viewBox="0 0 100 170">
+      <path d="M42 4 C42 1, 58 1, 58 4 L60 22 L40 22 Z" fill="currentColor" opacity="0.95"/>
+      <rect x="36" y="22" width="28" height="9" rx="2" fill="currentColor"/>
+      <line x1="36" y1="26" x2="64" y2="26" stroke="#fff" stroke-width="0.8" opacity="0.3"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="currentColor" opacity="0.18"/>
+      <path d="M26 62 C32 60, 45 61, 50 61 C55 61, 68 60, 74 62 L74 146 C74 154, 66 160, 50 160 C34 160, 26 154, 26 146 Z" fill="currentColor" opacity="0.32"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M27 148 C36 153, 64 153, 73 148 L73 154 C67 160, 33 160, 27 154 Z" fill="currentColor" opacity="0.4"/>
+      <rect x="29" y="80" width="42" height="46" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="94" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="37" y1="98" x2="63" y2="98" stroke="#B5695C" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">SLOW BOTANICAL</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">30 ml · 1.0 fl oz</text>
+      <path d="M28 42 L28 144" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M32 46 L32 136" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    </symbol>
 
-<nav>
-  <div class="navin">
-    <a class="brand" href="index.html">Veloura</a>
-    <ul class="navlinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="product.html?id=bloom-serum">Product</a></li>
-      <li><a href="ritual.html">Ritual</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a class="on" href="journal.html">Journal</a></li>
-    </ul>
-    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
-  </div>
-</nav>
+    <!-- CREAM JAR -->
+    <symbol id="cream-jar" viewBox="0 0 120 120">
+      <rect x="22" y="18" width="76" height="20" rx="4" fill="currentColor"/>
+      <rect x="24" y="22" width="72" height="3" rx="1.5" fill="#fff" opacity="0.25"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M22 52 L98 52 L96 95 C96 102, 90 106, 80 106 L40 106 C30 106, 24 102, 24 95 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M22 96 C36 102, 84 102, 98 96 L96 104 C88 110, 32 110, 24 104 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="26" y="58" width="68" height="30" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="60" y="70" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="44" y1="73" x2="76" y2="73" stroke="#9DAC87" stroke-width="0.6"/>
+      <text x="60" y="80" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">CALM BARRIER · 50ml</text>
+      <path d="M20 44 L22 94" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
 
-<main class="wrap">
-  <section class="block">
-    <div class="section-head">
-      <p class="kicker">The Journal</p>
-      <h2>Notes on slow skincare</h2>
-      <p>Essays, formulation insights, and honest discussions on what truly nourishes human skin.</p>
+    <!-- MIST SPRAY BOTTLE -->
+    <symbol id="mist-bottle" viewBox="0 0 100 180">
+      <rect x="36" y="6" width="28" height="26" rx="3" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="42" y="16" width="16" height="14" rx="2" fill="currentColor" opacity="0.85"/>
+      <rect x="46" y="10" width="8" height="6" rx="1" fill="currentColor"/>
+      <rect x="34" y="32" width="32" height="8" rx="2" fill="currentColor"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="currentColor" opacity="0.2"/>
+      <rect x="26" y="68" width="48" height="94" rx="8" fill="currentColor" opacity="0.32"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M26 154 C36 160, 64 160, 74 154 L74 158 C68 164, 32 164, 26 158 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="28" y="76" width="44" height="52" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="92" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="96" x2="64" y2="96" stroke="#D79A8C" stroke-width="0.6"/>
+      <text x="50" y="104" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">DEW MIST</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">ROSEWATER · 100ml</text>
+      <path d="M28 46 L28 152" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- ELIXIR OIL FLACON -->
+    <symbol id="oil-flacon" viewBox="0 0 100 170">
+      <rect x="40" y="6" width="20" height="22" rx="3" fill="currentColor"/>
+      <rect x="36" y="26" width="28" height="6" rx="1.5" fill="currentColor" opacity="0.75"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M25 64 C34 62, 66 62, 75 64 L75 146 C75 154, 67 160, 50 160 C33 160, 25 154, 25 146 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <rect x="28" y="78" width="44" height="48" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="93" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="97" x2="64" y2="97" stroke="#2A211D" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">VELVET OIL</text>
+      <text x="50" y="117" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">JOJOBA · 100ml</text>
+      <path d="M27 44 L27 148" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
+
+    <!-- LUXURY GIFT BOX -->
+    <symbol id="gift-box" viewBox="0 0 130 130">
+      <rect x="18" y="34" width="94" height="80" rx="10" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M14 26 L116 26 L114 42 L16 42 Z" fill="currentColor" opacity="0.85"/>
+      <rect x="58" y="26" width="14" height="88" fill="currentColor" opacity="0.6"/>
+      <circle cx="65" cy="22" r="8" fill="currentColor" opacity="0.9"/>
+      <rect x="36" y="60" width="58" height="28" rx="3" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="65" y="73" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D">VELOURA</text>
+      <text x="65" y="82" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72">RITUAL SET</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="navin">
+      <a class="brand" href="index.html">Veloura</a>
+      <ul class="navlinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="product.html?id=bloom-serum">Product</a></li>
+        <li><a href="ritual.html">Ritual</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="on" href="journal.html">Journal</a></li>
+      </ul>
+      <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
     </div>
+  </nav>
 
-    <div class="grid g3">
-      <div class="jcard" role="button" tabindex="0" onclick="Veloura.Article.open('refill')">
-        <div class="jthumb"><svg class="bottle"><use href="#bottle"/></svg></div>
-        <h3>Why we refill, not recycle</h3>
-        <p>4 min read · By Elena Vance</p>
+  <main class="wrap">
+    <section class="block">
+      <div class="section-head reveal">
+        <p class="kicker">The Journal</p>
+        <h2>Notes on slow skincare</h2>
+        <p>Essays, formulation insights, and transparent discussions on what truly nourishes human skin biology.</p>
       </div>
 
-      <div class="jcard" role="button" tabindex="0" onclick="Veloura.Article.open('ingredients')">
-        <div class="jthumb"><svg class="bottle sage"><use href="#bottle"/></svg></div>
-        <h3>Reading an ingredient label</h3>
-        <p>6 min read · By Dr. Maya Lin</p>
+      <!-- Featured Cover Story Magazine Card -->
+      <div class="journal-hero-card reveal" data-article="refill" role="button" tabindex="0">
+        <div class="journal-hero-content">
+          <span class="article-tag">Sustainability · Feature Essay</span>
+          <h2>Why we refill, not recycle: The inconvenient reality of cosmetic plastics.</h2>
+          <p>
+            Over 120 billion packaging units are produced annually by the beauty industry, with less than 9% ever mechanically recycled. Here is why we designed heavy Italian flint glass flacons built to live on your vanity for a lifetime.
+          </p>
+          <div class="journal-byline">
+            <span class="author-avatar">EV</span>
+            <div>
+              <strong style="color:var(--ink);display:block">Elena Vance</strong>
+              <span>Founder &amp; Formulator · 4 min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="journal-hero-visual">
+          <svg class="bottle sage"><use href="#bottle"/></svg>
+        </div>
       </div>
 
-      <div class="jcard" role="button" tabindex="0" onclick="Veloura.Article.open('morning')">
-        <div class="jthumb"><svg class="bottle blush"><use href="#bottle"/></svg></div>
-        <h3>A simpler morning routine</h3>
-        <p>3 min read · By Elena Vance</p>
+      <!-- Category Filter Tabs -->
+      <div class="journal-filters reveal">
+        <button class="jfilter-btn active" data-filter="all">All Stories</button>
+        <button class="jfilter-btn" data-filter="circular">Circular Design</button>
+        <button class="jfilter-btn" data-filter="science">Skin Biology</button>
+        <button class="jfilter-btn" data-filter="rituals">Daily Rituals</button>
       </div>
-    </div>
 
-    <div class="news">
-      <div>
-        <p class="kicker" style="color:var(--blush)">Private Newsletter</p>
-        <h2>Get first access to new formulas &amp; batch runs.</h2>
+      <!-- Articles Grid -->
+      <div class="grid g3">
+        <div class="jcard reveal reveal-delay-1" data-article="refill" data-category="circular" role="button" tabindex="0">
+          <div class="jthumb">
+            <svg class="bottle"><use href="#bottle"/></svg>
+          </div>
+          <div class="jcard-meta">
+            <span>Circular Design</span>
+            <span>4 min read</span>
+          </div>
+          <h3>Why we refill, not recycle</h3>
+          <p>A deeper look into our closed-loop aluminium cartridge pod system that saves 86% greenhouse freight emissions.</p>
+          <div class="jcard-footer">
+            <span>By Elena Vance</span>
+            <span style="color:var(--rose);font-weight:500">Read Essay →</span>
+          </div>
+        </div>
+
+        <div class="jcard reveal reveal-delay-2" data-article="ingredients" data-category="science" role="button" tabindex="0">
+          <div class="jthumb">
+            <svg class="bottle sage"><use href="#cream-jar"/></svg>
+          </div>
+          <div class="jcard-meta">
+            <span>Skin Biology</span>
+            <span>6 min read</span>
+          </div>
+          <h3>Reading an ingredient label</h3>
+          <p>How to decipher cosmetic INCI declarations, spot sneaky petroleum fillers, and understand true botanical bio-activity.</p>
+          <div class="jcard-footer">
+            <span>By Dr. Maya Lin</span>
+            <span style="color:var(--rose);font-weight:500">Read Essay →</span>
+          </div>
+        </div>
+
+        <div class="jcard reveal reveal-delay-3" data-article="morning" data-category="rituals" role="button" tabindex="0">
+          <div class="jthumb">
+            <svg class="bottle blush"><use href="#mist-bottle"/></svg>
+          </div>
+          <div class="jcard-meta">
+            <span>Daily Rituals</span>
+            <span>3 min read</span>
+          </div>
+          <h3>A simpler morning routine</h3>
+          <p>Why aggressive 10-step morning cleansing strips your protective acid mantle and how three gentle steps restore barrier strength.</p>
+          <div class="jcard-footer">
+            <span>By Elena Vance</span>
+            <span style="color:var(--rose);font-weight:500">Read Essay →</span>
+          </div>
+        </div>
       </div>
-      <form class="newsform" onsubmit="return false">
-        <input type="email" placeholder="Your email address" required>
-        <button type="submit" class="btn" style="background:var(--cream);color:var(--ink)">Join</button>
-      </form>
-    </div>
-  </section>
-</main>
 
+      <!-- Newsletter Box -->
+      <div class="news reveal">
+        <div>
+          <p class="kicker" style="color:var(--blush)">Private Newsletter</p>
+          <h2 style="font-size:clamp(1.6rem, 2.8vw, 2.2rem);margin-top:0.4rem;line-height:1.25">
+            Get first access to small seasonal botanical runs.
+          </h2>
+          <p style="color:rgba(251, 243, 236, 0.8);font-size:0.95rem;margin-top:0.6rem;max-width:32em">
+            Zero noise or hard sales. Only formulation essays, harvest logs, and 10% off your initial refill order.
+          </p>
+        </div>
+        <form class="newsform" onsubmit="return false">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit" class="btn" style="background:var(--cream);color:var(--ink)">Join Inner Circle</button>
+        </form>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

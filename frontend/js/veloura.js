@@ -1244,12 +1244,25 @@
 
   // --- C. JOURNAL PAGE HANDLER ---
   function initJournalPage() {
-    const jcards = document.querySelectorAll('.jcard');
-    if (!jcards.length) return;
+    const heroCard = document.querySelector('.journal-hero-card');
+    if (heroCard) {
+      heroCard.addEventListener('click', () => {
+        const articleKey = heroCard.getAttribute('data-article') || 'refill';
+        ArticleModal.open(articleKey);
+      });
+      heroCard.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const articleKey = heroCard.getAttribute('data-article') || 'refill';
+          ArticleModal.open(articleKey);
+        }
+      });
+    }
 
+    const jcards = document.querySelectorAll('.jcard');
     const keys = ['refill', 'ingredients', 'morning'];
     jcards.forEach((card, index) => {
-      const key = keys[index] || 'refill';
+      const key = card.getAttribute('data-article') || keys[index] || 'refill';
       card.style.cursor = 'pointer';
       card.setAttribute('role', 'button');
       card.setAttribute('tabindex', '0');
@@ -1263,12 +1276,44 @@
         }
       });
     });
+
+    const filterBtns = document.querySelectorAll('.jfilter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        jcards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
   }
 
   // --- D. RITUAL PAGE HANDLER ---
   function initRitualPage() {
-    const steps = document.querySelectorAll('.steps .step');
-    if (!steps.length) return;
+    const protocolTabs = document.querySelectorAll('.protocol-tab');
+    protocolTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-target');
+        protocolTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        document.querySelectorAll('.protocol-panel').forEach(panel => {
+          if (panel.id === targetId) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      });
+    });
 
     const bundleBtn = document.querySelector('.add-bundle-btn');
     if (bundleBtn) {

@@ -12,122 +12,289 @@
   <script src="js/veloura.js" defer></script>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute"><symbol id="bottle" viewBox="0 0 100 160">
-  <rect x="38" y="4" width="24" height="16" rx="4" fill="currentColor"/>
-  <rect x="34" y="18" width="32" height="10" rx="3" fill="currentColor" opacity=".7"/>
-  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="currentColor" opacity=".16"/>
-  <path d="M26 30h48c7 0 10 4 10 11v100c0 10-7 15-17 15H33c-10 0-17-5-17-15V41c0-7 3-11 10-11z" fill="none" stroke="currentColor" stroke-width="2.5"/>
-  <rect x="24" y="78" width="52" height="34" rx="3" fill="currentColor" opacity=".9"/>
-</symbol></svg>
+  <!-- Master Luxury Botanical Vessel SVG Symbols -->
+  <svg width="0" height="0" style="position:absolute;overflow:hidden">
+    <symbol id="bottle" viewBox="0 0 100 170">
+      <path d="M42 4 C42 1, 58 1, 58 4 L60 22 L40 22 Z" fill="currentColor" opacity="0.95"/>
+      <rect x="36" y="22" width="28" height="9" rx="2" fill="currentColor"/>
+      <line x1="36" y1="26" x2="64" y2="26" stroke="#fff" stroke-width="0.8" opacity="0.3"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="currentColor" opacity="0.18"/>
+      <path d="M26 62 C32 60, 45 61, 50 61 C55 61, 68 60, 74 62 L74 146 C74 154, 66 160, 50 160 C34 160, 26 154, 26 146 Z" fill="currentColor" opacity="0.32"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M27 148 C36 153, 64 153, 73 148 L73 154 C67 160, 33 160, 27 154 Z" fill="currentColor" opacity="0.4"/>
+      <rect x="29" y="80" width="42" height="46" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="94" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="37" y1="98" x2="63" y2="98" stroke="#B5695C" stroke-width="0.6"/>
+      <text x="50" y="105" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">SLOW BOTANICAL</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">30 ml · 1.0 fl oz</text>
+      <path d="M28 42 L28 144" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+      <path d="M32 46 L32 136" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    </symbol>
 
-<nav>
-  <div class="navin">
-    <a class="brand" href="index.html">Veloura</a>
-    <ul class="navlinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a class="on" href="product.html">Product</a></li>
-      <li><a href="ritual.html">Ritual</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="journal.html">Journal</a></li>
-    </ul>
-    <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
-  </div>
-</nav>
+    <symbol id="cream-jar" viewBox="0 0 120 120">
+      <rect x="22" y="18" width="76" height="20" rx="4" fill="currentColor"/>
+      <rect x="24" y="22" width="72" height="3" rx="1.5" fill="#fff" opacity="0.25"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="currentColor" opacity="0.22"/>
+      <path d="M22 52 L98 52 L96 95 C96 102, 90 106, 80 106 L40 106 C30 106, 24 102, 24 95 Z" fill="currentColor" opacity="0.38"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M22 96 C36 102, 84 102, 98 96 L96 104 C88 110, 32 110, 24 104 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="26" y="58" width="68" height="30" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="60" y="70" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="44" y1="73" x2="76" y2="73" stroke="#9DAC87" stroke-width="0.6"/>
+      <text x="60" y="80" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">CALM BARRIER · 50ml</text>
+      <path d="M20 44 L22 94" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
 
-<main class="wrap">
-  <section class="block">
-    <div class="pd">
-      <div class="pd-visual">
-        <svg class="bottle"><use href="#bottle"/></svg>
-      </div>
+    <symbol id="mist-bottle" viewBox="0 0 100 180">
+      <rect x="36" y="6" width="28" height="26" rx="3" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="42" y="16" width="16" height="14" rx="2" fill="currentColor" opacity="0.85"/>
+      <rect x="46" y="10" width="8" height="6" rx="1" fill="currentColor"/>
+      <rect x="34" y="32" width="32" height="8" rx="2" fill="currentColor"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="currentColor" opacity="0.2"/>
+      <rect x="26" y="68" width="48" height="94" rx="8" fill="currentColor" opacity="0.32"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="none" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M26 154 C36 160, 64 160, 74 154 L74 158 C68 164, 32 164, 26 158 Z" fill="currentColor" opacity="0.35"/>
+      <rect x="28" y="76" width="44" height="52" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8" opacity="0.96"/>
+      <text x="50" y="92" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D" letter-spacing="0.5">VELOURA</text>
+      <line x1="36" y1="96" x2="64" y2="96" stroke="#D79A8C" stroke-width="0.6"/>
+      <text x="50" y="104" font-family="'Work Sans', sans-serif" font-size="3.5" font-weight="500" text-anchor="middle" fill="#8A7A72" letter-spacing="0.4">DEW MIST</text>
+      <text x="50" y="118" font-family="'Work Sans', sans-serif" font-size="3" text-anchor="middle" fill="#2A211D" opacity="0.7">ROSEWATER · 100ml</text>
+      <path d="M28 46 L28 152" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+    </symbol>
 
-      <div>
-        <p class="stars">★★★★★ <span style="color:var(--mute);font-size:.85rem">(214 verified reviews)</span></p>
-        <h1>Bloom Serum</h1>
-        <p class="price">$42</p>
-        <p class="desc">A lightweight vitamin C serum with squalane, built to brighten without stripping your skin's own moisture barrier.</p>
-        
-        <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.6rem;color:var(--ink)">
-          Vessel Finish &amp; Tone
+    <symbol id="gift-box" viewBox="0 0 130 130">
+      <rect x="18" y="34" width="94" height="80" rx="10" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M14 26 L116 26 L114 42 L16 42 Z" fill="currentColor" opacity="0.85"/>
+      <rect x="58" y="26" width="14" height="88" fill="currentColor" opacity="0.6"/>
+      <circle cx="65" cy="22" r="8" fill="currentColor" opacity="0.9"/>
+      <rect x="36" y="60" width="58" height="28" rx="3" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="65" y="73" font-family="'Fraunces', serif" font-size="5.5" font-weight="600" text-anchor="middle" fill="#2A211D">VELOURA</text>
+      <text x="65" y="82" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#8A7A72">RITUAL SET</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="navin">
+      <a class="brand" href="index.html">Veloura</a>
+      <ul class="navlinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a class="on" href="product.html">Product</a></li>
+        <li><a href="ritual.html">Ritual</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="journal.html">Journal</a></li>
+      </ul>
+      <div class="bag" role="button" tabindex="0" aria-label="Shopping bag">o</div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="block">
+      <div class="pd">
+        <div class="pd-visual">
+          <svg class="bottle"><use href="#bottle"/></svg>
         </div>
-        <div class="swatches">
-          <div class="swatch on" style="background:var(--rose)" title="Classic Rose" role="button" tabindex="0"></div>
-          <div class="swatch" style="background:var(--sage)" title="Frosted Sage" role="button" tabindex="0"></div>
-          <div class="swatch" style="background:#D79A8C" title="Clay Blush" role="button" tabindex="0"></div>
-        </div>
 
-        <div class="qty">
-          <div class="qty-control-box">
-            <button class="pd-qty-btn dec" aria-label="Decrease quantity">−</button>
-            <span class="pd-qty-val">1</span>
-            <button class="pd-qty-btn inc" aria-label="Increase quantity">+</button>
+        <div>
+          <p class="stars">★★★★★ <span style="color:var(--mute);font-size:.85rem">(214 verified reviews)</span></p>
+          <h1>Bloom Serum</h1>
+          <p class="price">$42</p>
+          <p class="desc">A lightweight vitamin C serum with squalane, built to brighten without stripping your skin's own moisture barrier.</p>
+          
+          <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.6rem;color:var(--ink)">
+            Vessel Finish &amp; Tone
           </div>
-          <button class="btn pd-add-btn" style="flex:1">Add to bag — $42</button>
-        </div>
+          <div class="swatches">
+            <div class="swatch on" style="background:var(--rose)" title="Classic Rose" role="button" tabindex="0"></div>
+            <div class="swatch" style="background:var(--sage)" title="Frosted Sage" role="button" tabindex="0"></div>
+            <div class="swatch" style="background:#D79A8C" title="Clay Blush" role="button" tabindex="0"></div>
+          </div>
 
-        <div class="accordion">
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span>Full ingredient list</span>
-              <span class="symbol">+</span>
-            </button>
-            <div class="accordion-content">
-              <p>Water/Aqua, Squalane, Tetrahexyldecyl Ascorbate (Lipid-Soluble Vitamin C), Glycerin, Rosa Damascena Flower Water, Simmondsia Chinensis (Jojoba) Seed Oil, Sodium Hyaluronate, Tocopherol (Vitamin E), Centella Asiatica Extract.</p>
+          <div class="qty">
+            <div class="qty-control-box">
+              <button class="pd-qty-btn dec" aria-label="Decrease quantity">−</button>
+              <span class="pd-qty-val">1</span>
+              <button class="pd-qty-btn inc" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn pd-add-btn" style="flex:1">Add to bag — $42</button>
+          </div>
+
+          <!-- Trust Guarantee Perks -->
+          <div class="trust-perks">
+            <div class="trust-perk-item">
+              <span class="icon">✦</span>
+              <span>100% Infinitely Refillable Glass</span>
+            </div>
+            <div class="trust-perk-item">
+              <span class="icon">✦</span>
+              <span>Cold-Pressed Botanical Actives</span>
+            </div>
+            <div class="trust-perk-item">
+              <span class="icon">✦</span>
+              <span>Certified Cruelty-Free &amp; Vegan</span>
+            </div>
+            <div class="trust-perk-item">
+              <span class="icon">✦</span>
+              <span>Free Carbon-Neutral Delivery $50+</span>
             </div>
           </div>
 
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span>How to use</span>
-              <span class="symbol">+</span>
-            </button>
-            <div class="accordion-content">
-              <p>Warm 3–4 drops between clean palms and press gently into face, neck, and décolletage every morning before moisturizer and SPF.</p>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>Full ingredient list</span>
+                <span class="symbol">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>Water/Aqua, Squalane, Tetrahexyldecyl Ascorbate (Lipid-Soluble Vitamin C), Glycerin, Rosa Damascena Flower Water, Simmondsia Chinensis (Jojoba) Seed Oil, Sodium Hyaluronate, Tocopherol (Vitamin E), Centella Asiatica Extract.</p>
+              </div>
             </div>
-          </div>
 
-          <div class="accordion-item">
-            <button class="accordion-trigger" aria-expanded="false">
-              <span>Shipping &amp; Refill Program</span>
-              <span class="symbol">+</span>
-            </button>
-            <div class="accordion-content">
-              <p>Complimentary carbon-neutral shipping on orders over $50. All vessels are eligible for our snap-in refill pod service at a 20% discount.</p>
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>How to use</span>
+                <span class="symbol">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>Warm 3–4 drops between clean palms and press gently into face, neck, and décolletage every morning before moisturizer and SPF.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-trigger" aria-expanded="false">
+                <span>Shipping &amp; Refill Program</span>
+                <span class="symbol">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>Complimentary carbon-neutral shipping on orders over $50. All vessels are eligible for our snap-in refill pod service at a 20% discount.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="block related-products-section">
-    <div class="section-head">
-      <p class="kicker">Complete the Ritual</p>
-      <h2>Pairs beautifully with</h2>
-    </div>
-    <div class="grid g3">
-      <div class="card">
-        <a href="product.html?id=calm-cream"><svg class="bottle sage"><use href="#bottle"/></svg></a>
-        <div class="pname"><a href="product.html?id=calm-cream">Calm Cream</a></div>
-        <div class="pnote">Centella + oat milk</div>
-        <div class="prow"><span class="price">$38</span><a class="pill" href="product.html?id=calm-cream">View</a></div>
+    <!-- Customer Reviews & Rating Summary -->
+    <section class="block" style="padding-top:2rem">
+      <div class="section-head">
+        <p class="kicker">Real Skin Barrier Results</p>
+        <h2>Customer Reviews</h2>
+        <p>Honest feedback from verified buyers across 40+ countries.</p>
       </div>
-      <div class="card">
-        <a href="product.html?id=dew-mist"><svg class="bottle blush"><use href="#bottle"/></svg></a>
-        <div class="pname"><a href="product.html?id=dew-mist">Dew Mist</a></div>
-        <div class="pnote">Rosewater + aloe</div>
-        <div class="prow"><span class="price">$26</span><a class="pill" href="product.html?id=dew-mist">View</a></div>
+
+      <div class="reviews-summary-card">
+        <div>
+          <div class="score-big">4.9</div>
+          <div style="color:var(--rose);margin:0.4rem 0">★★★★★</div>
+          <div style="font-size:0.85rem;color:var(--mute)">Based on 214 verified reviews</div>
+        </div>
+        <div>
+          <div class="rating-bar-row">
+            <span>5 ★</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:94%"></div></div>
+            <span>94%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>4 ★</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:6%"></div></div>
+            <span>6%</span>
+          </div>
+          <div class="rating-bar-row">
+            <span>3 ★</span>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
+            <span>0%</span>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <button class="btn ghost" style="width:100%" onclick="alert('Thank you! Review submission is active in the demo.')">Write a Review</button>
+        </div>
       </div>
-      <div class="card">
-        <a href="product.html?id=soft-wash"><svg class="bottle"><use href="#bottle"/></svg></a>
-        <div class="pname"><a href="product.html?id=soft-wash">Soft Wash</a></div>
-        <div class="pnote">Body · Oat milk</div>
-        <div class="prow"><span class="price">$24</span><a class="pill" href="product.html?id=soft-wash">View</a></div>
+
+      <div class="review-cards-grid">
+        <div class="review-card">
+          <div class="review-card-head">
+            <div class="review-author-info">
+              <div class="author-avatar">NR</div>
+              <div>
+                <div class="author-name">Nina R.</div>
+                <div class="verified-tag">✓ Verified Buyer</div>
+              </div>
+            </div>
+            <div style="color:var(--rose);font-size:0.85rem">★★★★★</div>
+          </div>
+          <h4>Finally, a vitamin C that doesn't sting</h4>
+          <p>"Most L-ascorbic serums leave my sensitive skin tight and red. Bloom Serum absorbs like a whisper and gives an authentic luminous glow."</p>
+          <div class="review-date">October 28, 2026 · London, UK</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-head">
+            <div class="review-author-info">
+              <div class="author-avatar">JM</div>
+              <div>
+                <div class="author-name">Julian M.</div>
+                <div class="verified-tag">✓ Verified Buyer</div>
+              </div>
+            </div>
+            <div style="color:var(--rose);font-size:0.85rem">★★★★★</div>
+          </div>
+          <h4>The refill pod concept is genius</h4>
+          <p>"The glass bottle has substantial weight and sits like art on my vanity. The aluminum refill pod popped right in without a drop wasted."</p>
+          <div class="review-date">November 04, 2026 · New York, NY</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-head">
+            <div class="review-author-info">
+              <div class="author-avatar">SC</div>
+              <div>
+                <div class="author-name">Sophie C.</div>
+                <div class="verified-tag">✓ Verified Buyer</div>
+              </div>
+            </div>
+            <div style="color:var(--rose);font-size:0.85rem">★★★★★</div>
+          </div>
+          <h4>My desert island holy grail</h4>
+          <p>"Three drops in the morning mixed with my moisturizer has completely balanced my combination skin. Will never go back to drugstore serums."</p>
+          <div class="review-date">November 12, 2026 · Paris, France</div>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+
+    <!-- Related Products -->
+    <section class="block related-products-section">
+      <div class="section-head">
+        <p class="kicker">Complete the Ritual</p>
+        <h2>Pairs beautifully with</h2>
+      </div>
+      <div class="grid g3">
+        <div class="card">
+          <div class="card-bottle-stage">
+            <a href="product.html?id=calm-cream"><svg class="bottle sage"><use href="#cream-jar"/></svg></a>
+          </div>
+          <div class="pname"><a href="product.html?id=calm-cream">Calm Cream</a></div>
+          <div class="pnote">Centella + oat milk</div>
+          <div class="prow"><span class="price">$38</span><a class="pill" href="product.html?id=calm-cream">View</a></div>
+        </div>
+        <div class="card">
+          <div class="card-bottle-stage">
+            <a href="product.html?id=dew-mist"><svg class="bottle blush"><use href="#mist-bottle"/></svg></a>
+          </div>
+          <div class="pname"><a href="product.html?id=dew-mist">Dew Mist</a></div>
+          <div class="pnote">Rosewater + aloe</div>
+          <div class="prow"><span class="price">$26</span><a class="pill" href="product.html?id=dew-mist">View</a></div>
+        </div>
+        <div class="card">
+          <div class="card-bottle-stage">
+            <a href="product.html?id=soft-wash"><svg class="bottle"><use href="#bottle"/></svg></a>
+          </div>
+          <div class="pname"><a href="product.html?id=soft-wash">Soft Wash</a></div>
+          <div class="pnote">Body · Oat milk</div>
+          <div class="prow"><span class="price">$24</span><a class="pill" href="product.html?id=soft-wash">View</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
 </body>
 </html>
