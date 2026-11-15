@@ -5,14 +5,23 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "node server.js",
     "serve": "python3 server.py"
   },
   "keywords": [
     "skincare",
     "beauty",
     "ecommerce",
-    "botanical"
+    "botanical",
+    "fullstack",
+    "express",
+    "rest-api"
   ],
   "author": "Veloura",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  }
 }

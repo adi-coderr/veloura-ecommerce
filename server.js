@@ -1,84 +1,76 @@
 #!/usr/bin/env node
 /**
- * Veloura Botanical Skincare - Node.js Static Server
- * Zero dependencies, built-in http, fs, and path modules.
+ * Veloura Botanical Skincare - Node.js Express Backend & Server
+ * Full-stack e-commerce server running REST APIs, persistent JSON storage, and static assets.
  */
 
 const http = require('http');
-const fs = require('fs');
-const path = require('path');
+const net = require('net');
 const { exec } = require('child_process');
+const app = require('./backend/app');
+const config = require('./backend/config');
 
-const PORT = process.env.PORT || 8000;
-const ROOT = __dirname;
-
-const MIME_TYPES = {
-  '.html': 'text/html; charset=UTF-8',
-  '.css': 'text/css; charset=UTF-8',
-  '.js': 'application/javascript; charset=UTF-8',
-  '.json': 'application/json; charset=UTF-8',
-  '.svg': 'image/svg+xml',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.webp': 'image/webp',
-  '.ico': 'image/x-icon',
-  '.woff': 'font/woff',
-  '.woff2': 'font/woff2',
-  '.ttf': 'font/ttf'
-};
-
-const server = http.createServer((req, res) => {
-  let reqPath = decodeURI(req.url.split('?')[0]);
-  if (reqPath === '/' || reqPath === '') {
-    reqPath = '/index.html';
-  }
-
-  const safePath = path.normalize(reqPath).replace(/^(\.\.[\/\\])+/, '');
-  let filePath = path.join(ROOT, safePath);
-
-  fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      // 404 handler
-      res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
-      res.end(`
-        <!DOCTYPE html>
-        <html>
-        <head><title>404 Not Found — Veloura</title><link rel="stylesheet" href="veloura.css"></head>
-        <body style="padding:4rem 6vw;text-align:center">
-          <h1 style="font-size:2.5rem;margin-bottom:1rem">Page Not Found</h1>
-          <p style="color:var(--mute);margin-bottom:2rem">The formula or page you are looking for does not exist.</p>
-          <a href="index.html" class="btn">Return to Home</a>
-        </body>
-        </html>
-      `);
-      return;
-    }
-
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-
-    res.writeHead(200, {
-      'Content-Type': contentType,
-      'Cache-Control': 'no-cache, no-store, must-revalidate'
+// Helper to verify port availability or find next available port
+function findAvailablePort(startPort) {
+  return new Promise((resolve) => {
+    const testServer = net.createServer();
+    testServer.once('error', () => {
+      resolve(findAvailablePort(startPort + 1));
     });
-
-    const stream = fs.createReadStream(filePath);
-    stream.pipe(res);
+    testServer.once('listening', () => {
+      testServer.close(() => resolve(startPort));
+    });
+    testServer.listen(startPort);
   });
-});
+}
 
-server.listen(PORT, () => {
-  const url = `http://localhost:${PORT}/index.html`;
-  console.log('='.repeat(60));
-  console.log('  ✦ VELOURA BOTANICAL SKINCARE — NODE.JS SERVER ✦');
-  console.log('='.repeat(60));
-  console.log(`  Local URL : ${url}`);
-  console.log('  Press Ctrl+C to stop.');
-  console.log('='.repeat(60));
+async function startServer() {
+  const port = await findAvailablePort(config.port);
+  const server = http.createServer(app);
 
-  // Automatically open browser on macOS, Windows, or Linux
-  const startCmd = process.platform === 'darwin' ? 'open' :
-                   process.platform === 'win32' ? 'start' : 'xdg-open';
-  exec(`${startCmd} ${url}`);
+  server.listen(port, () => {
+    const baseUrl = `http://localhost:${port}`;
+
+    console.log('\n' + '='.repeat(68));
+    console.log('  ✦ VELOURA BOTANICAL SKINCARE — FULLSTACK BACKEND ✦');
+    console.log('='.repeat(68));
+    console.log(`  🌐 Storefront      : ${baseUrl}/index.html`);
+    console.log(`  📊 Admin Dashboard : ${baseUrl}/admin.html`);
+    console.log(`  📦 Products API    : ${baseUrl}/api/products`);
+    console.log(`  🧾 Orders API      : ${baseUrl}/api/orders`);
+    console.log(`  💌 Newsletter API  : ${baseUrl}/api/newsletter/subscribe`);
+    console.log(`  ⚡ Health Check    : ${baseUrl}/api/health`);
+    console.log('='.repeat(68));
+    console.log('  Database Storage   : backend/data/storage/*.json (Persistent)');
+    console.log('  Press Ctrl+C to gracefully shut down the server.');
+    console.log('='.repeat(68) + '\n');
+
+    // Automatically open browser in development if configured
+    if (config.autoOpenBrowser) {
+      const openCmd = process.platform === 'darwin' ? 'open' :
+                      process.platform === 'win32' ? 'start' : 'xdg-open';
+      exec(`${openCmd} ${baseUrl}/index.html`, (err) => {
+        if (err) {
+          // Silent fallback if running headless or background
+        }
+      });
+    }
+  });
+
+  // Graceful shutdown
+  const handleExit = (signal) => {
+    console.log(`\n  Received ${signal}. Shutting down Veloura server gracefully...`);
+    server.close(() => {
+      console.log('  Server closed. Goodbye!');
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGINT', () => handleExit('SIGINT'));
+  process.on('SIGTERM', () => handleExit('SIGTERM'));
+}
+
+startServer().catch((err) => {
+  console.error('Fatal error starting server:', err);
+  process.exit(1);
 });

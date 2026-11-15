@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store Admin — Veloura Botanical Skincare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="veloura.css">
+  <style>
+    .admin-wrap { max-width: 1180px; margin: 2rem auto; padding: 0 6vw; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .admin-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
+    .stat-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; }
+    .stat-card h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 0.4rem; font-family: inherit; }
+    .stat-card .val { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 600; color: var(--ink); }
+    .admin-section { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 1.8rem; margin-bottom: 2rem; }
+    .admin-section h3 { font-size: 1.3rem; margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: center; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+    th { padding: 0.75rem 1rem; border-bottom: 1.5px solid var(--line); color: var(--mute); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); }
+    tr:last-child td { border-bottom: 0; }
+    .badge-paid { background: #E8F5E9; color: #2E7D32; padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .badge-stock { background: var(--cream); border: 1px solid var(--line); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+    .admin-refresh-btn { background: var(--ink); color: var(--cream); border: 0; padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.85rem; cursor: pointer; }
+    @media(max-width: 860px) {
+      .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="navin">
+    <a class="brand" href="index.html">Veloura</a>
+    <ul class="navlinks">
+      <li><a href="index.html">View Storefront</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a class="on" href="admin.html">Backend Dashboard</a></li>
+    </ul>
+    <div style="font-size:0.85rem;color:var(--mute)">Admin Mode</div>
+  </div>
+</nav>
+
+<div class="admin-wrap">
+  <div class="admin-header">
+    <div>
+      <span class="kicker">Backend Control Center</span>
+      <h1 style="font-size:2.2rem;margin-top:0.2rem">Store Management</h1>
+      <p style="color:var(--mute)">Live sales, inventory, and subscriber analytics powered by the Node.js API.</p>
+    </div>
+    <button class="admin-refresh-btn" onclick="loadDashboardData()">↻ Refresh Data</button>
+  </div>
+
+  <div class="admin-stats-grid">
+    <div class="stat-card">
+      <h5>Gross Revenue</h5>
+      <div class="val" id="stat-revenue">$0.00</div>
+    </div>
+    <div class="stat-card">
+      <h5>Total Orders</h5>
+      <div class="val" id="stat-orders">0</div>
+    </div>
+    <div class="stat-card">
+      <h5>Avg. Order Value</h5>
+      <div class="val" id="stat-aov">$0.00</div>
+    </div>
+    <div class="stat-card">
+      <h5>Newsletter Members</h5>
+      <div class="val" id="stat-subscribers">0</div>
+    </div>
+  </div>
+
+  <div class="admin-section">
+    <h3>
+      <span>Recent Orders</span>
+      <span id="orders-count-badge" class="pill" style="font-size:0.78rem">0 orders</span>
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="orders-table-body">
+        <tr><td colspan="6" style="text-align:center;color:var(--mute);padding:2rem">Loading orders from backend...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="admin-section">
+    <h3>
+      <span>Live Product Inventory</span>
+      <span class="pill" style="font-size:0.78rem">8 catalog formulas</span>
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Unit Price</th>
+          <th>Stock Left</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="inventory-table-body">
+        <tr><td colspan="5" style="text-align:center;color:var(--mute);padding:2rem">Loading inventory from backend...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="admin-section">
+    <h3>
+      <span>Newsletter Subscribers</span>
+      <span id="subscribers-count-badge" class="pill" style="font-size:0.78rem">0 members</span>
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Email Address</th>
+          <th>Subscribed Date</th>
+          <th>Coupon Assigned</th>
+        </tr>
+      </thead>
+      <tbody id="subscribers-table-body">
+        <tr><td colspan="3" style="text-align:center;color:var(--mute);padding:2rem">Loading subscribers from backend...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  async function loadDashboardData() {
+    try {
+      // 1. Load Stats
+      const statsRes = await fetch('/api/stats');
+      const statsJson = await statsRes.json();
+      if (statsJson.success) {
+        const d = statsJson.data;
+        document.getElementById('stat-revenue').textContent = '$' + d.totalRevenue.toFixed(2);
+        document.getElementById('stat-orders').textContent = d.totalOrders;
+        document.getElementById('stat-aov').textContent = '$' + d.averageOrderValue.toFixed(2);
+        document.getElementById('stat-subscribers').textContent = d.totalSubscribers;
+      }
+
+      // 2. Load Orders
+      const ordersRes = await fetch('/api/orders');
+      const ordersJson = await ordersRes.json();
+      const ordersTbody = document.getElementById('orders-table-body');
+      const ordersBadge = document.getElementById('orders-count-badge');
+
+      if (ordersJson.success && ordersJson.data.length > 0) {
+        ordersBadge.textContent = `${ordersJson.data.length} orders`;
+        ordersTbody.innerHTML = ordersJson.data.map(o => `
+          <tr>
+            <td><strong>${o.orderId}</strong></td>
+            <td>${new Date(o.createdAt).toLocaleDateString()}</td>
+            <td>${o.customer.firstName} ${o.customer.lastName || ''} <br><span style="color:var(--mute);font-size:0.78rem">${o.customer.email}</span></td>
+            <td>${o.items.map(i => `${i.qty}× ${i.name}`).join(', ')}</td>
+            <td><strong>$${o.total.toFixed(2)}</strong></td>
+            <td><span class="badge-paid">Paid (Demo)</span></td>
+          </tr>
+        `).join('');
+      } else {
+        ordersTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--mute);padding:2rem">No orders placed yet. Place an order on the storefront to test!</td></tr>';
+      }
+
+      // 3. Load Products Inventory
+      const prodRes = await fetch('/api/products');
+      const prodJson = await prodRes.json();
+      const invTbody = document.getElementById('inventory-table-body');
+
+      if (prodJson.success) {
+        invTbody.innerHTML = prodJson.data.map(p => `
+          <tr>
+            <td><strong>${p.name}</strong><br><span style="color:var(--mute);font-size:0.78rem">${p.tagline}</span></td>
+            <td><span class="pill" style="font-size:0.75rem;padding:0.2rem 0.6rem">${p.category}</span></td>
+            <td>$${p.price.toFixed(2)}</td>
+            <td><span class="badge-stock">${p.stockCount} units</span></td>
+            <td><span class="badge-paid" style="${p.inStock ? '' : 'background:#FFEBEE;color:#C62828'}">${p.inStock ? 'In Stock' : 'Out of Stock'}</span></td>
+          </tr>
+        `).join('');
+      }
+
+      // 4. Load Subscribers
+      const subRes = await fetch('/api/newsletter/subscribers');
+      const subJson = await subRes.json();
+      const subTbody = document.getElementById('subscribers-table-body');
+      const subBadge = document.getElementById('subscribers-count-badge');
+
+      if (subJson.success && subJson.data.length > 0) {
+        subBadge.textContent = `${subJson.data.length} members`;
+        subTbody.innerHTML = subJson.data.map(s => `
+          <tr>
+            <td><strong>${s.email}</strong></td>
+            <td>${new Date(s.subscribedAt).toLocaleString()}</td>
+            <td><span class="pill" style="font-size:0.75rem;padding:0.2rem 0.6rem">${s.couponCode || 'VELOURA10'}</span></td>
+          </tr>
+        `).join('');
+      }
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDashboardData);
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[
+  {
+    "code": "VELOURA10",
+    "type": "percentage",
+    "value": 0.10,
+    "description": "10% off entire order",
+    "minSpend": 0,
+    "isActive": true
+  },
+  {
+    "code": "WELCOME10",
+    "type": "percentage",
+    "value": 0.10,
+    "description": "10% off your first order",
+    "minSpend": 0,
+    "isActive": true
+  },
+  {
+    "code": "WELCOME15",
+    "type": "percentage",
+    "value": 0.15,
+    "description": "15% off welcome gift",
+    "minSpend": 40.00,
+    "isActive": true
+  },
+  {
+    "code": "FREESHIP",
+    "type": "shipping",
+    "value": 0,
+    "description": "Complimentary standard shipping on any order",
+    "minSpend": 0,
+    "isActive": true
+  },
+  {
+    "code": "SLOWBEAUTY",
+    "type": "fixed",
+    "value": 5.00,
+    "description": "$5.00 off orders over $30",
+    "minSpend": 30.00,
+    "isActive": true
+  }
+]

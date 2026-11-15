@@ -353,6 +353,7 @@
   // 5. CART DRAWER COMPONENT
   // =========================================================================
   let promoApplied = null;
+  let promoAppliedCode = null;
 
   const Drawer = {
     init: function () {
@@ -432,21 +433,48 @@
         CheckoutModal.open();
       });
 
-      promoBtn.addEventListener('click', () => {
+      promoBtn.addEventListener('click', async () => {
         const code = promoInput.value.trim().toUpperCase();
         const feedback = root.querySelector('.promo-feedback');
-        if (code === 'VELOURA10' || code === 'WELCOME10') {
-          promoApplied = 0.10;
-          feedback.textContent = '✓ 10% discount applied to your order!';
-          feedback.className = 'promo-feedback success';
-          this.render();
-        } else if (code === '') {
+        if (!code) {
           promoApplied = null;
+          promoAppliedCode = null;
           feedback.textContent = '';
           this.render();
-        } else {
-          feedback.textContent = 'Invalid code. Try "VELOURA10" for 10% off.';
-          feedback.className = 'promo-feedback error';
+          return;
+        }
+
+        try {
+          const res = await fetch('/api/promo/apply', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code, subtotal: Cart.getSubtotal() })
+          });
+          const json = await res.json();
+          if (json.success && json.data) {
+            promoApplied = json.data.discountAmount / (Cart.getSubtotal() || 1);
+            promoAppliedCode = json.data.code;
+            feedback.textContent = `✓ ${json.data.description}`;
+            feedback.className = 'promo-feedback success';
+            this.render();
+            return;
+          } else {
+            feedback.textContent = json.error || 'Invalid code.';
+            feedback.className = 'promo-feedback error';
+            return;
+          }
+        } catch (err) {
+          // Fallback to local codes
+          if (code === 'VELOURA10' || code === 'WELCOME10') {
+            promoApplied = 0.10;
+            promoAppliedCode = code;
+            feedback.textContent = '✓ 10% discount applied to your order!';
+            feedback.className = 'promo-feedback success';
+            this.render();
+          } else {
+            feedback.textContent = 'Invalid code. Try "VELOURA10" for 10% off.';
+            feedback.className = 'promo-feedback error';
+          }
         }
       });
 
@@ -675,17 +703,48 @@
       backdrop.addEventListener('click', () => this.close());
       closeBtn.addEventListener('click', () => this.close());
 
-      form.addEventListener('submit', e => {
+      form.addEventListener('submit', async e => {
         e.preventDefault();
         const fname = document.getElementById('chk-fname').value.trim();
+        const lname = document.getElementById('chk-lname').value.trim();
         const email = document.getElementById('chk-email').value.trim();
-        if (!fname || !email) {
+        const address = document.getElementById('chk-address').value.trim();
+        const city = document.getElementById('chk-city').value.trim();
+        const state = document.getElementById('chk-state').value.trim();
+        const zip = document.getElementById('chk-zip').value.trim();
+
+        if (!fname || !email || !address) {
           Toast.show('Please fill in required shipping fields');
           return;
         }
 
+        const items = Cart.getItems();
+        let orderId = `VEL-${Math.floor(100000 + Math.random() * 900000)}`;
+
+        // Attempt backend order placement
+        try {
+          const res = await fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              items,
+              customer: { firstName: fname, lastName: lname, email, address, city, state, zip },
+              promoCode: promoAppliedCode || null
+            })
+          });
+          const json = await res.json();
+          if (json.success && json.data && json.data.orderId) {
+            orderId = json.data.orderId;
+          }
+        } catch (err) {
+          console.warn('Backend unavailable, processed locally:', err);
+        }
+
         const formView = root.querySelector('.checkout-view-form');
         const successView = root.querySelector('.checkout-view-success');
+        const orderIdDisplay = root.querySelector('.order-id-display');
+        if (orderIdDisplay) orderIdDisplay.textContent = `Order #${orderId}`;
+
         formView.style.display = 'none';
         successView.style.display = 'block';
 
@@ -1237,12 +1296,25 @@
   // --- F. NEWSLETTER FORMS ---
   function initNewsletterForms() {
     document.querySelectorAll('.newsform').forEach(form => {
-      form.addEventListener('submit', e => {
+      form.addEventListener('submit', async e => {
         e.preventDefault();
         const input = form.querySelector('input[type="email"]');
         if (input && input.value) {
+          const email = input.value.trim();
           input.value = '';
-          Toast.show(`Welcome to Veloura! Your 10% coupon code is VELOURA10`);
+
+          try {
+            const res = await fetch('/api/newsletter/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+            const json = await res.json();
+            Toast.show(json.message || `Welcome to Veloura! Your 10% coupon code is VELOURA10`);
+          } catch (err) {
+            Toast.show(`Welcome to Veloura! Your 10% coupon code is VELOURA10`);
+          }
+
           const container = form.closest('.news');
           if (container) {
             const h2 = container.querySelector('h2');
