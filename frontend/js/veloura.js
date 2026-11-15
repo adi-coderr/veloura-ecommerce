@@ -1012,63 +1012,130 @@
   // 8. MOBILE NAVIGATION & HEADER ENHANCEMENTS
   // =========================================================================
   function setupHeader() {
-    if (!document.querySelector('.announcement-bar')) {
-      const bar = document.createElement('div');
+    let bar = document.querySelector('.announcement-bar');
+    if (!bar) {
+      bar = document.createElement('div');
       bar.className = 'announcement-bar';
-      bar.innerHTML = `
-        <div class="wrap">
-          <span>✦ Complimentary carbon-neutral shipping on orders over $50 · Refillable glass vessels</span>
-        </div>
-      `;
       document.body.insertBefore(bar, document.body.firstChild);
     }
+    bar.innerHTML = `
+      <div class="wrap">
+        <span class="announcement-star">✦</span>
+        <span>Complimentary botanical travel elixir on orders over $65 · Code <span class="announcement-code">VELOURA15</span> · Carbon-neutral shipping</span>
+        <span class="announcement-star">✦</span>
+      </div>
+    `;
 
     const navin = document.querySelector('.navin');
     if (!navin) return;
 
-    // Synchronize active nav link based on current filename
+    // 1. Bespoke Brand Lockup
+    const brand = navin.querySelector('.brand');
+    if (brand && !brand.querySelector('.brand-monogram')) {
+      brand.innerHTML = `
+        <span class="brand-monogram" aria-hidden="true">
+          <svg viewBox="0 0 40 40" class="monogram-svg" width="36" height="36">
+            <circle cx="20" cy="20" r="18" fill="rgba(242, 214, 204, 0.45)" stroke="#B5695C" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="14.5" fill="#FAF4ED" stroke="#2A211D" stroke-width="0.8"/>
+            <path d="M20 7.5 C20.8 8.8, 22.2 9.5, 20 11.5 C17.8 9.5, 19.2 8.8, 20 7.5 Z" fill="#B5695C"/>
+            <text x="20" y="24.8" font-family="'Fraunces', Georgia, serif" font-size="14.5" font-weight="600" text-anchor="middle" fill="#2A211D">V</text>
+          </svg>
+        </span>
+        <span class="brand-text-group">
+          <span class="brand-wordmark">VELOURA</span>
+          <span class="brand-sub">BOTANIQUE · EST. 2019</span>
+        </span>
+      `;
+    }
+
+    // 2. Synchronize active nav link and add micro-chips
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = navin.querySelectorAll('.navlinks a');
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
-      if (href && (href === currentPath || (currentPath === '' && href === 'index.html') || (currentPath === 'product.html' && href.startsWith('product.html')))) {
+      const isMatch = href && (href === currentPath || (currentPath === '' && href === 'index.html') || (currentPath.startsWith('product.html') && href.startsWith('product.html')));
+      if (isMatch) {
         link.classList.add('on');
       } else {
         link.classList.remove('on');
       }
+
+      // Add micro-chips if not already present
+      if (href && href.startsWith('shop.html') && !link.querySelector('.nav-chip')) {
+        const chip = document.createElement('span');
+        chip.className = 'nav-chip';
+        chip.textContent = '16';
+        link.appendChild(chip);
+      }
+      if (href && href.startsWith('ritual.html') && !link.querySelector('.nav-sparkle')) {
+        const sparkle = document.createElement('span');
+        sparkle.className = 'nav-sparkle';
+        sparkle.textContent = '✦';
+        link.appendChild(sparkle);
+      }
     });
 
-    // Enhance bag icon button
+    // 3. User actions wrapper & luxury bag pill
+    let actionsWrapper = navin.querySelector('.nav-user-actions');
     let bagEl = navin.querySelector('.bag');
+
+    if (!actionsWrapper) {
+      actionsWrapper = document.createElement('div');
+      actionsWrapper.className = 'nav-user-actions';
+      if (bagEl) {
+        bagEl.parentNode.insertBefore(actionsWrapper, bagEl);
+        actionsWrapper.appendChild(bagEl);
+      } else {
+        navin.appendChild(actionsWrapper);
+      }
+    }
+
+    // Add shipping perk badge if not present
+    if (!actionsWrapper.querySelector('.nav-perk-badge')) {
+      const perkBadge = document.createElement('div');
+      perkBadge.className = 'nav-perk-badge';
+      perkBadge.innerHTML = `
+        <span class="perk-bullet"></span>
+        <span>Free Shipping $50+</span>
+      `;
+      actionsWrapper.insertBefore(perkBadge, actionsWrapper.firstChild);
+    }
+
+    // Enhance bag button
     if (bagEl) {
       const bagCount = Cart.getCount();
       bagEl.setAttribute('role', 'button');
       bagEl.setAttribute('tabindex', '0');
       bagEl.setAttribute('aria-label', 'Shopping bag');
       bagEl.innerHTML = `
-        <svg class="bag-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <svg class="bag-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 0 1-8 0"/>
         </svg>
+        <span class="bag-label">Bag</span>
         <span class="bag-count" style="${bagCount > 0 ? 'display:flex' : 'display:none'}">${bagCount}</span>
       `;
 
-      bagEl.addEventListener('click', e => {
-        e.preventDefault();
-        Drawer.open();
-      });
-      bagEl.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
+      if (!bagEl._hasBagListener) {
+        bagEl._hasBagListener = true;
+        bagEl.addEventListener('click', e => {
           e.preventDefault();
           Drawer.open();
-        }
-      });
+        });
+        bagEl.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            Drawer.open();
+          }
+        });
+      }
     }
 
-    // Add mobile hamburger button if not present
-    if (!navin.querySelector('.menu-toggle')) {
-      const menuBtn = document.createElement('button');
+    // 4. Mobile hamburger button
+    let menuBtn = actionsWrapper.querySelector('.menu-toggle');
+    if (!menuBtn) {
+      menuBtn = document.createElement('button');
       menuBtn.className = 'menu-toggle';
       menuBtn.setAttribute('aria-label', 'Toggle menu');
       menuBtn.setAttribute('aria-expanded', 'false');
@@ -1077,23 +1144,20 @@
         <span class="bar mid"></span>
         <span class="bar bot"></span>
       `;
-
-      const actionsWrapper = document.createElement('div');
-      actionsWrapper.className = 'nav-user-actions';
-      if (bagEl) {
-        bagEl.parentNode.insertBefore(actionsWrapper, bagEl);
-        actionsWrapper.appendChild(bagEl);
-      }
       actionsWrapper.appendChild(menuBtn);
+    }
 
-      const mobileNav = document.createElement('div');
+    // Mobile drawer
+    let mobileNav = document.querySelector('.mobile-menu-drawer');
+    if (!mobileNav) {
+      mobileNav = document.createElement('div');
       mobileNav.className = 'mobile-menu-drawer';
       mobileNav.innerHTML = `
         <ul class="mobile-nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="shop.html">Shop All (16 Formulas)</a></li>
           <li><a href="product.html?id=bloom-serum">Featured Product</a></li>
-          <li><a href="ritual.html">The Ritual</a></li>
+          <li><a href="ritual.html">The Ritual ✦</a></li>
           <li><a href="about.html">About Veloura</a></li>
           <li><a href="journal.html">Journal</a></li>
         </ul>
@@ -1102,7 +1166,10 @@
         </div>
       `;
       document.querySelector('nav').appendChild(mobileNav);
+    }
 
+    if (!menuBtn._hasMenuListener) {
+      menuBtn._hasMenuListener = true;
       menuBtn.addEventListener('click', () => {
         const isOpen = menuBtn.classList.toggle('open');
         menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
