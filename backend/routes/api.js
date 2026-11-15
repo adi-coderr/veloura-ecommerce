@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config');
 const db = require('../data/database');
+const auth = require('../middleware/auth');
+const { apiLimiter } = require('../middleware/rateLimiter');
 
 // Sub-routers
 const productRoutes = require('./productRoutes');
@@ -10,14 +12,14 @@ const promoRoutes = require('./promoRoutes');
 const newsletterRoutes = require('./newsletterRoutes');
 const reviewRoutes = require('./reviewRoutes');
 
-// Mount routes
-router.use('/products', productRoutes);
+// Mount routes with general API rate limiting
+router.use('/products', apiLimiter, productRoutes);
 router.use('/orders', orderRoutes);
 router.use('/promo', promoRoutes);
 router.use('/newsletter', newsletterRoutes);
 router.use('/reviews', reviewRoutes);
 
-// Health check endpoint
+// Health check endpoint (public, unauthenticated)
 router.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
@@ -28,7 +30,7 @@ router.get('/health', (req, res) => {
   });
 });
 
-// Store configuration endpoint
+// Store configuration endpoint (public e-commerce rules)
 router.get('/config', (req, res) => {
   res.json({
     success: true,
@@ -41,8 +43,8 @@ router.get('/config', (req, res) => {
   });
 });
 
-// Store statistics endpoint
-router.get('/stats', (req, res) => {
+// Store statistics endpoint (Protected: admin financial metrics)
+router.get('/stats', auth, (req, res) => {
   res.json({
     success: true,
     data: db.getStoreStats()

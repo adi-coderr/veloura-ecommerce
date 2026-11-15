@@ -1,21 +1,24 @@
 /**
  * Promo Code Controller
+ * Hardened against brute force, negative values, and injection.
  */
 const db = require('../data/database');
-const config = require('../config');
+const { sanitizeText } = require('../utils/security');
 
 exports.validatePromo = (req, res, next) => {
   try {
     const { code, subtotal } = req.body;
 
-    if (!code) {
+    if (!code || typeof code !== 'string') {
       return res.status(400).json({
         success: false,
         error: 'Promo code is required.'
       });
     }
 
-    const promo = db.getPromoByCode(code);
+    const cleanCode = sanitizeText(code, 30).toUpperCase();
+    const promo = db.getPromoByCode(cleanCode);
+
     if (!promo) {
       return res.status(404).json({
         success: false,
@@ -23,7 +26,8 @@ exports.validatePromo = (req, res, next) => {
       });
     }
 
-    const orderSubtotal = parseFloat(subtotal) || 0;
+    const orderSubtotal = Math.max(0, parseFloat(subtotal) || 0);
+
     if (promo.minSpend && orderSubtotal < promo.minSpend) {
       return res.status(400).json({
         success: false,

@@ -1,22 +1,25 @@
 /**
  * Newsletter Controller
+ * Validated against malformed emails and injection.
  */
 const db = require('../data/database');
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const { isValidEmail, sanitizeText } = require('../utils/security');
 
 exports.subscribe = (req, res, next) => {
   try {
     const { email, source } = req.body;
 
-    if (!email || !EMAIL_REGEX.test(email.trim())) {
+    if (!isValidEmail(email)) {
       return res.status(400).json({
         success: false,
         error: 'Please provide a valid email address.'
       });
     }
 
-    const result = db.addSubscriber(email, source);
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanSource = sanitizeText(source || 'website_footer', 50);
+
+    const result = db.addSubscriber(cleanEmail, cleanSource);
 
     res.status(result.isNew ? 201 : 200).json({
       success: true,

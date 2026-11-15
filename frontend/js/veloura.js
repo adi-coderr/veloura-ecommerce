@@ -6,6 +6,17 @@
 (function () {
   'use strict';
 
+  // Safe HTML Escaping Utility for XSS Prevention (CWE-79)
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   // =========================================================================
   // 1. PRODUCT CATALOG DATA
   // =========================================================================
@@ -719,20 +730,20 @@
         let itemsHtml = '<div class="cart-items-list">';
         items.forEach(item => {
           itemsHtml += `
-            <div class="cart-line-item" data-id="${item.id}" data-variant="${item.variant}">
+            <div class="cart-line-item" data-id="${escapeHtml(item.id)}" data-variant="${escapeHtml(item.variant)}">
               <div class="cart-thumb">
-                <svg class="bottle ${item.colorClass}"><use href="#bottle"/></svg>
+                <svg class="bottle ${escapeHtml(item.colorClass)}"><use href="#bottle"/></svg>
               </div>
               <div class="cart-line-info">
                 <div class="cart-line-head">
-                  <span class="cart-item-title">${item.name}</span>
-                  <button class="cart-remove-btn" title="Remove item" aria-label="Remove ${item.name}">&times;</button>
+                  <span class="cart-item-title">${escapeHtml(item.name)}</span>
+                  <button class="cart-remove-btn" title="Remove item" aria-label="Remove ${escapeHtml(item.name)}">&times;</button>
                 </div>
-                <div class="cart-item-variant">${item.variant}</div>
+                <div class="cart-item-variant">${escapeHtml(item.variant)}</div>
                 <div class="cart-line-bottom">
                   <div class="cart-qty-ctrl">
                     <button class="qty-btn dec" aria-label="Decrease quantity">−</button>
-                    <span class="qty-num">${item.qty}</span>
+                    <span class="qty-num">${escapeHtml(item.qty)}</span>
                     <button class="qty-btn inc" aria-label="Increase quantity">+</button>
                   </div>
                   <span class="cart-line-price">$${(item.price * item.qty).toFixed(2)}</span>

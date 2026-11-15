@@ -1,5 +1,6 @@
 /**
  * Request Logger Middleware
+ * Sanitized against Log Injection / CRLF injection.
  */
 module.exports = (req, res, next) => {
   const start = Date.now();
@@ -10,8 +11,12 @@ module.exports = (req, res, next) => {
     const statusColor = res.statusCode >= 400 ? '\x1b[31m' : '\x1b[32m';
     const resetColor = '\x1b[0m';
 
+    // Strip carriage returns and line feeds to prevent log forging (CWE-117)
+    const cleanMethod = (req.method || 'GET').replace(/[\r\n]/g, '');
+    const cleanUrl = (req.originalUrl || req.url || '').replace(/[\r\n]/g, '').slice(0, 200);
+
     console.log(
-      `[${timestamp}] ${req.method} ${req.originalUrl} -> ${statusColor}${res.statusCode}${resetColor} (${duration}ms)`
+      `[${timestamp}] ${cleanMethod} ${cleanUrl} -> ${statusColor}${res.statusCode}${resetColor} (${duration}ms)`
     );
   });
 

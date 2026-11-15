@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="css/veloura.css">
   <style>
     .admin-wrap { max-width: 1180px; margin: 2rem auto; padding: 0 6vw; }
-    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .admin-key-bar { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .admin-key-input { border: 1px solid var(--line); border-radius: 8px; padding: 0.45rem 0.8rem; font-family: monospace; font-size: 0.85rem; min-width: 260px; background: #fff; color: var(--ink); }
     .admin-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 2.5rem; }
     .stat-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; }
     .stat-card h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 0.4rem; font-family: inherit; }
@@ -24,6 +26,7 @@
     .badge-paid { background: #E8F5E9; color: #2E7D32; padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
     .badge-stock { background: var(--cream); border: 1px solid var(--line); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
     .admin-refresh-btn { background: var(--ink); color: var(--cream); border: 0; padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.85rem; cursor: pointer; }
+    .auth-banner-error { background: #FFEBEE; border: 1px solid #FFCDD2; color: #C62828; padding: 0.8rem 1rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.88rem; display: none; }
     @media(max-width: 860px) {
       .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
       table { display: block; overflow-x: auto; }
@@ -50,7 +53,21 @@
       <h1 style="font-size:2.2rem;margin-top:0.2rem">Store Management</h1>
       <p style="color:var(--mute)">Live sales, inventory, and subscriber analytics powered by the Node.js API.</p>
     </div>
-    <button class="admin-refresh-btn" onclick="loadDashboardData()">↻ Refresh Data</button>
+    <div style="display:flex;gap:0.6rem;align-items:center">
+      <button class="admin-refresh-btn" onclick="loadDashboardData()">↻ Refresh Data</button>
+    </div>
+  </div>
+
+  <!-- Key Authentication Bar -->
+  <div class="admin-key-bar">
+    <span style="font-size:0.82rem;font-weight:600;color:var(--ink)">🔒 Admin Secret Key:</span>
+    <input type="password" id="admin-key-input" class="admin-key-input" placeholder="Enter x-admin-key">
+    <button class="admin-refresh-btn" onclick="saveAdminKey()" style="padding:0.4rem 0.9rem;font-size:0.8rem">Authenticate</button>
+    <span id="auth-status-indicator" style="font-size:0.8rem;color:var(--mute);margin-left:auto">Using secure API authentication</span>
+  </div>
+
+  <div id="auth-error-banner" class="auth-banner-error">
+    <strong>Authentication Error:</strong> The API rejected this key (401 Unauthorized). Please check your <code>ADMIN_API_KEY</code> in <code>.env</code>.
   </div>
 
   <div class="admin-stats-grid">
@@ -97,7 +114,7 @@
   <div class="admin-section">
     <h3>
       <span>Live Product Inventory</span>
-      <span class="pill" style="font-size:0.78rem">8 catalog formulas</span>
+      <span class="pill" id="inventory-count-badge" style="font-size:0.78rem">16 catalog formulas</span>
     </h3>
     <table>
       <thead>
@@ -136,34 +153,76 @@
 </div>
 
 <script>
+  // Safe HTML Escaping Utility to prevent Stored XSS (CWE-79)
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function getAdminKey() {
+    return sessionStorage.getItem('veloura_admin_key') ||
+           localStorage.getItem('veloura_admin_key') ||
+           'veloura_admin_secret_2026';
+  }
+
+  function saveAdminKey() {
+    const input = document.getElementById('admin-key-input');
+    const key = (input.value || '').trim();
+    if (key) {
+      sessionStorage.setItem('veloura_admin_key', key);
+      loadDashboardData();
+    }
+  }
+
   async function loadDashboardData() {
+    const key = getAdminKey();
+    const keyInput = document.getElementById('admin-key-input');
+    if (keyInput && !keyInput.value) {
+      keyInput.value = key;
+    }
+
+    const headers = {
+      'x-admin-key': key
+    };
+
+    const errBanner = document.getElementById('auth-error-banner');
+    errBanner.style.display = 'none';
+
     try {
       // 1. Load Stats
-      const statsRes = await fetch('/api/stats');
+      const statsRes = await fetch('/api/stats', { headers });
+      if (statsRes.status === 401) {
+        errBanner.style.display = 'block';
+      }
       const statsJson = await statsRes.json();
       if (statsJson.success) {
         const d = statsJson.data;
-        document.getElementById('stat-revenue').textContent = '$' + d.totalRevenue.toFixed(2);
-        document.getElementById('stat-orders').textContent = d.totalOrders;
-        document.getElementById('stat-aov').textContent = '$' + d.averageOrderValue.toFixed(2);
-        document.getElementById('stat-subscribers').textContent = d.totalSubscribers;
+        document.getElementById('stat-revenue').textContent = '$' + (d.totalRevenue || 0).toFixed(2);
+        document.getElementById('stat-orders').textContent = d.totalOrders || 0;
+        document.getElementById('stat-aov').textContent = '$' + (d.averageOrderValue || 0).toFixed(2);
+        document.getElementById('stat-subscribers').textContent = d.totalSubscribers || 0;
       }
 
       // 2. Load Orders
-      const ordersRes = await fetch('/api/orders');
+      const ordersRes = await fetch('/api/orders', { headers });
       const ordersJson = await ordersRes.json();
       const ordersTbody = document.getElementById('orders-table-body');
       const ordersBadge = document.getElementById('orders-count-badge');
 
-      if (ordersJson.success && ordersJson.data.length > 0) {
+      if (ordersJson.success && Array.isArray(ordersJson.data) && ordersJson.data.length > 0) {
         ordersBadge.textContent = `${ordersJson.data.length} orders`;
         ordersTbody.innerHTML = ordersJson.data.map(o => `
           <tr>
-            <td><strong>${o.orderId}</strong></td>
-            <td>${new Date(o.createdAt).toLocaleDateString()}</td>
-            <td>${o.customer.firstName} ${o.customer.lastName || ''} <br><span style="color:var(--mute);font-size:0.78rem">${o.customer.email}</span></td>
-            <td>${o.items.map(i => `${i.qty}× ${i.name}`).join(', ')}</td>
-            <td><strong>$${o.total.toFixed(2)}</strong></td>
+            <td><strong>${escapeHtml(o.orderId)}</strong></td>
+            <td>${escapeHtml(new Date(o.createdAt).toLocaleDateString())}</td>
+            <td>${escapeHtml(o.customer.firstName)} ${escapeHtml(o.customer.lastName || '')} <br><span style="color:var(--mute);font-size:0.78rem">${escapeHtml(o.customer.email)}</span></td>
+            <td>${escapeHtml((o.items || []).map(i => `${i.qty}× ${i.name}`).join(', '))}</td>
+            <td><strong>$${escapeHtml(Number(o.total || 0).toFixed(2))}</strong></td>
             <td><span class="badge-paid">Paid (Demo)</span></td>
           </tr>
         `).join('');
@@ -171,36 +230,38 @@
         ordersTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--mute);padding:2rem">No orders placed yet. Place an order on the storefront to test!</td></tr>';
       }
 
-      // 3. Load Products Inventory
+      // 3. Load Products Inventory (Public)
       const prodRes = await fetch('/api/products');
       const prodJson = await prodRes.json();
       const invTbody = document.getElementById('inventory-table-body');
+      const invBadge = document.getElementById('inventory-count-badge');
 
-      if (prodJson.success) {
+      if (prodJson.success && Array.isArray(prodJson.data)) {
+        if (invBadge) invBadge.textContent = `${prodJson.data.length} catalog formulas`;
         invTbody.innerHTML = prodJson.data.map(p => `
           <tr>
-            <td><strong>${p.name}</strong><br><span style="color:var(--mute);font-size:0.78rem">${p.tagline}</span></td>
-            <td><span class="pill" style="font-size:0.75rem;padding:0.2rem 0.6rem">${p.category}</span></td>
-            <td>$${p.price.toFixed(2)}</td>
-            <td><span class="badge-stock">${p.stockCount} units</span></td>
+            <td><strong>${escapeHtml(p.name)}</strong><br><span style="color:var(--mute);font-size:0.78rem">${escapeHtml(p.tagline || '')}</span></td>
+            <td><span class="pill" style="font-size:0.75rem;padding:0.2rem 0.6rem">${escapeHtml(p.category || 'other')}</span></td>
+            <td>$${escapeHtml(Number(p.price || 0).toFixed(2))}</td>
+            <td><span class="badge-stock">${escapeHtml(p.stockCount || 0)} units</span></td>
             <td><span class="badge-paid" style="${p.inStock ? '' : 'background:#FFEBEE;color:#C62828'}">${p.inStock ? 'In Stock' : 'Out of Stock'}</span></td>
           </tr>
         `).join('');
       }
 
       // 4. Load Subscribers
-      const subRes = await fetch('/api/newsletter/subscribers');
+      const subRes = await fetch('/api/newsletter/subscribers', { headers });
       const subJson = await subRes.json();
       const subTbody = document.getElementById('subscribers-table-body');
       const subBadge = document.getElementById('subscribers-count-badge');
 
-      if (subJson.success && subJson.data.length > 0) {
+      if (subJson.success && Array.isArray(subJson.data) && subJson.data.length > 0) {
         subBadge.textContent = `${subJson.data.length} members`;
         subTbody.innerHTML = subJson.data.map(s => `
           <tr>
-            <td><strong>${s.email}</strong></td>
-            <td>${new Date(s.subscribedAt).toLocaleString()}</td>
-            <td><span class="pill" style="font-size:0.75rem;padding:0.2rem 0.6rem">${s.couponCode || 'VELOURA10'}</span></td>
+            <td><strong>${escapeHtml(s.email)}</strong></td>
+            <td>${escapeHtml(new Date(s.subscribedAt).toLocaleString())}</td>
+            <td><span class="pill" style="font-size:0.75rem;padding:0.2rem 0.6rem">${escapeHtml(s.couponCode || 'VELOURA10')}</span></td>
           </tr>
         `).join('');
       }

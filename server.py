@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Veloura Botanical Skincare - Python Development Server & API
-Zero-dependency static server and REST API handler with automatic browser launch.
+Zero-dependency static server and REST API handler with security hardening.
 """
 
 import http.server
@@ -11,6 +11,7 @@ import os
 import sys
 import json
 import time
+import hmac
 from urllib.parse import urlparse, parse_qs
 
 DEFAULT_PORT = 8000
@@ -18,6 +19,7 @@ DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(DIRECTORY, "frontend")
 DATA_DIR = os.path.join(DIRECTORY, "backend", "data")
 STORAGE_DIR = os.path.join(DATA_DIR, "storage")
+ADMIN_API_KEY = os.environ.get("ADMIN_API_KEY", "veloura_admin_secret_2026")
 
 os.makedirs(STORAGE_DIR, exist_ok=True)
 
@@ -43,7 +45,19 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=FRONTEND_DIR, **kwargs)
 
+    def check_admin_auth(self):
+        auth_header = self.headers.get("x-admin-key") or ""
+        if not auth_header:
+            auth = self.headers.get("authorization") or ""
+            if auth.startswith("Bearer "):
+                auth_header = auth[7:].strip()
+        return bool(auth_header) and hmac.compare_digest(auth_header, ADMIN_API_KEY)
+
     def end_headers(self):
+        # Security headers
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        self.send_header('X-Frame-Options', 'SAMEORIGIN')
+        self.send_header('Referrer-Policy', 'strict-origin-when-cross-origin')
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         self.send_header('Pragma', 'no-cache')
         self.send_header('Expires', '0')
@@ -56,7 +70,7 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(payload)))
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, x-admin-key")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, x-admin-key")
         self.end_headers()
         self.wfile.write(payload)
 
@@ -64,7 +78,7 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, x-admin-key")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, x-admin-key")
         self.end_headers()
 
     def do_GET(self):
@@ -107,18 +121,24 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
                 return self.send_json(200, {"success": True, "data": product})
             return self.send_json(404, {"success": False, "error": "Product not found"})
 
-        # API: Orders list
+        # API: Orders list (Protected: requires x-admin-key)
         if path == "/api/orders":
+            if not self.check_admin_auth():
+                return self.send_json(401, {"success": False, "error": "Unauthorized. Valid x-admin-key required."})
             orders = load_json(os.path.join(STORAGE_DIR, "orders.json"), [])
             return self.send_json(200, {"success": True, "count": len(orders), "data": orders})
 
-        # API: Subscribers list
+        # API: Subscribers list (Protected: requires x-admin-key)
         if path == "/api/newsletter/subscribers":
+            if not self.check_admin_auth():
+                return self.send_json(401, {"success": False, "error": "Unauthorized. Valid x-admin-key required."})
             subs = load_json(os.path.join(STORAGE_DIR, "subscribers.json"), [])
             return self.send_json(200, {"success": True, "count": len(subs), "data": subs})
 
-        # API: Stats
+        # API: Stats (Protected: requires x-admin-key)
         if path == "/api/stats":
+            if not self.check_admin_auth():
+                return self.send_json(401, {"success": False, "error": "Unauthorized. Valid x-admin-key required."})
             orders = load_json(os.path.join(STORAGE_DIR, "orders.json"), [])
             subs = load_json(os.path.join(STORAGE_DIR, "subscribers.json"), [])
             products = load_json(os.path.join(DATA_DIR, "products.json"), [])
@@ -142,6 +162,11 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         path = parsed.path
         content_length = int(self.headers.get("Content-Length", 0))
+
+        # Payload boundary limit (100KB max)
+        if content_length > 102400:
+            return self.send_json(413, {"success": False, "error": "Payload Too Large"})
+
         body_bytes = self.rfile.read(content_length)
         body = {}
         try:
@@ -156,20 +181,53 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
             if not items or not customer.get("firstName") or not customer.get("email"):
                 return self.send_json(400, {"success": False, "error": "Missing required items or customer details"})
 
+            products_catalog = load_json(os.path.join(DATA_DIR, "products.json"), [])
+            catalog_map = {p["id"]: p for p in products_catalog}
+
+            verified_items = []
+            subtotal = 0.0
+
+            # Server-side price verification and quantity clamping
+            for item in items:
+                prod_id = item.get("id")
+                prod = catalog_map.get(prod_id)
+                if not prod:
+                    return self.send_json(400, {"success": False, "error": f"Invalid product id '{prod_id}'"})
+
+                qty = max(1, min(50, int(item.get("qty", 1))))
+                price = float(prod.get("price", 0))
+                line_total = round(price * qty, 2)
+                subtotal += line_total
+
+                verified_items.append({
+                    "id": prod["id"],
+                    "name": prod["name"],
+                    "price": price,
+                    "qty": qty,
+                    "variant": item.get("variant", "Standard"),
+                    "lineTotal": line_total
+                })
+
+            subtotal = round(subtotal, 2)
+            shipping = 0.0 if subtotal >= 50.0 else 4.95
+            total = round(subtotal + shipping, 2)
+
             orders_file = os.path.join(STORAGE_DIR, "orders.json")
             orders = load_json(orders_file, [])
             order_id = f"VEL-{int(time.time() * 1000) % 900000 + 100000}"
-            subtotal = sum(i.get("price", 0) * i.get("qty", 1) for i in items)
-            shipping = 0.0 if subtotal >= 50 else 4.95
-            total = round(subtotal + shipping, 2)
 
             new_order = {
                 "orderId": order_id,
                 "createdAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "status": "confirmed",
-                "customer": customer,
-                "items": items,
-                "subtotal": round(subtotal, 2),
+                "customer": {
+                    "firstName": str(customer.get("firstName", ""))[:50],
+                    "lastName": str(customer.get("lastName", ""))[:50],
+                    "email": str(customer.get("email", "")).strip().lower()[:150],
+                    "address": str(customer.get("address", ""))[:150]
+                },
+                "items": verified_items,
+                "subtotal": subtotal,
                 "shippingFee": shipping,
                 "total": total,
                 "currency": "USD"
@@ -180,8 +238,8 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
 
         # API: Promo apply
         if path == "/api/promo/apply":
-            code = (body.get("code") or "").strip().upper()
-            subtotal = float(body.get("subtotal") or 0)
+            code = (body.get("code") or "").strip().upper()[:30]
+            subtotal = max(0.0, float(body.get("subtotal") or 0))
             promos = load_json(os.path.join(DATA_DIR, "promoCodes.json"), [])
             promo = next((p for p in promos if p.get("code") == code and p.get("isActive")), None)
 
@@ -200,7 +258,7 @@ class VelouraAPIHandler(http.server.SimpleHTTPRequestHandler):
 
         # API: Newsletter subscribe
         if path == "/api/newsletter/subscribe":
-            email = (body.get("email") or "").strip().lower()
+            email = (body.get("email") or "").strip().lower()[:150]
             if not email or "@" not in email:
                 return self.send_json(400, {"success": False, "error": "Valid email required."})
 
