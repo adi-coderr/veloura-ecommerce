@@ -25,12 +25,15 @@
       id: 'bloom-serum',
       name: 'Bloom Serum',
       kicker: 'Face · Vitamin C',
-      tagline: 'Vitamin C + squalane',
+      tagline: '12% Lipid Vitamin C + Olive Squalane',
+      badge: 'Bestseller',
+      image: 'images/serum-dropper.jpg',
+      hoverImage: 'images/editorial-texture.jpg',
       price: 42,
-      rating: '★★★★★',
+      rating: 5.0,
       reviewsCount: 214,
       colorClass: '',
-      colorHex: '#B5695C',
+      colorHex: '#A85B4E',
       category: 'face',
       vessel: 'bottle',
       variants: ['Classic Rose (30ml)', 'Frosted Sage (30ml)', 'Clay Blush (30ml)'],
@@ -43,12 +46,15 @@
       id: 'calm-cream',
       name: 'Calm Cream',
       kicker: 'Face · Centella',
-      tagline: 'Centella + oat milk',
+      tagline: 'Madecassoside Centella + Oat Milk',
+      badge: 'Sensitive Hero',
+      image: 'images/cream-jar.jpg',
+      hoverImage: 'images/editorial-texture.jpg',
       price: 38,
-      rating: '★★★★★',
+      rating: 4.9,
       reviewsCount: 189,
       colorClass: 'sage',
-      colorHex: '#9DAC87',
+      colorHex: '#7A8B66',
       category: 'face',
       vessel: 'cream-jar',
       variants: ['Frosted Sage (50ml)', 'Classic Rose (50ml)', 'Clay Blush (50ml)'],
@@ -61,9 +67,12 @@
       id: 'dew-mist',
       name: 'Dew Mist',
       kicker: 'Face · Rosewater',
-      tagline: 'Rosewater + aloe',
+      tagline: 'Damask Rosewater + Cold Aloe',
+      badge: 'pH 5.2 Prep',
+      image: 'images/mist-bottle.jpg',
+      hoverImage: 'images/ritual-vanity.jpg',
       price: 26,
-      rating: '★★★★★',
+      rating: 4.8,
       reviewsCount: 142,
       colorClass: 'blush',
       colorHex: '#D79A8C',
@@ -79,15 +88,18 @@
       id: 'luna-night-oil',
       name: 'Luna Night Oil',
       kicker: 'Face · Blue Tansy',
-      tagline: 'Blue Tansy + 1% Bakuchiol',
+      tagline: 'Blue Tansy + 1% Botanical Bakuchiol',
+      badge: 'Plant Retinol',
+      image: 'images/oil-flacon.jpg',
+      hoverImage: 'images/editorial-texture.jpg',
       price: 48,
-      rating: '★★★★★',
+      rating: 5.0,
       reviewsCount: 178,
       colorClass: 'sage',
-      colorHex: '#9DAC87',
+      colorHex: '#7A8B66',
       category: 'face',
       vessel: 'oil-flacon',
-      variants: ['Deep Indigo (30ml)', 'Classic Amber (30ml)'],
+      variants: ['Obsidian Glass (30ml)', 'Classic Amber (30ml)'],
       desc: 'An intensive nocturnal restorative treatment formulated with Moroccan blue tansy and 1% clinical plant bakuchiol to stimulate cellular renewal and soothe reactive skin overnight.',
       ingredients: 'Squalane, Simmondsia Chinensis (Jojoba) Seed Oil, Tanacetum Annuum (Blue Tansy) Flower Oil, Bakuchiol, Helianthus Annuus Seed Oil, Tocopherol, Tetrahexyldecyl Ascorbate.',
       usage: 'Warm 3–4 drops between hands at night and press into slightly damp skin following moisturizer or serum. Non-photosensitizing and pregnancy-safe.',
@@ -97,9 +109,12 @@
       id: 'clarity-cleanser',
       name: 'Clarity Cleansing Oil',
       kicker: 'Face · Camellia',
-      tagline: 'Camellia + Rice Bran Oil',
+      tagline: 'Japanese Camellia + Rice Bran',
+      badge: 'Step 01 Cleanse',
+      image: 'images/serum-dropper.jpg',
+      hoverImage: 'images/ritual-vanity.jpg',
       price: 32,
-      rating: '★★★★★',
+      rating: 4.9,
       reviewsCount: 134,
       colorClass: 'blush',
       colorHex: '#D79A8C',
@@ -115,9 +130,12 @@
       id: 'clay-purify-mask',
       name: 'Earth Glow Kaolin Mask',
       kicker: 'Face · Rose Clay',
-      tagline: 'Rose Kaolin + Willow Bark',
+      tagline: 'French Rose Kaolin + Willow Bark',
+      badge: '10-Min Detox',
+      image: 'images/editorial-texture.jpg',
+      hoverImage: 'images/cream-jar.jpg',
       price: 36,
-      rating: '★★★★☆',
+      rating: 4.8,
       reviewsCount: 95,
       colorClass: 'blush',
       colorHex: '#D79A8C',
@@ -133,12 +151,15 @@
       id: 'velvet-oil',
       name: 'Velvet Oil',
       kicker: 'Body · Jojoba',
-      tagline: 'Body · Jojoba',
+      tagline: 'Cold-Pressed Jojoba + Sweet Almond',
+      badge: 'Dry Finish',
+      image: 'images/oil-flacon.jpg',
+      hoverImage: 'images/editorial-texture.jpg',
       price: 34,
-      rating: '★★★★★',
+      rating: 4.9,
       reviewsCount: 98,
       colorClass: 'ink',
-      colorHex: '#2A211D',
+      colorHex: '#1D1714',
       category: 'body',
       vessel: 'oil-flacon',
       variants: ['Obsidian Glass (100ml)', 'Classic Rose (100ml)'],
@@ -151,12 +172,15 @@
       id: 'soft-wash',
       name: 'Soft Wash',
       kicker: 'Body · Oat milk',
-      tagline: 'Body · Oat milk',
+      tagline: 'Colloidal Oat Milk + Chamomile',
+      badge: 'pH 5.2 Cleanse',
+      image: 'images/mist-bottle.jpg',
+      hoverImage: 'images/ritual-vanity.jpg',
       price: 24,
-      rating: '★★★★☆',
+      rating: 4.8,
       reviewsCount: 165,
       colorClass: '',
-      colorHex: '#B5695C',
+      colorHex: '#A85B4E',
       category: 'body',
       vessel: 'bottle',
       variants: ['Classic Rose (200ml)', 'Frosted Sage (200ml)'],
@@ -169,12 +193,15 @@
       id: 'nourish-body-butter',
       name: 'Cloud Silk Body Butter',
       kicker: 'Body · Cupuaçu',
-      tagline: 'Whipped Cupuaçu + Shea',
+      tagline: 'Whipped Cupuaçu + Organic Shea',
+      badge: 'Deep Moisture',
+      image: 'images/cream-jar.jpg',
+      hoverImage: 'images/editorial-texture.jpg',
       price: 36,
-      rating: '★★★★★',
+      rating: 5.0,
       reviewsCount: 208,
       colorClass: '',
-      colorHex: '#B5695C',
+      colorHex: '#A85B4E',
       category: 'body',
       vessel: 'cream-jar',
       variants: ['Classic Rose (150ml)', 'Frosted Sage (150ml)'],
@@ -187,12 +214,15 @@
       id: 'botanical-scrub',
       name: 'Bamboo Polishing Scrub',
       kicker: 'Body · Bamboo Stem',
-      tagline: 'Bamboo Stem + Sweet Orange',
+      tagline: 'Bamboo Silica + Sweet Orange',
+      badge: 'Exfoliant',
+      image: 'images/editorial-texture.jpg',
+      hoverImage: 'images/cream-jar.jpg',
       price: 28,
-      rating: '★★★★★',
+      rating: 4.9,
       reviewsCount: 88,
       colorClass: 'sage',
-      colorHex: '#9DAC87',
+      colorHex: '#7A8B66',
       category: 'body',
       vessel: 'cream-jar',
       variants: ['Frosted Sage (180ml)', 'Classic Rose (180ml)'],
@@ -205,12 +235,15 @@
       id: 'silk-mask',
       name: 'Silk Mask',
       kicker: 'Hair · Argan',
-      tagline: 'Hair · Argan',
+      tagline: 'Moroccan Argan + Botanical Keratin',
+      badge: 'Bond Repair',
+      image: 'images/hair-collection.jpg',
+      hoverImage: 'images/cream-jar.jpg',
       price: 30,
-      rating: '★★★★★',
+      rating: 4.9,
       reviewsCount: 112,
       colorClass: 'sage',
-      colorHex: '#9DAC87',
+      colorHex: '#7A8B66',
       category: 'hair',
       vessel: 'cream-jar',
       variants: ['Frosted Sage (150ml)', 'Classic Rose (150ml)'],
@@ -223,12 +256,15 @@
       id: 'scalp-elixir',
       name: 'Botanical Scalp Tonic',
       kicker: 'Hair · Rosemary',
-      tagline: 'Distilled Rosemary + Biotin',
+      tagline: 'Distilled Rosemary + Peptide Biotin',
+      badge: 'Root Vitality',
+      image: 'images/hair-collection.jpg',
+      hoverImage: 'images/serum-dropper.jpg',
       price: 34,
-      rating: '★★★★★',
+      rating: 4.9,
       reviewsCount: 156,
       colorClass: 'sage',
-      colorHex: '#9DAC87',
+      colorHex: '#7A8B66',
       category: 'hair',
       vessel: 'bottle',
       variants: ['Frosted Sage (60ml)', 'Classic Rose (60ml)'],
@@ -242,11 +278,14 @@
       name: 'Golden Gloss Nectar',
       kicker: 'Hair · Marula',
       tagline: 'Cold-Pressed Marula + Camellia',
+      badge: 'Heat Shield',
+      image: 'images/oil-flacon.jpg',
+      hoverImage: 'images/hair-collection.jpg',
       price: 32,
-      rating: '★★★★☆',
+      rating: 4.8,
       reviewsCount: 119,
       colorClass: 'ink',
-      colorHex: '#2A211D',
+      colorHex: '#1D1714',
       category: 'hair',
       vessel: 'oil-flacon',
       variants: ['Obsidian Glass (50ml)', 'Classic Rose (50ml)'],
@@ -259,9 +298,12 @@
       id: 'ritual-duo',
       name: 'Daily Glow Duo',
       kicker: 'Gift sets · Serum + Cream',
-      tagline: 'Gift sets · Serum + Cream',
+      tagline: 'Bloom Serum + Calm Cream Pairing',
+      badge: 'Save $8',
+      image: 'images/hero-editorial.jpg',
+      hoverImage: 'images/gift-ritual-set.jpg',
       price: 72,
-      rating: '★★★★★',
+      rating: 5.0,
       reviewsCount: 86,
       colorClass: 'blush',
       colorHex: '#D79A8C',
@@ -277,9 +319,12 @@
       id: 'bath-ceremony-set',
       name: 'Evening Bath Ceremony Set',
       kicker: 'Gift sets · Body Trio',
-      tagline: 'Gift sets · Wash + Butter + Oil',
+      tagline: 'Wash + Cloud Silk Butter + Velvet Oil',
+      badge: 'Save $10',
+      image: 'images/gift-ritual-set.jpg',
+      hoverImage: 'images/ritual-vanity.jpg',
       price: 88,
-      rating: '★★★★★',
+      rating: 5.0,
       reviewsCount: 72,
       colorClass: 'blush',
       colorHex: '#D79A8C',
@@ -295,12 +340,15 @@
       id: 'full-ritual-set',
       name: 'The Slow Ritual Complete Box',
       kicker: 'Gift sets · 4 Full Sizes',
-      tagline: 'Gift sets · 4 Full Sizes',
+      tagline: 'Complete 4-Step Vault + Linen Pouch',
+      badge: 'Save $22',
+      image: 'images/gift-ritual-set.jpg',
+      hoverImage: 'images/hero-editorial.jpg',
       price: 118,
-      rating: '★★★★★',
+      rating: 5.0,
       reviewsCount: 64,
       colorClass: 'ink',
-      colorHex: '#2A211D',
+      colorHex: '#1D1714',
       category: 'gift sets',
       vessel: 'gift-box',
       variants: ['Deluxe Keepsake Box', 'Organic Linen Case'],
@@ -310,6 +358,43 @@
       shipping: 'Ships free! Includes complimentary samples of upcoming seasonal formulas.'
     }
   };
+
+  /** Shared card renderer used across Shop & Product recommendation sections. */
+  function renderProductCard(prod) {
+    const imgSrc = prod.image || 'images/serum-dropper.jpg';
+    const ratingVal = Number(prod.rating || 5.0).toFixed(1);
+    const badgeHtml = prod.badge
+      ? `<span class="card-badge${prod.badge.includes('Best') || prod.badge.includes('Save') || prod.badge.includes('Plant') ? ' accent' : ''}">${escapeHtml(prod.badge)}</span>`
+      : '';
+
+    return `
+      <div class="card" data-category="${escapeHtml(prod.category)}" data-id="${escapeHtml(prod.id)}">
+        <div class="card-media">
+          ${badgeHtml}
+          <span class="card-refill-tag">♻ Refillable</span>
+          <a class="card-img-link" href="product.html?id=${encodeURIComponent(prod.id)}">
+            <img class="card-img" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(prod.name)}" loading="lazy"
+              onerror="this.style.display='none';this.parentElement.nextElementSibling.classList.add('show-fallback')">
+          </a>
+          <div class="svg-fallback"><svg class="bottle ${escapeHtml(prod.colorClass || '')}"><use href="#${escapeHtml(prod.vessel || 'bottle')}"/></svg></div>
+          <button class="card-quick-overlay quick-add-btn" data-id="${escapeHtml(prod.id)}">+ Quick Add — $${Number(prod.price).toFixed(0)}</button>
+        </div>
+        <div class="card-meta-top">
+          <span class="card-rating"><span class="star">★</span> ${ratingVal} <span class="cnt">(${escapeHtml(prod.reviewsCount || 90)})</span></span>
+          <div class="card-swatches" aria-hidden="true">
+            <span class="swatch-dot active" style="background:${escapeHtml(prod.colorHex || '#A85B4E')}"></span>
+            <span class="swatch-dot" style="background:#7A8B66"></span>
+          </div>
+        </div>
+        <div class="pname"><a href="product.html?id=${encodeURIComponent(prod.id)}">${escapeHtml(prod.name)}</a></div>
+        <div class="pnote">${escapeHtml(prod.tagline || prod.kicker)}</div>
+        <div class="prow">
+          <span class="price">$${Number(prod.price).toFixed(0)}</span>
+          <a class="pill" href="product.html?id=${encodeURIComponent(prod.id)}">Details →</a>
+        </div>
+      </div>
+    `;
+  }
 
   // =========================================================================
   // 2. JOURNAL ARTICLES DATA
@@ -399,6 +484,7 @@
           name: product.name,
           price: product.price,
           qty: quantity,
+          image: product.image || 'images/serum-dropper.jpg',
           colorClass: product.colorClass || '',
           variant: variantName,
           kicker: product.kicker || 'Botanical Formula'
@@ -729,10 +815,14 @@
 
         let itemsHtml = '<div class="cart-items-list">';
         items.forEach(item => {
+          const prodInfo = PRODUCTS[item.id] || {};
+          const thumbImg = item.image || prodInfo.image || 'images/serum-dropper.jpg';
           itemsHtml += `
             <div class="cart-line-item" data-id="${escapeHtml(item.id)}" data-variant="${escapeHtml(item.variant)}">
               <div class="cart-thumb">
-                <svg class="bottle ${escapeHtml(item.colorClass)}"><use href="#bottle"/></svg>
+                <img src="${escapeHtml(thumbImg)}" alt="${escapeHtml(item.name)}"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                <svg class="bottle ${escapeHtml(item.colorClass)}" style="display:none"><use href="#bottle"/></svg>
               </div>
               <div class="cart-line-info">
                 <div class="cart-line-head">
@@ -1009,6 +1099,102 @@
   };
 
   // =========================================================================
+  // 7B. HEADER QUICK SEARCH MODAL
+  // =========================================================================
+  const SearchModal = {
+    init: function () {
+      if (document.getElementById('veloura-search-modal')) return;
+
+      const html = `
+        <div id="veloura-search-modal" class="modal-root" aria-hidden="true">
+          <div class="modal-backdrop"></div>
+          <div class="modal-container search-modal-box" role="dialog" aria-modal="true" aria-label="Search botanical catalog">
+            <button class="modal-close-btn" aria-label="Close search">&times;</button>
+            <span class="kicker" style="margin-bottom:0.6rem">Instant Catalog Search</span>
+            <div class="search-input-row">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--mute);flex-shrink:0">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input type="search" id="veloura-global-search-input" class="search-modal-input" placeholder="Search serums, bakuchiol, rosewater..." autocomplete="off">
+            </div>
+            <div id="veloura-search-results" class="search-results-grid"></div>
+          </div>
+        </div>
+      `;
+
+      document.body.insertAdjacentHTML('beforeend', html);
+
+      const root = document.getElementById('veloura-search-modal');
+      const backdrop = root.querySelector('.modal-backdrop');
+      const closeBtn = root.querySelector('.modal-close-btn');
+      const input = document.getElementById('veloura-global-search-input');
+
+      backdrop.addEventListener('click', () => this.close());
+      closeBtn.addEventListener('click', () => this.close());
+      input.addEventListener('input', () => this.renderResults(input.value));
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && root.classList.contains('active')) {
+          this.close();
+        }
+      });
+
+      this.renderResults('');
+    },
+
+    renderResults: function (query) {
+      const box = document.getElementById('veloura-search-results');
+      if (!box) return;
+      const q = (query || '').toLowerCase().trim();
+      const matches = Object.values(PRODUCTS).filter(p => {
+        if (!q) return ['bloom-serum', 'calm-cream', 'luna-night-oil', 'full-ritual-set'].includes(p.id);
+        return (
+          p.name.toLowerCase().includes(q) ||
+          (p.tagline || '').toLowerCase().includes(q) ||
+          (p.category || '').toLowerCase().includes(q) ||
+          (p.ingredients || '').toLowerCase().includes(q)
+        );
+      });
+
+      if (!matches.length) {
+        box.innerHTML = `<p style="color:var(--mute);grid-column:1/-1;padding:1.5rem 0;text-align:center">No formulas matching "${escapeHtml(query)}".</p>`;
+        return;
+      }
+
+      box.innerHTML = matches.slice(0, 6).map(p => `
+        <a href="product.html?id=${encodeURIComponent(p.id)}" class="search-result-card">
+          <img class="search-result-thumb" src="${escapeHtml(p.image || 'images/serum-dropper.jpg')}" alt="${escapeHtml(p.name)}">
+          <div>
+            <div style="font-family:'Fraunces',serif;font-weight:600;color:var(--ink);font-size:0.95rem">${escapeHtml(p.name)}</div>
+            <div style="font-size:0.76rem;color:var(--mute)">${escapeHtml(p.tagline)}</div>
+            <div style="font-size:0.84rem;font-weight:600;color:var(--rose);margin-top:2px">$${Number(p.price).toFixed(0)}</div>
+          </div>
+        </a>
+      `).join('');
+    },
+
+    open: function () {
+      this.init();
+      const root = document.getElementById('veloura-search-modal');
+      root.classList.add('active');
+      root.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        const input = document.getElementById('veloura-global-search-input');
+        if (input) input.focus();
+      }, 60);
+    },
+
+    close: function () {
+      const root = document.getElementById('veloura-search-modal');
+      if (!root) return;
+      root.classList.remove('active');
+      root.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
+
+  // =========================================================================
   // 8. MOBILE NAVIGATION & HEADER ENHANCEMENTS
   // =========================================================================
   function setupHeader() {
@@ -1035,10 +1221,10 @@
       brand.innerHTML = `
         <span class="brand-monogram" aria-hidden="true">
           <svg viewBox="0 0 40 40" class="monogram-svg" width="36" height="36">
-            <circle cx="20" cy="20" r="18" fill="rgba(242, 214, 204, 0.45)" stroke="#B5695C" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
-            <circle cx="20" cy="20" r="14.5" fill="#FAF4ED" stroke="#2A211D" stroke-width="0.8"/>
-            <path d="M20 7.5 C20.8 8.8, 22.2 9.5, 20 11.5 C17.8 9.5, 19.2 8.8, 20 7.5 Z" fill="#B5695C"/>
-            <text x="20" y="24.8" font-family="'Fraunces', Georgia, serif" font-size="14.5" font-weight="600" text-anchor="middle" fill="#2A211D">V</text>
+            <circle cx="20" cy="20" r="18" fill="rgba(238, 214, 204, 0.45)" stroke="#A85B4E" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="14.5" fill="#FBF8F3" stroke="#1D1714" stroke-width="0.8"/>
+            <path d="M20 7.5 C20.8 8.8, 22.2 9.5, 20 11.5 C17.8 9.5, 19.2 8.8, 20 7.5 Z" fill="#A85B4E"/>
+            <text x="20" y="24.8" font-family="'Fraunces', Georgia, serif" font-size="14.5" font-weight="600" text-anchor="middle" fill="#1D1714">V</text>
           </svg>
         </span>
         <span class="brand-text-group">
@@ -1060,7 +1246,6 @@
         link.classList.remove('on');
       }
 
-      // Add micro-chips if not already present
       if (href && href.startsWith('shop.html') && !link.querySelector('.nav-chip')) {
         const chip = document.createElement('span');
         chip.className = 'nav-chip';
@@ -1075,7 +1260,7 @@
       }
     });
 
-    // 3. User actions wrapper & luxury bag pill
+    // 3. User actions wrapper, quick search, shipping perk, and bag pill
     let actionsWrapper = navin.querySelector('.nav-user-actions');
     let bagEl = navin.querySelector('.bag');
 
@@ -1090,7 +1275,6 @@
       }
     }
 
-    // Add shipping perk badge if not present
     if (!actionsWrapper.querySelector('.nav-perk-badge')) {
       const perkBadge = document.createElement('div');
       perkBadge.className = 'nav-perk-badge';
@@ -1099,6 +1283,25 @@
         <span>Free Shipping $50+</span>
       `;
       actionsWrapper.insertBefore(perkBadge, actionsWrapper.firstChild);
+    }
+
+    if (!actionsWrapper.querySelector('.nav-search-btn')) {
+      const searchBtn = document.createElement('button');
+      searchBtn.className = 'nav-search-btn';
+      searchBtn.setAttribute('type', 'button');
+      searchBtn.setAttribute('aria-label', 'Search catalog');
+      searchBtn.setAttribute('title', 'Search catalog');
+      searchBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      `;
+      searchBtn.addEventListener('click', () => SearchModal.open());
+      if (bagEl) {
+        actionsWrapper.insertBefore(searchBtn, bagEl);
+      } else {
+        actionsWrapper.appendChild(searchBtn);
+      }
     }
 
     // Enhance bag button
@@ -1255,54 +1458,121 @@
   // 10. PAGE SPECIFIC HANDLERS
   // =========================================================================
 
-  // --- A. SHOP PAGE HANDLER ---
+  // --- A. SHOP PAGE HANDLER (Dynamic Render + Filter + Search + Sort) ---
   function initShopPage() {
+    const gridRoot = document.getElementById('shop-grid-root');
     const chips = document.querySelectorAll('.chips .chip');
-    if (!chips.length) return;
+    if (!gridRoot || !chips.length) return;
 
-    function applyFilter(filterText) {
-      filterText = filterText.toLowerCase().trim();
+    const searchInput = document.getElementById('shop-search-input');
+    const sortSelect = document.getElementById('shop-sort-select');
+    const emptyState = document.getElementById('shop-empty-state');
+    const resetBtn = document.getElementById('shop-reset-filters');
+
+    let catalog = Object.values(PRODUCTS);
+    let activeCat = 'all';
+    let searchQuery = '';
+    let sortBy = 'featured';
+
+    function renderGrid() {
+      let filtered = catalog.filter(p => {
+        const catMatch = activeCat === 'all' || (p.category || '').toLowerCase() === activeCat;
+        if (!catMatch) return false;
+        if (!searchQuery) return true;
+        const q = searchQuery.toLowerCase();
+        return (
+          p.name.toLowerCase().includes(q) ||
+          (p.tagline || '').toLowerCase().includes(q) ||
+          (p.desc || '').toLowerCase().includes(q) ||
+          (p.ingredients || '').toLowerCase().includes(q)
+        );
+      });
+
+      if (sortBy === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortBy === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortBy === 'rating') {
+        filtered.sort((a, b) => (b.rating || 5) - (a.rating || 5) || (b.reviewsCount || 0) - (a.reviewsCount || 0));
+      }
+
+      if (!filtered.length) {
+        gridRoot.innerHTML = '';
+        if (emptyState) emptyState.style.display = 'block';
+        return;
+      }
+
+      if (emptyState) emptyState.style.display = 'none';
+      gridRoot.innerHTML = filtered.map(renderProductCard).join('');
+
+      gridRoot.querySelectorAll('.quick-add-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          Cart.addItem(btn.getAttribute('data-id'), 1);
+        });
+      });
+    }
+
+    function applyFilter(catVal) {
+      activeCat = (catVal || 'all').toLowerCase().trim();
       chips.forEach(c => {
-        if (c.textContent.trim().toLowerCase() === filterText) {
-          c.classList.add('on');
-        } else {
-          c.classList.remove('on');
-        }
+        const chipCat = (c.getAttribute('data-cat') || c.textContent).toLowerCase().trim();
+        c.classList.toggle('on', chipCat === activeCat);
       });
-
-      const cards = document.querySelectorAll('.grid .card');
-      cards.forEach(card => {
-        const cat = (card.getAttribute('data-category') || '').toLowerCase();
-        if (filterText === 'all' || cat === filterText) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      renderGrid();
     }
 
     chips.forEach(chip => {
       chip.addEventListener('click', e => {
         e.preventDefault();
-        applyFilter(chip.textContent);
+        applyFilter(chip.getAttribute('data-cat') || chip.textContent);
       });
     });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value.trim();
+        renderGrid();
+      });
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', () => {
+        sortBy = sortSelect.value;
+        renderGrid();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        searchQuery = '';
+        sortBy = 'featured';
+        if (searchInput) searchInput.value = '';
+        if (sortSelect) sortSelect.value = 'featured';
+        applyFilter('all');
+      });
+    }
 
     const urlParams = new URLSearchParams(window.location.search);
     const catParam = urlParams.get('cat');
-    if (catParam) {
-      applyFilter(catParam);
-    }
+    applyFilter(catParam || 'all');
 
-    // Bind Quick Add buttons
-    document.querySelectorAll('.quick-add-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        const id = btn.getAttribute('data-id');
-        Cart.addItem(id, 1);
-      });
-    });
+    // Sync live inventory from Express API cleanly without blocking initial paint
+    fetch('/api/products')
+      .then(r => (r.ok ? r.json() : null))
+      .then(json => {
+        if (json && json.success && Array.isArray(json.data) && json.data.length) {
+          json.data.forEach(remote => {
+            if (PRODUCTS[remote.id]) {
+              PRODUCTS[remote.id] = Object.assign({}, PRODUCTS[remote.id], remote);
+            }
+          });
+          catalog = Object.values(PRODUCTS);
+          renderGrid();
+        }
+      })
+      .catch(() => {});
   }
 
   // --- B. PRODUCT DETAIL PAGE HANDLER ---
@@ -1316,21 +1586,54 @@
 
     document.title = `${prod.name} — Veloura`;
 
+    const crumb = document.getElementById('pd-crumb-name');
+    if (crumb) crumb.textContent = prod.name;
+
     const visual = pd.querySelector('.pd-visual');
+    const mainPhoto = prod.image || 'images/serum-dropper.jpg';
     if (visual) {
-      const vessel = prod.vessel || 'bottle';
-      visual.innerHTML = `<svg class="bottle ${prod.colorClass}"><use href="#${vessel}"/></svg>`;
+      visual.innerHTML = `
+        <img class="pd-main-img" src="${escapeHtml(mainPhoto)}" alt="${escapeHtml(prod.name)}"
+          onerror="this.style.display='none';this.nextElementSibling.classList.add('show-fallback')">
+        <div class="svg-fallback"><svg class="bottle ${escapeHtml(prod.colorClass || '')}" style="width:170px"><use href="#${escapeHtml(prod.vessel || 'bottle')}"/></svg></div>
+      `;
+    }
+
+    // Update gallery thumbnail buttons dynamically
+    const thumbBtns = pd.querySelectorAll('.pd-thumb-btn');
+    if (thumbBtns.length) {
+      const firstThumbImg = thumbBtns[0].querySelector('img');
+      thumbBtns[0].setAttribute('data-img', mainPhoto);
+      if (firstThumbImg) firstThumbImg.src = mainPhoto;
+
+      if (thumbBtns[1] && prod.hoverImage) {
+        thumbBtns[1].setAttribute('data-img', prod.hoverImage);
+        const secondImg = thumbBtns[1].querySelector('img');
+        if (secondImg) secondImg.src = prod.hoverImage;
+      }
+
+      thumbBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          thumbBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const imgEl = pd.querySelector('.pd-main-img');
+          if (imgEl) {
+            imgEl.style.display = 'block';
+            imgEl.src = btn.getAttribute('data-img');
+          }
+        });
+      });
     }
 
     const titleEl = pd.querySelector('h1');
     if (titleEl) titleEl.textContent = prod.name;
 
     const priceEl = pd.querySelector('.price');
-    if (priceEl) priceEl.textContent = `$${prod.price}`;
+    if (priceEl) priceEl.textContent = `$${Number(prod.price).toFixed(0)}`;
 
     const starsEl = pd.querySelector('.stars');
     if (starsEl) {
-      starsEl.innerHTML = `${prod.rating} <span style="color:var(--mute);font-size:.85rem">(${prod.reviewsCount} verified reviews)</span>`;
+      starsEl.innerHTML = `★★★★★ <a href="#reviews-section" style="color:var(--mute);font-size:.85rem;text-decoration:underline">(${escapeHtml(prod.reviewsCount || 90)} verified reviews)</a>`;
     }
 
     const descEl = pd.querySelector('.desc');
@@ -1338,6 +1641,8 @@
 
     let currentQty = 1;
     let selectedVariant = prod.variants ? prod.variants[0] : 'Classic Glass';
+    const variantLabel = document.getElementById('pd-variant-label');
+    if (variantLabel) variantLabel.textContent = selectedVariant;
 
     const qtyContainer = pd.querySelector('.qty');
     if (qtyContainer) {
@@ -1347,7 +1652,7 @@
           <span class="pd-qty-val">1</span>
           <button class="pd-qty-btn inc" aria-label="Increase quantity">+</button>
         </div>
-        <button class="btn pd-add-btn" style="flex:1">Add to bag — $${prod.price}</button>
+        <button class="btn pd-add-btn" style="flex:1">Add to bag — $${Number(prod.price).toFixed(0)}</button>
       `;
 
       const qtyVal = qtyContainer.querySelector('.pd-qty-val');
@@ -1357,14 +1662,14 @@
         if (currentQty > 1) {
           currentQty--;
           qtyVal.textContent = currentQty;
-          addBtn.textContent = `Add to bag — $${prod.price * currentQty}`;
+          addBtn.textContent = `Add to bag — $${(prod.price * currentQty).toFixed(0)}`;
         }
       });
 
       qtyContainer.querySelector('.inc').addEventListener('click', () => {
         currentQty++;
         qtyVal.textContent = currentQty;
-        addBtn.textContent = `Add to bag — $${prod.price * currentQty}`;
+        addBtn.textContent = `Add to bag — $${(prod.price * currentQty).toFixed(0)}`;
       });
 
       addBtn.addEventListener('click', e => {
@@ -1379,10 +1684,7 @@
           swatch.classList.add('on');
           if (prod.variants && prod.variants[idx]) {
             selectedVariant = prod.variants[idx];
-          }
-          const bottleSvg = pd.querySelector('.pd-visual .bottle');
-          if (bottleSvg) {
-            bottleSvg.className = `bottle ${idx === 1 ? 'sage' : idx === 2 ? 'blush' : prod.colorClass}`;
+            if (variantLabel) variantLabel.textContent = selectedVariant;
           }
         });
       });
@@ -1397,7 +1699,7 @@
             <span class="symbol">+</span>
           </button>
           <div class="accordion-content">
-            <p>${prod.ingredients}</p>
+            <p>${escapeHtml(prod.ingredients)}</p>
           </div>
         </div>
 
@@ -1407,7 +1709,7 @@
             <span class="symbol">+</span>
           </button>
           <div class="accordion-content">
-            <p>${prod.usage}</p>
+            <p>${escapeHtml(prod.usage)}</p>
           </div>
         </div>
 
@@ -1417,7 +1719,7 @@
             <span class="symbol">+</span>
           </button>
           <div class="accordion-content">
-            <p>${prod.shipping}</p>
+            <p>${escapeHtml(prod.shipping)}</p>
           </div>
         </div>
       `;
@@ -1440,7 +1742,124 @@
       });
     }
 
-    // Dynamic "Pairs beautifully with" recommendations (excluding current product)
+    // Live Reviews System wired to /api/reviews/:productId
+    const reviewsGrid = document.getElementById('pd-reviews-grid');
+    const scoreEl = document.getElementById('pd-review-score');
+    const countNoteEl = document.getElementById('pd-review-count-note');
+    const toggleFormBtn = document.getElementById('toggle-review-form-btn');
+    const formWrap = document.getElementById('pd-review-form-wrap');
+    const reviewForm = document.getElementById('pd-review-form');
+    const cancelFormBtn = document.getElementById('cancel-review-form-btn');
+
+    const FALLBACK_REVIEWS = [
+      {
+        author: 'Nina R.',
+        rating: 5,
+        title: `Why ${prod.name} stays on my vanity`,
+        comment: 'Absorbs immediately without any sticky silicone residue. Sensitive cheeks stay calm all day.',
+        createdAt: '2026-10-28T12:00:00Z'
+      },
+      {
+        author: 'Julian M.',
+        rating: 5,
+        title: 'Heavy glass & clean botanical purity',
+        comment: 'You can feel the freshness of cold-pressed extracts right away. The refill system saves so much waste.',
+        createdAt: '2026-11-04T15:30:00Z'
+      },
+      {
+        author: 'Sophie C.',
+        rating: 5,
+        title: 'Effortless daily staple',
+        comment: 'Completely simplified my routine down to three intentional steps with visible glow.',
+        createdAt: '2026-11-12T09:45:00Z'
+      }
+    ];
+
+    function renderReviewsList(list) {
+      if (!reviewsGrid) return;
+      const items = list && list.length ? list : FALLBACK_REVIEWS;
+      if (scoreEl) scoreEl.textContent = Number(prod.rating || 4.9).toFixed(1);
+      if (countNoteEl) countNoteEl.textContent = `Based on ${prod.reviewsCount || items.length} verified reviews`;
+
+      reviewsGrid.innerHTML = items.map(rev => {
+        const initials = (rev.author || 'V').split(/\s+/).map(s => s[0] || '').join('').slice(0, 2).toUpperCase() || 'V';
+        const stars = '★'.repeat(Math.min(5, Math.max(1, rev.rating || 5))) + '☆'.repeat(Math.max(0, 5 - (rev.rating || 5)));
+        const dateStr = rev.createdAt ? new Date(rev.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Verified Ritual';
+        return `
+          <div class="review-card">
+            <div class="review-card-head">
+              <div class="review-author-info">
+                <div class="author-avatar">${escapeHtml(initials)}</div>
+                <div>
+                  <div class="author-name">${escapeHtml(rev.author || 'Verified Customer')}</div>
+                  <div class="verified-tag">✓ Verified Buyer</div>
+                </div>
+              </div>
+              <div style="color:var(--rose);font-size:0.85rem">${stars}</div>
+            </div>
+            <h4>${escapeHtml(rev.title || 'Botanical Ritual Review')}</h4>
+            <p>"${escapeHtml(rev.comment)}"</p>
+            <div class="review-date">${escapeHtml(dateStr)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    renderReviewsList(FALLBACK_REVIEWS);
+
+    fetch(`/api/reviews/${encodeURIComponent(prod.id)}`)
+      .then(r => (r.ok ? r.json() : null))
+      .then(json => {
+        if (json && json.success && Array.isArray(json.data) && json.data.length) {
+          renderReviewsList([...json.data, ...FALLBACK_REVIEWS].slice(0, 6));
+        }
+      })
+      .catch(() => {});
+
+    if (toggleFormBtn && formWrap) {
+      toggleFormBtn.addEventListener('click', () => {
+        formWrap.style.display = formWrap.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+    if (cancelFormBtn && formWrap) {
+      cancelFormBtn.addEventListener('click', () => {
+        formWrap.style.display = 'none';
+      });
+    }
+    if (reviewForm) {
+      reviewForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const author = document.getElementById('rev-author').value.trim();
+        const rating = parseInt(document.getElementById('rev-rating').value, 10) || 5;
+        const title = document.getElementById('rev-title').value.trim();
+        const comment = document.getElementById('rev-comment').value.trim();
+
+        const newReview = { author, rating, title, comment, createdAt: new Date().toISOString() };
+        try {
+          const res = await fetch(`/api/reviews/${encodeURIComponent(prod.id)}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newReview)
+          });
+          const json = await res.json();
+          if (res.ok && json.success) {
+            Toast.show(json.message || 'Thank you! Your review has been published.');
+            renderReviewsList([json.data || newReview, ...FALLBACK_REVIEWS]);
+          } else {
+            Toast.show(json.error || 'Could not submit review.');
+            return;
+          }
+        } catch (err) {
+          Toast.show('Review saved locally for preview.');
+          renderReviewsList([newReview, ...FALLBACK_REVIEWS]);
+        }
+
+        reviewForm.reset();
+        if (formWrap) formWrap.style.display = 'none';
+      });
+    }
+
+    // Dynamic "Pairs beautifully with" recommendations
     const relatedSection = document.querySelector('.related-products-section');
     if (relatedSection) {
       const allProductKeys = Object.keys(PRODUCTS).filter(k => k !== prod.id && k !== 'ritual-duo' && k !== 'full-ritual-set');
@@ -1448,21 +1867,7 @@
 
       const grid = relatedSection.querySelector('.grid.g3');
       if (grid && recommendations.length >= 3) {
-        grid.innerHTML = recommendations.map(rec => `
-          <div class="card">
-            <a href="product.html?id=${rec.id}"><svg class="bottle ${rec.colorClass}"><use href="#bottle"/></svg></a>
-            <div class="pname"><a href="product.html?id=${rec.id}">${rec.name}</a></div>
-            <div class="pnote">${rec.tagline}</div>
-            <div class="prow">
-              <span class="price">$${rec.price}</span>
-              <div style="display:flex;gap:0.4rem">
-                <a class="pill" href="product.html?id=${rec.id}">View</a>
-                <button class="pill quick-add-btn" data-id="${rec.id}" style="background:var(--ink);color:var(--cream);border-color:var(--ink)">+ Bag</button>
-              </div>
-            </div>
-          </div>
-        `).join('');
-
+        grid.innerHTML = recommendations.map(renderProductCard).join('');
         grid.querySelectorAll('.quick-add-btn').forEach(btn => {
           btn.addEventListener('click', e => {
             e.preventDefault();
@@ -1555,16 +1960,103 @@
     }
   }
 
-  // --- E. HOME PAGE BESTSELLERS ---
+  // --- E. HOME PAGE INTERACTIVE FEATURES ---
+  const INGREDIENT_SPOTLIGHTS = {
+    vitc: {
+      title: '12% THD Vitamin C + Olive Squalane',
+      copy: 'Lipid-soluble vitamin C penetrates the moisture barrier gently without sting or oxidation, paired with cold-pressed olive squalane to illuminate tone and prevent transepidermal water loss.'
+    },
+    centella: {
+      title: 'Madecassoside Centella + Colloidal Oat Milk',
+      copy: 'Concentrated Asian Centella fractions calm flushed sensitivity within hours while colloidal beta-glucans replenish essential skin lipids without blocking pores.'
+    },
+    bakuchiol: {
+      title: 'Moroccan Blue Tansy + 1% Botanical Bakuchiol',
+      copy: 'Cold-pressed blue chamomile naturally cools redness alongside 1% clinically validated babchi plant bakuchiol—delivering retinol-grade overnight smoothing without photosensitivity or peeling.'
+    },
+    marula: {
+      title: 'Cold-Pressed Marula + Distilled Rosemary',
+      copy: 'Nutrient-dense omega-9 marula oil seals dry strands and shields thermal damage while steam-distilled Grasse rosemary stimulates scalp microcirculation cleanly.'
+    }
+  };
+
+  const ROUTINE_MODES = {
+    am: [
+      { id: 'soft-wash', step: 'Step 01 · Cleanse', name: 'Soft Wash Gel', desc: 'pH-balanced oat milk cleanse', price: 24, img: 'images/mist-bottle.jpg' },
+      { id: 'bloom-serum', step: 'Step 02 · Treat', name: 'Bloom Vitamin C Serum', desc: 'Antioxidant glow + squalane', price: 42, img: 'images/serum-dropper.jpg' },
+      { id: 'calm-cream', step: 'Step 03 · Seal', name: 'Calm Barrier Cream', desc: 'Ceramide + centella cocoon', price: 38, img: 'images/cream-jar.jpg' }
+    ],
+    pm: [
+      { id: 'clarity-cleanser', step: 'Step 01 · Melt SPF', name: 'Clarity Cleansing Oil', desc: 'Camellia double-cleanse melt', price: 32, img: 'images/serum-dropper.jpg' },
+      { id: 'luna-night-oil', step: 'Step 02 · Renew', name: 'Luna Night Oil', desc: 'Blue tansy + 1% bakuchiol renewal', price: 48, img: 'images/oil-flacon.jpg' },
+      { id: 'calm-cream', step: 'Step 03 · Barrier', name: 'Calm Barrier Cream', desc: 'Nocturnal lipid recovery', price: 38, img: 'images/cream-jar.jpg' }
+    ]
+  };
+
   function initHomePage() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
 
+    // 1. Quick Add buttons (Hero Spotlight, Bestseller Overlay, Routine Bar)
     document.querySelectorAll('.home-quick-add').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
+        e.stopPropagation();
         const id = btn.getAttribute('data-id');
         Cart.addItem(id, 1);
+      });
+    });
+
+    // 2. Signature Bestsellers filter pills
+    const homeChips = document.querySelectorAll('.home-filter-chip');
+    const homeCards = document.querySelectorAll('.home-products-grid .card');
+    homeChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        homeChips.forEach(c => c.classList.remove('on'));
+        chip.classList.add('on');
+        const filter = chip.getAttribute('data-filter');
+        homeCards.forEach(card => {
+          const cat = card.getAttribute('data-home-cat');
+          card.style.display = (filter === 'all' || cat === filter) ? 'flex' : 'none';
+        });
+      });
+    });
+
+    // 3. Interactive Botanical Ingredient Tabs
+    const ingTabs = document.querySelectorAll('.ingredient-tab');
+    const ingPanel = document.getElementById('ingredient-spotlight-panel');
+    ingTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        ingTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const info = INGREDIENT_SPOTLIGHTS[tab.getAttribute('data-ing')];
+        if (info && ingPanel) {
+          ingPanel.innerHTML = `<h4>${escapeHtml(info.title)}</h4><p>${escapeHtml(info.copy)}</p>`;
+        }
+      });
+    });
+
+    // 4. Interactive AM / PM Routine Mode Switcher
+    const modeBtns = document.querySelectorAll('.routine-mode-btn');
+    const routineList = document.getElementById('home-routine-list');
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const items = ROUTINE_MODES[btn.getAttribute('data-mode')] || ROUTINE_MODES.am;
+        if (routineList) {
+          routineList.innerHTML = items.map(step => `
+            <a href="product.html?id=${encodeURIComponent(step.id)}" class="routine-step-row">
+              <img class="routine-step-thumb" src="${escapeHtml(step.img)}" alt="${escapeHtml(step.name)}">
+              <div>
+                <span class="routine-step-num">${escapeHtml(step.step)}</span>
+                <div class="routine-step-name">${escapeHtml(step.name)}</div>
+                <div class="routine-step-desc">${escapeHtml(step.desc)}</div>
+              </div>
+              <span class="routine-step-price">$${step.price}</span>
+            </a>
+          `).join('');
+        }
       });
     });
   }
@@ -1612,7 +2104,6 @@
       this.initScrollReveal();
     },
 
-    // 1. Reading / Page scroll progress bar at the very top
     initProgressBar: function () {
       if (document.querySelector('.scroll-progress-bar')) return;
       const bar = document.createElement('div');
@@ -1635,7 +2126,6 @@
       }, { passive: true });
     },
 
-    // 2. Sticky navigation elevation on scroll
     initNavScroll: function () {
       const nav = document.querySelector('nav');
       if (!nav) return;
@@ -1652,7 +2142,6 @@
       onScroll();
     },
 
-    // 3. Floating back-to-top button
     initBackToTop: function () {
       if (document.querySelector('.back-to-top')) return;
 
@@ -1682,114 +2171,110 @@
       });
     },
 
-    // 4. Scroll Reveal via IntersectionObserver
     initScrollReveal: function () {
+      const revealAll = () => {
+        document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(el => {
+          el.classList.add('revealed');
+        });
+      };
+
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        revealAll();
         return;
       }
 
-      // Auto-assign animation classes across all pages
-      const heroText = document.querySelector('.hero > div:first-child');
-      if (heroText && !heroText.classList.contains('reveal-left')) {
-        heroText.classList.add('reveal-left');
-      }
-
-      const heroVisual = document.querySelector('.hero-visual');
-      if (heroVisual && !heroVisual.classList.contains('reveal-scale')) {
-        heroVisual.classList.add('reveal-scale');
-      }
-
-      const pdVisual = document.querySelector('.pd-visual');
-      if (pdVisual && !pdVisual.classList.contains('reveal-scale')) {
-        pdVisual.classList.add('reveal-scale');
-      }
-
-      const abPort = document.querySelector('.ab-port');
-      if (abPort && !abPort.classList.contains('reveal-scale')) {
-        abPort.classList.add('reveal-scale');
-      }
-
-      const quote = document.querySelector('.quote');
-      if (quote && !quote.classList.contains('reveal')) {
-        quote.classList.add('reveal');
-      }
-
-      const bundleCard = document.querySelector('.ritual-bundle-card');
-      if (bundleCard && !bundleCard.classList.contains('reveal-scale')) {
-        bundleCard.classList.add('reveal-scale');
-      }
-
-      const newsBanner = document.querySelector('.news');
-      if (newsBanner && !newsBanner.classList.contains('reveal-scale')) {
-        newsBanner.classList.add('reveal-scale');
-      }
-
-      const values = document.querySelector('.values');
-      if (values && !values.classList.contains('reveal')) {
-        values.classList.add('reveal');
-      }
+      document.body.classList.add('veloura-anim-ready');
 
       document.querySelectorAll('.section-head').forEach(el => {
         if (!el.classList.contains('reveal')) el.classList.add('reveal');
       });
 
-      const gridSelectors = ['.grid.g3', '.grid.g6', '.steps', '.ing', '.stats'];
+      const gridSelectors = ['.home-products-grid', '.category-grid', '.reviews-strip-grid', '.steps', '.ing', '.stats'];
       gridSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(container => {
           const children = Array.from(container.children);
           children.forEach((child, idx) => {
             if (!child.classList.contains('reveal')) {
               child.classList.add('reveal');
-              const delayClass = `reveal-delay-${Math.min(6, (idx % 6) + 1)}`;
-              child.classList.add(delayClass);
+              child.classList.add(`reveal-delay-${Math.min(6, (idx % 6) + 1)}`);
             }
           });
         });
       });
 
-      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
+      const revealElements = Array.from(document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right'));
       if (!revealElements.length) return;
 
-      if (!('IntersectionObserver' in window)) {
-        revealElements.forEach(el => el.classList.add('revealed'));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            obs.unobserve(entry.target);
+      const sweepVisibleOrPassed = () => {
+        const triggerBottom = window.innerHeight + 80;
+        revealElements.forEach(el => {
+          if (el.classList.contains('revealed')) return;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerBottom) {
+            el.classList.add('revealed');
           }
         });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      });
+      };
 
-      revealElements.forEach(el => observer.observe(el));
+      // Immediately reveal anything visible or above fold
+      sweepVisibleOrPassed();
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.01,
+          rootMargin: '80px 0px 80px 0px'
+        });
+
+        revealElements.forEach(el => {
+          if (!el.classList.contains('revealed')) {
+            observer.observe(el);
+          }
+        });
+      }
+
+      window.addEventListener('scroll', sweepVisibleOrPassed, { passive: true });
+      window.addEventListener('resize', sweepVisibleOrPassed, { passive: true });
+
+      // Hard safety guarantee: reveal any remaining elements if user loads mid-page or observer lags
+      setTimeout(sweepVisibleOrPassed, 400);
     }
   };
 
   // =========================================================================
   // 12. INITIALIZATION ON DOM READY
   // =========================================================================
+  function runSafe(fn) {
+    try {
+      fn();
+    } catch (err) {
+      console.error('[Veloura Init]', err);
+    }
+  }
+
   function init() {
-    setupHeader();
-    setupFooter();
-    updateCartBadges();
-    initNewsletterForms();
+    runSafe(() => setupHeader());
+    runSafe(() => setupFooter());
+    runSafe(() => updateCartBadges());
+    runSafe(() => initNewsletterForms());
 
-    initShopPage();
-    initProductPage();
-    initJournalPage();
-    initRitualPage();
-    initHomePage();
+    runSafe(() => initShopPage());
+    runSafe(() => initProductPage());
+    runSafe(() => initJournalPage());
+    runSafe(() => initRitualPage());
+    runSafe(() => initHomePage());
 
-    Drawer.init();
-    CheckoutModal.init();
-    ArticleModal.init();
-    ScrollManager.init();
+    runSafe(() => Drawer.init());
+    runSafe(() => CheckoutModal.init());
+    runSafe(() => ArticleModal.init());
+    runSafe(() => SearchModal.init());
+    runSafe(() => ScrollManager.init());
   }
 
   if (document.readyState === 'loading') {
@@ -1803,6 +2288,7 @@
     Drawer: Drawer,
     Toast: Toast,
     Checkout: CheckoutModal,
-    Article: ArticleModal
+    Article: ArticleModal,
+    Search: SearchModal
   };
 })();

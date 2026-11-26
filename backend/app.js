@@ -55,7 +55,12 @@ app.use(express.static(config.paths.frontend, {
   extensions: ['html'],
   index: 'index.html',
   dotfiles: 'ignore',
-  maxAge: '1h'
+  etag: true,
+  lastModified: true,
+  maxAge: 0,
+  setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  }
 }));
 
 // Route fallback for client pages (Terminal 404 / SPA handler)
