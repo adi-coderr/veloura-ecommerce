@@ -9,6 +9,7 @@ const net = require('net');
 const { exec } = require('child_process');
 const app = require('./backend/app');
 const config = require('./backend/config');
+const ensureFrontendImages = require('./backend/utils/ensureImages');
 
 // Helper to verify port availability or find next available port
 function findAvailablePort(startPort) {
@@ -25,6 +26,7 @@ function findAvailablePort(startPort) {
 }
 
 async function startServer() {
+  ensureFrontendImages();
   const port = await findAvailablePort(config.port);
   const server = http.createServer(app);
 
