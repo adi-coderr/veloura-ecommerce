@@ -36,6 +36,11 @@ async function startServer() {
     console.log('\n' + '='.repeat(68));
     console.log('  ✦ VELOURA BOTANICAL SKINCARE — FULLSTACK BACKEND ✦');
     console.log('='.repeat(68));
+    if (port !== config.port) {
+      console.warn(`  ⚠ Port ${config.port} is already in use by an older process!`);
+      console.warn(`  ⚠ Open the NEW URL below (${baseUrl}), OR stop the old server on port ${config.port}.`);
+      console.log('-'.repeat(68));
+    }
     console.log(`  🌐 Storefront      : ${baseUrl}/index.html`);
     console.log(`  📊 Admin Dashboard : ${baseUrl}/admin.html`);
     console.log(`  📦 Products API    : ${baseUrl}/api/products`);

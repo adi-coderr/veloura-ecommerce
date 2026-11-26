@@ -59,7 +59,9 @@ app.use(express.static(config.paths.frontend, {
   lastModified: true,
   maxAge: 0,
   setHeaders: (res) => {
-    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
   }
 }));
 

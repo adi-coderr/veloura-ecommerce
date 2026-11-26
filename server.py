@@ -330,6 +330,10 @@ def run_server():
     print("=" * 64)
     print("  ✦ VELOURA BOTANICAL SKINCARE — DEV SERVER & API ✦")
     print("=" * 64)
+    if port != DEFAULT_PORT:
+        print(f"  ⚠ Port {DEFAULT_PORT} is already in use by an older process!")
+        print(f"  ⚠ Open {url}, or stop the old server on port {DEFAULT_PORT}.")
+        print("-" * 64)
     print(f"  Storefront      : {url}")
     print(f"  Admin Dashboard : http://localhost:{port}/admin.html")
     print(f"  Products API    : http://localhost:{port}/api/products")
