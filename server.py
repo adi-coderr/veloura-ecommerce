@@ -30,6 +30,8 @@ IMAGE_ASSET_MAP = [
     ("oil-flacon.jpg", "oil_flacon_1795718443056.jpg"),
     ("gift-ritual-set.jpg", "gift_ritual_set_v2_1795718470167.jpg"),
     ("hair-collection.jpg", "hair_collection_v2_1795718468113.jpg"),
+    ("hair-duo-studio.jpg", "hair_collection_1795718453608.jpg"),
+    ("gift-ceremony-edit.jpg", "gift_ritual_set_1795718450458.jpg"),
     ("editorial-texture.jpg", "editorial_texture_1795718454517.jpg"),
     ("atelier-about.jpg", "atelier_about_v2_1795718474065.jpg"),
     ("ritual-vanity.jpg", "ritual_vanity_1795718459704.jpg"),

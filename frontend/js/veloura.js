@@ -356,6 +356,90 @@
       ingredients: 'Soft Wash (200ml), Bloom Serum (30ml), Calm Cream (50ml), Dew Mist (100ml).',
       usage: 'Step 01: Cleanse with Soft Wash. Step 02: Treat with Bloom Serum & Calm Cream. Step 03: Seal hydration with Dew Mist.',
       shipping: 'Ships free! Includes complimentary samples of upcoming seasonal formulas.'
+    },
+    'peony-eye-elixir': {
+      id: 'peony-eye-elixir',
+      name: 'Peony Dew Eye Elixir',
+      kicker: 'Face · Peptides',
+      tagline: 'Peony Root + Botanical Cooling Caffeine',
+      badge: 'New Arrival',
+      image: 'images/serum-dropper.jpg',
+      hoverImage: 'images/ritual-vanity.jpg',
+      price: 44,
+      rating: 5.0,
+      reviewsCount: 48,
+      colorClass: 'blush',
+      colorHex: '#D79A8C',
+      category: 'face',
+      vessel: 'bottle',
+      variants: ['Classic Rose (15ml)', 'Frosted Sage (15ml)'],
+      desc: 'A cooling, fast-absorbing orbital serum powered by white peony root polyphenols, plant peptides, and green coffee bean caffeine to visibly depuff tired under-eyes and brighten delicate skin.',
+      ingredients: 'Rosa Damascena Flower Water, Glycerin, Paeonia Lactiflora (Peony) Root Extract, Caffeine, Palmitoyl Tripeptide-1, Sodium Hyaluronate, Squalane, Chamomilla Recutita Extract.',
+      usage: 'Glide 1 drop gently along the orbital bone using your ring finger morning and night after cleansing and before facial oil or cream.',
+      shipping: 'Complimentary shipping on orders over $50. Packaged in UV-tinted refillable Italian glass.'
+    },
+    'neroli-hand-balm': {
+      id: 'neroli-hand-balm',
+      name: 'Neroli Silk Hand & Cuticle Balm',
+      kicker: 'Body · Neroli',
+      tagline: 'Moroccan Neroli + Raw Tamanu Butter',
+      badge: 'Velvet Moisture',
+      image: 'images/cream-jar.jpg',
+      hoverImage: 'images/editorial-texture.jpg',
+      price: 26,
+      rating: 4.9,
+      reviewsCount: 64,
+      colorClass: 'sage',
+      colorHex: '#7A8B66',
+      category: 'body',
+      vessel: 'cream-jar',
+      variants: ['Travel Tube (75ml)', 'Vanity Glass Jar (150ml)'],
+      desc: 'A deeply conditioning yet powder-dry hand and cuticle balm crafted with cold-pressed tamanu butter, colloidal oat lipids, and wild Moroccan orange blossom water.',
+      ingredients: 'Water/Aqua, Butyrospermum Parkii (Shea) Butter, Calophyllum Inophyllum (Tamanu) Seed Oil, Citrus Aurantium Amara (Neroli) Flower Water, Avena Sativa Kernel Flour, Squalane, Tocopherol.',
+      usage: 'Massage a pea-sized ribbon into clean hands, knuckles, and nail beds throughout the day. Absorbs within seconds without greasy transfer.',
+      shipping: 'Complimentary shipping on orders over $50. Infinitely recyclable brushed aluminum & glass.'
+    },
+    'camellia-hair-mist': {
+      id: 'camellia-hair-mist',
+      name: 'Camellia Silk Leave-In Mist',
+      kicker: 'Hair · Camellia',
+      tagline: 'Fermented Rice Water + White Jasmine',
+      badge: 'Weightless Shine',
+      image: 'images/hair-duo-studio.jpg',
+      hoverImage: 'images/mist-bottle.jpg',
+      price: 29,
+      rating: 4.9,
+      reviewsCount: 57,
+      colorClass: 'sage',
+      colorHex: '#7A8B66',
+      category: 'hair',
+      vessel: 'mist-bottle',
+      variants: ['Frosted Sage (120ml)', 'Classic Rose (120ml)'],
+      desc: 'A superfine leave-in detangling and conditioning hair veil infused with fermented rice amino acids, white camellia seed extract, and pure jasmine hydrolat for silky bounce without buildup.',
+      ingredients: 'Oryza Sativa (Fermented Rice) Bran Water, Camellia Japonica Seed Extract, Jasminum Officinale Flower Water, Panthenol (Pro-Vitamin B5), Hydrolyzed Oat Protein, Glycerin.',
+      usage: 'Shake gently and mist evenly over damp, towel-dried lengths before combing, or refresh second-day curls and ends anytime.',
+      shipping: 'Complimentary shipping on orders over $50. Refillable fine-mist Italian glass bottle.'
+    },
+    'nocturne-recovery-set': {
+      id: 'nocturne-recovery-set',
+      name: 'Nocturne Recovery Edit',
+      kicker: 'Gift sets · Night Trio',
+      tagline: 'Luna Night Oil + Calm Cream + Eye Elixir',
+      badge: 'Save $14',
+      image: 'images/gift-ceremony-edit.jpg',
+      hoverImage: 'images/ritual-vanity.jpg',
+      price: 116,
+      rating: 5.0,
+      reviewsCount: 41,
+      colorClass: 'ink',
+      colorHex: '#1D1714',
+      category: 'gift sets',
+      vessel: 'gift-box',
+      variants: ['Keepsake Linen Box', 'Organic Cotton Travel Roll'],
+      desc: 'An evening skin-barrier restorative trio uniting Luna Night Oil (30ml), Calm Cream (50ml), and Peony Dew Eye Elixir (15ml) alongside an organic oatmeal waffle washcloth.',
+      ingredients: 'Luna Night Oil (30ml), Calm Cream (50ml), and Peony Dew Eye Elixir (15ml). See individual product listings for full botanical ingredients.',
+      usage: 'Cleanse skin gently, pat Peony Dew Eye Elixir around eyes, cocoon face in Calm Cream, and seal overnight with 3 drops of Luna Night Oil.',
+      shipping: 'Ships free! Presented in our reusable embossed keepsake box.'
     }
   };
 
@@ -1147,7 +1231,7 @@
       if (!box) return;
       const q = (query || '').toLowerCase().trim();
       const matches = Object.values(PRODUCTS).filter(p => {
-        if (!q) return ['bloom-serum', 'calm-cream', 'luna-night-oil', 'full-ritual-set'].includes(p.id);
+        if (!q) return ['bloom-serum', 'calm-cream', 'luna-night-oil', 'peony-eye-elixir', 'camellia-hair-mist', 'nocturne-recovery-set'].includes(p.id);
         return (
           p.name.toLowerCase().includes(q) ||
           (p.tagline || '').toLowerCase().includes(q) ||
@@ -1249,7 +1333,7 @@
       if (href && href.startsWith('shop.html') && !link.querySelector('.nav-chip')) {
         const chip = document.createElement('span');
         chip.className = 'nav-chip';
-        chip.textContent = '16';
+        chip.textContent = '20';
         link.appendChild(chip);
       }
       if (href && href.startsWith('ritual.html') && !link.querySelector('.nav-sparkle')) {
@@ -1358,7 +1442,7 @@
       mobileNav.innerHTML = `
         <ul class="mobile-nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop All (16 Formulas)</a></li>
+          <li><a href="shop.html">Shop All (20 Formulas)</a></li>
           <li><a href="product.html?id=bloom-serum">Featured Product</a></li>
           <li><a href="ritual.html">The Ritual ✦</a></li>
           <li><a href="about.html">About Veloura</a></li>

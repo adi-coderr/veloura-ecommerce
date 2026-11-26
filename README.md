@@ -10,7 +10,7 @@ An editorial e-commerce platform for **Veloura Maison Botanique**, a slow-made b
 - **Editorial Luxury UI**: Built with alabaster (`#FBF8F3`), warm limestone (`#F3EDE4`), and espresso obsidian (`#1D1714`) surfaces using optical **Fraunces** serif-italic typography paired with **Work Sans**.
 - **Bespoke Navigation Header & Instant Search**: Monogram crest lockup, frosted capsule pill navigation, pulsing free-shipping badge, interactive slide-over Bag button, and a global **Quick Search modal** across ingredients and formulas.
 - **Interactive Homepage Showcase (`index.html`)**: Asymmetric editorial hero with featured spotlight quick-add, continuous press & standards marquee, 4 ritual category tiles, filterable signature formulas grid, clinical efficacy & botanical ingredient spotlight tabs, interactive **AM / PM 3-Step Routine Builder**, atelier sustainability split, and verified community stories.
-- **Shop Catalog with Live Search & Sort (`shop.html`)**: Filter 16 formulas by *Face*, *Body*, *Hair*, or *Gift sets*, search by active ingredient or product name, sort by Featured, Top Rated, or Price, and sync live catalog updates from `/api/products`.
+- **Shop Catalog with Live Search & Sort (`shop.html`)**: Filter 20 formulas by *Face*, *Body*, *Hair*, or *Gift sets*, search by active ingredient or product name, sort by Featured, Top Rated, or Price, and sync live catalog updates from `/api/products`.
 - **Dynamic Product Gallery & Live Reviews (`product.html?id=...`)**: Multi-angle product photo gallery switcher, vessel finish swatches, real-time quantity pricing, botanical INCI/usage accordions, paired recommendations, and a live review submission form wired directly to `/api/reviews/:productId`.
 - **Slide-Over Cart Drawer & Checkout Modal**: Persistent `localStorage` cart with free-shipping progress meter (`$50` threshold), promo code validation, shipping form validation, and instant receipt confirmation (`VEL-XXXXXX`).
 - **The Ritual, About & Journal (`ritual.html`, `about.html`, `journal.html`)**: Interactive Morning/Evening protocol tabs, rotating refill seal brand showcase, and category-filtered journal essays with modal reader.
@@ -19,7 +19,7 @@ An editorial e-commerce platform for **Veloura Maison Botanique**, a slow-made b
 
 ### ⚙️ Backend REST API Engine (`/api`)
 - **Products API (`/api/products`)**:
-  - `GET /api/products` — Retrieve all **16 formulas** (supports `?category=...` and `?search=...`).
+  - `GET /api/products` — Retrieve all **20 formulas** (supports `?category=...` and `?search=...`).
   - `GET /api/products/:id` — Single formula specs, ingredients, variants, and stock status.
   - `GET /api/products/categories` — Live category summary with item counts.
 - **Orders & Checkout API (`/api/orders`)**:
@@ -104,7 +104,7 @@ Or double-click `start.command` in Finder on macOS.
 │   │   └── reviewController.js      # Sanitized product reviews & ratings handler
 │   ├── data/
 │   │   ├── database.js              # Embedded persistent JSON store
-│   │   ├── products.json            # Seed catalog (16 botanical formulas across 4 categories)
+│   │   ├── products.json            # Seed catalog (20 botanical formulas across 4 categories)
 │   │   ├── promoCodes.json          # Pre-configured coupons (VELOURA10, WELCOME15, FREESHIP, etc.)
 │   │   └── storage/                 # Auto-generated JSON files (orders.json, subscribers.json, reviews.json)
 │   ├── middleware/
@@ -135,7 +135,7 @@ Or double-click `start.command` in Finder on macOS.
 │   ├── journal.html                 # Formulation essays & modal reader
 │   ├── product.html                 # Gallery product detail page with live reviews
 │   ├── ritual.html                  # AM/PM 3-step skincare protocol showcase
-│   └── shop.html                    # Full 16-formula catalog with search, filter & sort
+│   └── shop.html                    # Full 20-formula catalog with search, filter & sort
 ├── .env.example                     # Sample environment template (.env itself is gitignored)
 ├── .gitignore                       # Excludes node_modules, .env, storage outputs, OS artifacts
 ├── package.json                     # NPM scripts & Express dependencies
