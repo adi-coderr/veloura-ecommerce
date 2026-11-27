@@ -27,7 +27,15 @@ const IMAGE_ASSET_MAP = [
   ['gift-ceremony-edit.jpg', 'gift_ritual_set_1795718450458.jpg'],
   ['editorial-texture.jpg', 'editorial_texture_1795718454517.jpg'],
   ['atelier-about.jpg', 'atelier_about_v2_1795718474065.jpg'],
-  ['ritual-vanity.jpg', 'ritual_vanity_1795718459704.jpg']
+  ['ritual-vanity.jpg', 'ritual_vanity_1795718459704.jpg'],
+  ['eye-elixir.jpg', 'veloura_peony_eye_elixir_1795769040537.jpg'],
+  ['hand-balm.jpg', 'veloura_neroli_hand_balm_v2_1795769109904.jpg'],
+  ['hair-mist.jpg', 'veloura_camellia_hair_mist_1795769041003.jpg'],
+  ['nocturne-set.jpg', 'veloura_luxury_gift_set_final_1795769125511.jpg'],
+  ['cleansing-oil.jpg', 'veloura_cleansing_oil_packshot_1795769044276.jpg'],
+  ['clay-mask.jpg', 'veloura_earth_glow_mask_1795769232290.jpg'],
+  ['soft-wash.jpg', 'veloura_soft_wash_bottle_1795769048346.jpg'],
+  ['body-butter.jpg', 'veloura_cloud_silk_butter_1795769233258.jpg']
 ];
 
 /** Copy any missing image files from the local generation artifact folder into frontend/images/. */
