@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Shopping Bag — Veloura Botanique</title>
+  <meta name="description"
+    content="Review your selected Veloura botanical formulations, select complimentary atelier samples, apply promo offers, and check out sustainably.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/veloura.css?v=8">
+  <script src="js/veloura.js?v=8" defer></script>
+</head>
+
+<body>
+  <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+    <symbol id="bottle" viewBox="0 0 100 170">
+      <path d="M42 4 C42 1, 58 1, 58 4 L60 22 L40 22 Z" fill="currentColor" opacity="0.95"/>
+      <rect x="36" y="22" width="28" height="9" rx="2" fill="currentColor"/>
+      <path d="M25 38 C25 32, 38 31, 50 31 C62 31, 75 32, 75 38 L75 146 C75 156, 68 162, 50 162 C32 162, 25 156, 25 146 Z" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="2"/>
+      <rect x="29" y="80" width="42" height="46" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="50" y="98" font-family="'Fraunces', serif" font-size="6" font-weight="600" text-anchor="middle" fill="#1D1714">VELOURA</text>
+      <text x="50" y="110" font-family="'Work Sans', sans-serif" font-size="3.4" text-anchor="middle" fill="#74675F">BOTANIQUE</text>
+    </symbol>
+    <symbol id="cream-jar" viewBox="0 0 120 120">
+      <rect x="22" y="18" width="76" height="20" rx="4" fill="currentColor"/>
+      <path d="M16 40 L104 40 L102 96 C102 106, 94 112, 82 112 L38 112 C26 112, 18 106, 18 96 Z" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <rect x="26" y="58" width="68" height="30" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="60" y="75" font-family="'Fraunces', serif" font-size="6" font-weight="600" text-anchor="middle" fill="#1D1714">VELOURA</text>
+    </symbol>
+    <symbol id="mist-bottle" viewBox="0 0 100 180">
+      <rect x="36" y="6" width="28" height="26" rx="3" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="34" y="32" width="32" height="8" rx="2" fill="currentColor"/>
+      <rect x="24" y="40" width="52" height="126" rx="10" fill="currentColor" opacity="0.2" stroke="currentColor" stroke-width="2.2"/>
+      <rect x="28" y="76" width="44" height="52" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="50" y="96" font-family="'Fraunces', serif" font-size="6" font-weight="600" text-anchor="middle" fill="#1D1714">VELOURA</text>
+    </symbol>
+    <symbol id="oil-flacon" viewBox="0 0 100 170">
+      <rect x="40" y="6" width="20" height="22" rx="3" fill="currentColor"/>
+      <path d="M24 40 C24 33, 38 32, 50 32 C62 32, 76 33, 76 40 L76 146 C76 156, 68 162, 50 162 C32 162, 24 156, 24 146 Z" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <rect x="28" y="78" width="44" height="48" rx="2" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="50" y="96" font-family="'Fraunces', serif" font-size="6" font-weight="600" text-anchor="middle" fill="#1D1714">VELOURA</text>
+    </symbol>
+    <symbol id="gift-box" viewBox="0 0 130 130">
+      <rect x="18" y="34" width="94" height="80" rx="10" fill="currentColor" opacity="0.22" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M14 26 L116 26 L114 42 L16 42 Z" fill="currentColor" opacity="0.85"/>
+      <rect x="58" y="26" width="14" height="88" fill="currentColor" opacity="0.45"/>
+      <circle cx="65" cy="22" r="8" fill="currentColor" opacity="0.85"/>
+      <rect x="34" y="60" width="62" height="28" rx="3" fill="#FFFCF9" stroke="currentColor" stroke-width="0.8"/>
+      <text x="65" y="74" font-family="'Fraunces', serif" font-size="6" font-weight="600" text-anchor="middle" fill="#1D1714">VELOURA</text>
+      <text x="65" y="83" font-family="'Work Sans', sans-serif" font-size="3.4" font-weight="500" text-anchor="middle" fill="#74675F">RITUAL SET</text>
+    </symbol>
+  </svg>
+
+  <div class="announcement-bar">
+    <div class="wrap">
+      <span class="announcement-star">✦</span>
+      <span>Complimentary botanical travel elixir on orders over $65 · Code <span class="announcement-code">VELOURA15</span> · Carbon-neutral shipping</span>
+      <span class="announcement-star">✦</span>
+    </div>
+  </div>
+
+  <nav>
+    <div class="navin">
+      <a class="brand" href="index.html" aria-label="Veloura Botanique Home">
+        <span class="brand-monogram" aria-hidden="true">
+          <svg viewBox="0 0 40 40" class="monogram-svg" width="36" height="36">
+            <circle cx="20" cy="20" r="18" fill="rgba(238, 214, 204, 0.45)" stroke="#A85B4E" stroke-width="1.2" stroke-dasharray="2 3" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="14.5" fill="#FBF8F3" stroke="#1D1714" stroke-width="0.8"/>
+            <path d="M20 7.5 C20.8 8.8, 22.2 9.5, 20 11.5 C17.8 9.5, 19.2 8.8, 20 7.5 Z" fill="#A85B4E"/>
+            <text x="20" y="24.8" font-family="'Fraunces', Georgia, serif" font-size="14.5" font-weight="600" text-anchor="middle" fill="#1D1714">V</text>
+          </svg>
+        </span>
+        <span class="brand-text-group">
+          <span class="brand-wordmark">VELOURA</span>
+          <span class="brand-sub">BOTANIQUE · EST. 2019</span>
+        </span>
+      </a>
+      <div class="navlinks-container">
+        <ul class="navlinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop <span class="nav-chip">20</span></a></li>
+          <li><a href="product.html?id=bloom-serum">Product</a></li>
+          <li><a href="ritual.html">Ritual <span class="nav-sparkle">✦</span></a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="journal.html">Journal</a></li>
+        </ul>
+      </div>
+      <div class="nav-user-actions">
+        <div class="nav-perk-badge">
+          <span class="perk-bullet"></span>
+          <span>Free Shipping $50+</span>
+        </div>
+        <button class="bag on" role="button" tabindex="0" aria-label="Shopping bag">
+          <svg class="bag-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="bag-label">Bag</span>
+          <span class="bag-count" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap bag-page-main">
+    <!-- 1. PAGE HEADER & CONTINUE SHOPPING -->
+    <header class="bag-page-header">
+      <div>
+        <span class="pd-breadcrumb">
+          <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span>Shopping Bag</span>
+        </span>
+        <div class="bag-title-row">
+          <h1>Your Ritual <em>Bag</em></h1>
+          <span id="bag-page-count-pill" class="bag-count-pill">0 Items</span>
+        </div>
+        <p class="bag-page-sub">Poured fresh in small batches and shipped in 100% recyclable plastic-free packaging.</p>
+      </div>
+      <a href="shop.html" class="section-link-cta">← Continue Shopping</a>
+    </header>
+
+    <!-- 2. DUAL-MILESTONE SHIPPING & GIFT PROGRESS BANNER -->
+    <section class="bag-progress-card" aria-label="Shipping and complimentary gift tracker">
+      <div class="bag-progress-head">
+        <div id="bag-tier-message" class="bag-tier-message">
+          Add <strong>$50.00</strong> more to unlock <strong>Free Carbon-Neutral Shipping</strong> &amp; a complimentary travel elixir at $65.
+        </div>
+        <span id="bag-tier-badge" class="bag-tier-badge">Batch No. 042 · Ships in 24h</span>
+      </div>
+      <div class="bag-progress-track-wrap">
+        <div class="bag-progress-track">
+          <div id="bag-progress-fill" class="bag-progress-fill" style="width:0%"></div>
+        </div>
+        <div class="bag-milestones">
+          <span class="bag-milestone active">✦ Bag Started</span>
+          <span id="bag-milestone-shipping" class="bag-milestone">○ $50 Free Shipping</span>
+          <span id="bag-milestone-elixir" class="bag-milestone">○ $65 Travel Elixir Gift</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TWO-COLUMN MAIN SHOPPING BAG WORKSPACE -->
+    <section class="bag-layout">
+      <!-- LEFT COLUMN: Bag Items + Saved + Free Samples + Gift Wrap -->
+      <div class="bag-main-col">
+        <div id="bag-items-container" class="bag-card-surface"></div>
+
+        <!-- Saved for Later Section -->
+        <div id="bag-saved-section" class="bag-card-surface bag-saved-section" style="display:none">
+          <div class="bag-section-head">
+            <div>
+              <h3>Saved for Later</h3>
+              <p>Keep favorite formulas handy for your next ritual refill.</p>
+            </div>
+            <span id="bag-saved-count" class="bag-mini-badge">0 Saved</span>
+          </div>
+          <div id="bag-saved-list" class="bag-saved-list"></div>
+        </div>
+
+        <!-- Complimentary Atelier Samples Selector (Inspired by Sephora / Chanel) -->
+        <div class="bag-card-surface bag-samples-card">
+          <div class="bag-section-head">
+            <div>
+              <span class="kicker">Atelier Privilege</span>
+              <h3>Complimentary <em>Ritual Samples</em></h3>
+              <p>Select up to 2 complimentary botanical trial vials included with every order.</p>
+            </div>
+            <span id="bag-samples-counter" class="bag-mini-badge">0 / 2 Selected</span>
+          </div>
+          <div id="bag-samples-grid" class="bag-samples-grid"></div>
+        </div>
+
+        <!-- Complimentary Gift Wrap & Note (Inspired by Aesop / Net-a-Porter) -->
+        <div class="bag-card-surface bag-gift-card">
+          <label class="bag-gift-toggle-row">
+            <input type="checkbox" id="bag-gift-wrap-toggle">
+            <div class="bag-gift-copy">
+              <div class="bag-gift-title-line">
+                <strong>Complimentary Linen Gift Wrapping &amp; Embossed Card</strong>
+                <span class="bag-free-pill">FREE</span>
+              </div>
+              <span>Arrives in an FSC-certified Keepsake Linen Sleeve tied with raw cotton twine.</span>
+            </div>
+          </label>
+          <div id="bag-gift-note-wrap" class="bag-gift-note-wrap" style="display:none">
+            <label for="bag-gift-note-input">Personal Handwritten Note (Optional)</label>
+            <textarea id="bag-gift-note-input" rows="2" maxlength="140"
+              placeholder="Write a warm note to be hand-calligraphed on our cotton card..."></textarea>
+            <div class="bag-note-meta"><span id="bag-gift-char-count">0</span> / 140 characters</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Sticky Order Summary + Quick Offers + Assurance Tiles -->
+      <aside class="bag-summary-col">
+        <div class="bag-summary-card">
+          <div class="bag-summary-head">
+            <h2>Order Summary</h2>
+            <span class="bag-dispatch-pill">✦ Ships Within 24h</span>
+          </div>
+
+          <div class="bag-delivery-estimate">
+            <strong>Estimated Delivery:</strong> 3–5 business days · Carbon-Neutral Priority Parcel
+          </div>
+
+          <!-- Promo Code & Quick Offer Wallet -->
+          <div class="bag-promo-section">
+            <label for="bag-promo-input" class="bag-promo-label">Promotional Code</label>
+            <div class="promo-box">
+              <input type="text" id="bag-promo-input" class="promo-input" placeholder="Enter code (e.g. VELOURA10)">
+              <button type="button" id="bag-promo-apply" class="promo-apply-btn">Apply</button>
+            </div>
+            <div id="bag-promo-feedback" class="promo-feedback"></div>
+            <div class="bag-offer-chips" aria-label="Available promotional offers">
+              <span class="bag-offer-label">Available offers:</span>
+              <button type="button" class="bag-offer-chip" data-code="VELOURA10" title="10% off entire order">VELOURA10 (10% Off)</button>
+              <button type="button" class="bag-offer-chip" data-code="WELCOME15" title="15% off orders $40+">WELCOME15 (15% $40+)</button>
+              <button type="button" class="bag-offer-chip" data-code="FREESHIP" title="Free standard shipping">FREESHIP</button>
+              <button type="button" class="bag-offer-chip" data-code="SLOWBEAUTY" title="$5 off orders $30+">SLOWBEAUTY ($5 Off)</button>
+            </div>
+          </div>
+
+          <div class="bag-cost-breakdown">
+            <div class="cart-summary-row">
+              <span>Merchandise Subtotal</span>
+              <span id="bag-subtotal-val">$0.00</span>
+            </div>
+            <div class="cart-summary-row" id="bag-discount-row" style="display:none;color:var(--rose);font-weight:500">
+              <span id="bag-discount-label">Promo Discount</span>
+              <span id="bag-discount-val">-$0.00</span>
+            </div>
+            <div class="cart-summary-row">
+              <span>Atelier Samples (<span id="bag-summary-samples-count">0</span>)</span>
+              <span style="color:#465339;font-weight:600">FREE</span>
+            </div>
+            <div class="cart-summary-row" id="bag-elixir-bonus-row" style="display:none">
+              <span>Complimentary Travel Elixir ($65+ Tier)</span>
+              <span style="color:var(--rose);font-weight:600">UNLOCKED</span>
+            </div>
+            <div class="cart-summary-row">
+              <span>Estimated Shipping</span>
+              <span id="bag-shipping-val">$0.00</span>
+            </div>
+            <div class="cart-summary-row" id="bag-gift-summary-row" style="display:none">
+              <span>Linen Gift Wrapping</span>
+              <span style="color:#465339;font-weight:600">FREE</span>
+            </div>
+            <div class="cart-summary-row total-row">
+              <span>Estimated Total</span>
+              <span id="bag-total-val">$0.00</span>
+            </div>
+          </div>
+
+          <button type="button" id="bag-checkout-btn" class="btn bag-checkout-primary">
+            Proceed to Checkout
+          </button>
+
+          <div class="bag-payment-row" aria-label="Accepted payment methods">
+            <span class="bag-pay-pill">Apple Pay</span>
+            <span class="bag-pay-pill">Shop Pay</span>
+            <span class="bag-pay-pill">Visa</span>
+            <span class="bag-pay-pill">Mastercard</span>
+            <span class="bag-pay-pill">Amex</span>
+          </div>
+
+          <p class="cart-guarantee">
+            🔒 256-Bit Encrypted Checkout · 30-Day Empty Bottle Guarantee
+          </p>
+        </div>
+
+        <!-- Storefront Value Promises -->
+        <div class="bag-trust-grid">
+          <div class="bag-trust-tile">
+            <span>♻</span>
+            <div>
+              <strong>Refillable Glass</strong>
+              <p>86% less plastic &amp; freight emissions per refill pod.</p>
+            </div>
+          </div>
+          <div class="bag-trust-tile">
+            <span>✦</span>
+            <div>
+              <strong>Poured Fresh Weekly</strong>
+              <p>Cold-pressed &lt; 38°C botanical bio-actives.</p>
+            </div>
+          </div>
+          <div class="bag-trust-tile">
+            <span>⚑</span>
+            <div>
+              <strong>Effortless 30-Day Returns</strong>
+              <p>Free pre-paid return label if your barrier disagrees.</p>
+            </div>
+          </div>
+          <div class="bag-trust-tile">
+            <span>♡</span>
+            <div>
+              <strong>Vegan &amp; Sensitive Safe</strong>
+              <p>Zero silicones, PEGs, or synthetic fragrance.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- 4. CURATED PAIRINGS & RITUAL ADD-ONS -->
+    <section class="block bag-upsell-section">
+      <div class="section-head-split">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="kicker">Botanical Pairings</p>
+          <h2>Complete your <em>ritual</em></h2>
+        </div>
+        <a href="shop.html" class="section-link-cta">Browse All 20 Formulas →</a>
+      </div>
+      <div id="bag-upsell-grid" class="grid g4" style="margin-top:2rem"></div>
+    </section>
+
+    <!-- 5. SHOPPING BAG ASSISTANCE & FAQ BAND -->
+    <section class="bag-faq-band">
+      <div class="bag-faq-intro">
+        <p class="kicker">Atelier Concierge</p>
+        <h2>Questions before <em>checkout?</em></h2>
+        <p>Everything you need to know about cold-pressed shelf freshness, aluminum refills, and complimentary delivery.</p>
+      </div>
+      <div class="accordion bag-faq-list">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>How soon will my fresh small-batch order ship?</span>
+            <span class="symbol">+</span>
+          </button>
+          <div class="accordion-content">
+            <p>All orders placed before 2:00 PM EST are hand-packed and dispatched within 24 business hours via carbon-neutral priority ground (3–5 business days delivery).</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>How does the $50 free shipping &amp; $65 travel elixir reward work?</span>
+            <span class="symbol">+</span>
+          </button>
+          <div class="accordion-content">
+            <p>Orders reaching $50 automatically unlock complimentary carbon-neutral delivery (or apply code <code>FREESHIP</code> on smaller orders). Orders of $65 or more also receive our complimentary 10ml travel elixir sample automatically at packing.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span>What is your 30-day Empty Bottle Return Guarantee?</span>
+            <span class="symbol">+</span>
+          </button>
+          <div class="accordion-content">
+            <p>Even for reactive complexions, trying a new botanical formula should feel risk-free. Try your vessels for up to 30 days—if your skin doesn't feel calmer and more luminous, we cover return shipping for a full refund.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

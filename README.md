@@ -131,6 +131,7 @@ Or double-click `start.command` in Finder on macOS.
 │   │   └── veloura.js               # Storefront logic (cart drawer, quick search, routine builder, live reviews)
 │   ├── about.html                   # Brand founding story & refill milestones
 │   ├── admin.html                   # Store analytics, inventory, and order dashboard
+│   ├── bag.html                     # Full-page shopping bag with samples, gift note, saved list & checkout
 │   ├── index.html                   # Editorial homepage storefront
 │   ├── journal.html                 # Formulation essays & modal reader
 │   ├── product.html                 # Gallery product detail page with live reviews

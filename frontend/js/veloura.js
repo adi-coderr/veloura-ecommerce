@@ -528,24 +528,92 @@
   };
 
   // =========================================================================
-  // 3. PERSISTENT CART STORE (localStorage)
+  // 3. PERSISTENT CART, SAVED & BAG EXTRAS STORE (localStorage)
   // =========================================================================
   const CART_KEY = 'veloura_cart';
+  const SAVED_KEY = 'veloura_saved';
+  const EXTRAS_KEY = 'veloura_bag_extras';
+  const PROMO_KEY = 'veloura_promo_state';
   const FREE_SHIPPING_THRESHOLD = 50;
+  const FREE_ELIXIR_THRESHOLD = 65;
+
+  const ATELIER_SAMPLES = [
+    { id: 'sample-bloom', name: 'Bloom 12% Vitamin C', size: '2ml Foil', note: 'Olive squalane brightening', img: 'images/serum-dropper.jpg' },
+    { id: 'sample-calm', name: 'Calm Centella Cream', size: '3ml Sachet', note: 'Colloidal oat barrier calm', img: 'images/cream-jar.jpg' },
+    { id: 'sample-luna', name: 'Luna Blue Tansy Oil', size: '2ml Vial', note: '1% bakuchiol night elixir', img: 'images/oil-flacon.jpg' },
+    { id: 'sample-hair', name: 'Camellia Leave-In Mist', size: '3ml Vial', note: 'Rice water & white jasmine', img: 'images/hair-mist.jpg' }
+  ];
+
+  const LOCAL_PROMOS = {
+    VELOURA10: { code: 'VELOURA10', type: 'percentage', value: 0.10, minSpend: 0, description: '10% off entire order' },
+    WELCOME10: { code: 'WELCOME10', type: 'percentage', value: 0.10, minSpend: 0, description: '10% off your first order' },
+    WELCOME15: { code: 'WELCOME15', type: 'percentage', value: 0.15, minSpend: 40, description: '15% off welcome gift ($40+)' },
+    FREESHIP: { code: 'FREESHIP', type: 'shipping', value: 0, minSpend: 0, description: 'Complimentary standard shipping on any order' },
+    SLOWBEAUTY: { code: 'SLOWBEAUTY', type: 'fixed', value: 5.00, minSpend: 30, description: '$5.00 off orders over $30' }
+  };
+
+  function readStorageJson(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function writeStorageJson(key, val) {
+    try {
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch (e) {}
+  }
 
   const Cart = {
     getItems: function () {
-      try {
-        const stored = localStorage.getItem(CART_KEY);
-        return stored ? JSON.parse(stored) : [];
-      } catch (e) {
-        return [];
-      }
+      const items = readStorageJson(CART_KEY, []);
+      return Array.isArray(items) ? items : [];
     },
 
     saveItems: function (items) {
+      writeStorageJson(CART_KEY, items);
+      this.notify();
+    },
+
+    getSaved: function () {
+      const saved = readStorageJson(SAVED_KEY, []);
+      return Array.isArray(saved) ? saved : [];
+    },
+
+    saveSaved: function (saved) {
+      writeStorageJson(SAVED_KEY, saved);
+      this.notify();
+    },
+
+    getExtras: function () {
+      const extras = readStorageJson(EXTRAS_KEY, {});
+      return {
+        samples: Array.isArray(extras.samples) ? extras.samples.slice(0, 2) : [],
+        giftWrap: Boolean(extras.giftWrap),
+        giftNote: typeof extras.giftNote === 'string' ? extras.giftNote.slice(0, 140) : ''
+      };
+    },
+
+    saveExtras: function (nextExtras) {
+      writeStorageJson(EXTRAS_KEY, nextExtras);
+      BagPage.renderSummaryAndExtras();
+    },
+
+    getPromo: function () {
+      return readStorageJson(PROMO_KEY, null);
+    },
+
+    savePromo: function (promoObj) {
+      writeStorageJson(PROMO_KEY, promoObj);
+      this.notify();
+    },
+
+    clearPromo: function () {
       try {
-        localStorage.setItem(CART_KEY, JSON.stringify(items));
+        localStorage.removeItem(PROMO_KEY);
       } catch (e) {}
       this.notify();
     },
@@ -576,9 +644,14 @@
       }
 
       this.saveItems(items);
-      Toast.show(`Added ${quantity}× ${product.name} to your bag`, 'View Bag', () => {
-        Drawer.open();
-      });
+      const isOnBagPage = Boolean(document.getElementById('bag-items-container'));
+      if (isOnBagPage) {
+        Toast.show(`Added ${quantity}× ${product.name} to your ritual bag`);
+      } else {
+        Toast.show(`Added ${quantity}× ${product.name} to your bag`, 'View Bag', () => {
+          Drawer.open();
+        });
+      }
       return items;
     },
 
@@ -601,15 +674,50 @@
     },
 
     removeItem: function (productId, variant) {
-      let items = this.getItems();
-      items = items.filter(
+      const items = this.getItems().filter(
         item => !(item.id === productId && (!variant || item.variant === variant))
       );
       this.saveItems(items);
     },
 
+    saveForLater: function (productId, variant) {
+      const items = this.getItems();
+      const target = items.find(i => i.id === productId && (!variant || i.variant === variant));
+      if (!target) return;
+
+      const remaining = items.filter(i => !(i.id === productId && (!variant || i.variant === variant)));
+      const saved = this.getSaved();
+      if (!saved.some(s => s.id === target.id && s.variant === target.variant)) {
+        saved.unshift(Object.assign({}, target, { qty: 1 }));
+      }
+      writeStorageJson(SAVED_KEY, saved);
+      this.saveItems(remaining);
+      Toast.show(`Saved ${target.name} for later`);
+    },
+
+    moveSavedToCart: function (productId, variant) {
+      const saved = this.getSaved();
+      const target = saved.find(s => s.id === productId && (!variant || s.variant === variant));
+      if (!target) return;
+
+      const remainingSaved = saved.filter(s => !(s.id === productId && (!variant || s.variant === variant)));
+      writeStorageJson(SAVED_KEY, remainingSaved);
+      this.addItem(target.id, 1, target.variant);
+    },
+
+    removeSaved: function (productId, variant) {
+      const saved = this.getSaved().filter(
+        s => !(s.id === productId && (!variant || s.variant === variant))
+      );
+      this.saveSaved(saved);
+    },
+
     clear: function () {
-      this.saveItems([]);
+      writeStorageJson(CART_KEY, []);
+      try {
+        localStorage.removeItem(PROMO_KEY);
+      } catch (e) {}
+      this.notify();
     },
 
     getCount: function () {
@@ -625,6 +733,90 @@
       Drawer.render();
     }
   };
+
+  /** Calculate authoritative totals matching backend PromoController & OrderController rules. */
+  function calculateCartTotals() {
+    const count = Cart.getCount();
+    const subtotal = Number(Cart.getSubtotal().toFixed(2));
+    const promo = Cart.getPromo();
+
+    let discount = 0;
+    let activePromo = null;
+    let isFreeShippingPromo = false;
+
+    if (promo && subtotal > 0) {
+      const minSpend = Number(promo.minSpend || 0);
+      if (subtotal >= minSpend) {
+        activePromo = promo;
+        if (promo.type === 'percentage') {
+          discount = Number((subtotal * Number(promo.value || 0)).toFixed(2));
+        } else if (promo.type === 'fixed') {
+          discount = Math.min(subtotal, Number(promo.value || 0));
+        } else if (promo.type === 'shipping') {
+          isFreeShippingPromo = true;
+        }
+      }
+    }
+
+    const freeShippingUnlocked = subtotal >= FREE_SHIPPING_THRESHOLD || isFreeShippingPromo;
+    const elixirUnlocked = subtotal >= FREE_ELIXIR_THRESHOLD;
+    const shipping = subtotal === 0 ? 0 : (freeShippingUnlocked ? 0 : 4.95);
+    const total = Number(Math.max(0, subtotal - discount + shipping).toFixed(2));
+
+    return {
+      count,
+      subtotal,
+      discount,
+      activePromo,
+      promoPendingMinSpend: promo && subtotal > 0 && subtotal < Number(promo.minSpend || 0) ? promo : null,
+      freeShippingUnlocked,
+      elixirUnlocked,
+      shipping,
+      total
+    };
+  }
+
+  /** Validate a promo code against Express API with local catalog fallback. */
+  async function applyPromoCode(rawCode) {
+    const code = (rawCode || '').trim().toUpperCase();
+    if (!code) {
+      Cart.clearPromo();
+      return { ok: true, cleared: true, message: '' };
+    }
+
+    const subtotal = Cart.getSubtotal();
+    try {
+      const res = await fetch('/api/promo/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, subtotal })
+      });
+      const json = await res.json();
+      if (res.ok && json.success && json.data) {
+        const localMeta = LOCAL_PROMOS[json.data.code] || {};
+        const promoData = {
+          code: json.data.code,
+          type: json.data.type || localMeta.type || 'percentage',
+          value: localMeta.value !== undefined ? localMeta.value : (subtotal > 0 ? json.data.discountAmount / subtotal : 0),
+          minSpend: localMeta.minSpend || 0,
+          description: json.data.description
+        };
+        Cart.savePromo(promoData);
+        return { ok: true, message: `✓ ${json.data.description}` };
+      }
+      return { ok: false, message: json.error || 'Invalid or expired code.' };
+    } catch (err) {
+      const localPromo = LOCAL_PROMOS[code];
+      if (!localPromo) {
+        return { ok: false, message: 'Invalid code. Try VELOURA10 or FREESHIP.' };
+      }
+      if (localPromo.minSpend && subtotal < localPromo.minSpend) {
+        return { ok: false, message: `Code requires a minimum spend of $${localPromo.minSpend.toFixed(2)}.` };
+      }
+      Cart.savePromo(localPromo);
+      return { ok: true, message: `✓ ${localPromo.description}` };
+    }
+  }
 
   function updateCartBadges() {
     const count = Cart.getCount();
@@ -683,275 +875,498 @@
   };
 
   // =========================================================================
-  // 5. CART DRAWER COMPONENT
+  // 5. FULL-PAGE SHOPPING BAG CONTROLLER (+ Drawer Navigation Adapter)
   // =========================================================================
-  let promoApplied = null;
-  let promoAppliedCode = null;
-
   const Drawer = {
-    init: function () {
-      if (document.getElementById('veloura-cart-drawer')) return;
-
-      const html = `
-        <div id="veloura-cart-drawer" class="cart-drawer-root" aria-hidden="true">
-          <div class="cart-backdrop"></div>
-          <div class="cart-panel" role="dialog" aria-label="Shopping Bag">
-            <div class="cart-head">
-              <div class="cart-head-title">
-                <h3>Your Bag</h3>
-                <span class="cart-item-count-label">0 items</span>
-              </div>
-              <button class="cart-close-btn" aria-label="Close bag">&times;</button>
-            </div>
-
-            <div class="cart-shipping-bar">
-              <div class="shipping-msg">Add $50.00 more for free shipping</div>
-              <div class="shipping-track"><div class="shipping-fill" style="width:0%"></div></div>
-            </div>
-
-            <div class="cart-body"></div>
-
-            <div class="cart-footer">
-              <div class="promo-box">
-                <input type="text" class="promo-input" placeholder="Promo code (e.g. VELOURA10)">
-                <button class="promo-apply-btn">Apply</button>
-              </div>
-              <div class="promo-feedback"></div>
-              
-              <div class="cart-summary-row">
-                <span>Subtotal</span>
-                <span class="cart-subtotal-val">$0.00</span>
-              </div>
-              <div class="cart-summary-row cart-discount-row" style="display:none;color:var(--rose)">
-                <span>Discount (10%)</span>
-                <span class="cart-discount-val">-$0.00</span>
-              </div>
-              <div class="cart-summary-row">
-                <span>Estimated Shipping</span>
-                <span class="cart-shipping-val">Calculated next</span>
-              </div>
-              <div class="cart-summary-row total-row">
-                <span>Total</span>
-                <span class="cart-total-val">$0.00</span>
-              </div>
-
-              <button class="btn checkout-btn" style="width:100%;margin-top:1rem;text-align:center;">
-                Proceed to Checkout
-              </button>
-              <p class="cart-guarantee">✦ Refillable glass guarantee · 30-day effortless returns</p>
-            </div>
-          </div>
-        </div>
-      `;
-
-      document.body.insertAdjacentHTML('beforeend', html);
-
-      const root = document.getElementById('veloura-cart-drawer');
-      const backdrop = root.querySelector('.cart-backdrop');
-      const closeBtn = root.querySelector('.cart-close-btn');
-      const checkoutBtn = root.querySelector('.checkout-btn');
-      const promoBtn = root.querySelector('.promo-apply-btn');
-      const promoInput = root.querySelector('.promo-input');
-
-      backdrop.addEventListener('click', () => this.close());
-      closeBtn.addEventListener('click', () => this.close());
-
-      checkoutBtn.addEventListener('click', () => {
-        const count = Cart.getCount();
-        if (count === 0) {
-          Toast.show('Your bag is currently empty.');
-          return;
-        }
-        this.close();
-        CheckoutModal.open();
-      });
-
-      promoBtn.addEventListener('click', async () => {
-        const code = promoInput.value.trim().toUpperCase();
-        const feedback = root.querySelector('.promo-feedback');
-        if (!code) {
-          promoApplied = null;
-          promoAppliedCode = null;
-          feedback.textContent = '';
-          this.render();
-          return;
-        }
-
-        try {
-          const res = await fetch('/api/promo/apply', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code, subtotal: Cart.getSubtotal() })
-          });
-          const json = await res.json();
-          if (json.success && json.data) {
-            promoApplied = json.data.discountAmount / (Cart.getSubtotal() || 1);
-            promoAppliedCode = json.data.code;
-            feedback.textContent = `✓ ${json.data.description}`;
-            feedback.className = 'promo-feedback success';
-            this.render();
-            return;
-          } else {
-            feedback.textContent = json.error || 'Invalid code.';
-            feedback.className = 'promo-feedback error';
-            return;
-          }
-        } catch (err) {
-          // Fallback to local codes
-          if (code === 'VELOURA10' || code === 'WELCOME10') {
-            promoApplied = 0.10;
-            promoAppliedCode = code;
-            feedback.textContent = '✓ 10% discount applied to your order!';
-            feedback.className = 'promo-feedback success';
-            this.render();
-          } else {
-            feedback.textContent = 'Invalid code. Try "VELOURA10" for 10% off.';
-            feedback.className = 'promo-feedback error';
-          }
-        }
-      });
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && root.classList.contains('active')) {
-          this.close();
-        }
-      });
-
-      this.render();
-    },
+    init: function () {},
 
     open: function () {
-      this.init();
-      const root = document.getElementById('veloura-cart-drawer');
-      this.render();
-      root.classList.add('active');
-      root.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      if (document.getElementById('bag-items-container')) {
+        BagPage.render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.location.href = 'bag.html';
+      }
     },
 
-    close: function () {
-      const root = document.getElementById('veloura-cart-drawer');
-      if (!root) return;
-      root.classList.remove('active');
-      root.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+    close: function () {},
+
+    render: function () {
+      BagPage.render();
+    }
+  };
+
+  const BagPage = {
+    initialized: false,
+
+    init: function () {
+      const container = document.getElementById('bag-items-container');
+      if (!container) return;
+
+      this.bindStaticControls();
+      this.initialized = true;
+      this.render();
+    },
+
+    bindStaticControls: function () {
+      const promoInput = document.getElementById('bag-promo-input');
+      const promoApplyBtn = document.getElementById('bag-promo-apply');
+      const promoFeedback = document.getElementById('bag-promo-feedback');
+
+      const handleApply = async (codeValue) => {
+        const result = await applyPromoCode(codeValue);
+        if (promoFeedback) {
+          promoFeedback.textContent = result.message;
+          promoFeedback.className = `promo-feedback ${result.ok ? 'success' : 'error'}`;
+        }
+        if (promoInput && result.ok && codeValue) {
+          promoInput.value = codeValue.trim().toUpperCase();
+        }
+      };
+
+      if (promoApplyBtn && promoInput) {
+        promoApplyBtn.addEventListener('click', () => handleApply(promoInput.value));
+        promoInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleApply(promoInput.value);
+          }
+        });
+      }
+
+      document.querySelectorAll('.bag-offer-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const code = chip.getAttribute('data-code') || '';
+          if (promoInput) promoInput.value = code;
+          handleApply(code);
+        });
+      });
+
+      const giftToggle = document.getElementById('bag-gift-wrap-toggle');
+      const giftNoteWrap = document.getElementById('bag-gift-note-wrap');
+      const giftNoteInput = document.getElementById('bag-gift-note-input');
+      const giftCharCount = document.getElementById('bag-gift-char-count');
+
+      const savedExtras = Cart.getExtras();
+      if (giftToggle) {
+        giftToggle.checked = savedExtras.giftWrap;
+        if (giftNoteWrap) giftNoteWrap.style.display = savedExtras.giftWrap ? 'block' : 'none';
+        giftToggle.addEventListener('change', () => {
+          const extras = Cart.getExtras();
+          extras.giftWrap = giftToggle.checked;
+          if (giftNoteWrap) giftNoteWrap.style.display = giftToggle.checked ? 'block' : 'none';
+          Cart.saveExtras(extras);
+        });
+      }
+
+      if (giftNoteInput) {
+        giftNoteInput.value = savedExtras.giftNote;
+        if (giftCharCount) giftCharCount.textContent = String(savedExtras.giftNote.length);
+        giftNoteInput.addEventListener('input', () => {
+          const val = giftNoteInput.value.slice(0, 140);
+          if (giftCharCount) giftCharCount.textContent = String(val.length);
+          const extras = Cart.getExtras();
+          extras.giftNote = val;
+          Cart.saveExtras(extras);
+        });
+      }
+
+      const checkoutBtn = document.getElementById('bag-checkout-btn');
+      if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+          if (Cart.getCount() === 0) {
+            Toast.show('Add at least one botanical formula before checking out.');
+            return;
+          }
+          CheckoutModal.open();
+        });
+      }
+
+      document.querySelectorAll('.bag-faq-list .accordion-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+          document.querySelectorAll('.bag-faq-list .accordion-trigger').forEach(t => {
+            t.setAttribute('aria-expanded', 'false');
+            const sym = t.querySelector('.symbol');
+            if (sym) sym.textContent = '+';
+            t.parentElement.classList.remove('open');
+          });
+          if (!isOpen) {
+            trigger.setAttribute('aria-expanded', 'true');
+            const sym = trigger.querySelector('.symbol');
+            if (sym) sym.textContent = '−';
+            trigger.parentElement.classList.add('open');
+          }
+        });
+      });
     },
 
     render: function () {
-      const root = document.getElementById('veloura-cart-drawer');
-      if (!root) return;
+      if (!document.getElementById('bag-items-container')) return;
+      this.renderProgressBanner();
+      this.renderItemsList();
+      this.renderSavedList();
+      this.renderSamplesGrid();
+      this.renderSummaryAndExtras();
+      this.renderUpsells();
+    },
+
+    renderProgressBanner: function () {
+      const totals = calculateCartTotals();
+      const fillEl = document.getElementById('bag-progress-fill');
+      const msgEl = document.getElementById('bag-tier-message');
+      const shipMile = document.getElementById('bag-milestone-shipping');
+      const elixirMile = document.getElementById('bag-milestone-elixir');
+      const pct = Math.min(100, Math.round((totals.subtotal / FREE_ELIXIR_THRESHOLD) * 100));
+
+      if (fillEl) fillEl.style.width = `${pct}%`;
+
+      if (msgEl) {
+        if (totals.subtotal >= FREE_ELIXIR_THRESHOLD) {
+          msgEl.innerHTML = '✦ You unlocked <strong>Free Carbon-Neutral Shipping</strong> &amp; your <strong>Complimentary Travel Elixir Gift</strong>!';
+        } else if (totals.subtotal >= FREE_SHIPPING_THRESHOLD) {
+          const left = (FREE_ELIXIR_THRESHOLD - totals.subtotal).toFixed(2);
+          msgEl.innerHTML = `✓ <strong>Free Shipping unlocked!</strong> Add <strong>$${left}</strong> more to receive a complimentary 10ml travel elixir.`;
+        } else {
+          const leftShip = (FREE_SHIPPING_THRESHOLD - totals.subtotal).toFixed(2);
+          msgEl.innerHTML = `Add <strong>$${leftShip}</strong> more to unlock <strong>Free Standard Shipping</strong> ($50+), or reach $65 for a free travel elixir.`;
+        }
+      }
+
+      if (shipMile) {
+        const unlocked = totals.subtotal >= FREE_SHIPPING_THRESHOLD;
+        shipMile.classList.toggle('active', unlocked);
+        shipMile.textContent = `${unlocked ? '✓' : '○'} $50 Free Shipping`;
+      }
+      if (elixirMile) {
+        const unlocked = totals.subtotal >= FREE_ELIXIR_THRESHOLD;
+        elixirMile.classList.toggle('active', unlocked);
+        elixirMile.textContent = `${unlocked ? '✓' : '○'} $65 Travel Elixir Gift`;
+      }
+    },
+
+    renderItemsList: function () {
+      const container = document.getElementById('bag-items-container');
+      const countPill = document.getElementById('bag-page-count-pill');
+      if (!container) return;
 
       const items = Cart.getItems();
-      const body = root.querySelector('.cart-body');
-      const footer = root.querySelector('.cart-footer');
-      const countLabel = root.querySelector('.cart-item-count-label');
-      const subtotalVal = root.querySelector('.cart-subtotal-val');
-      const totalVal = root.querySelector('.cart-total-val');
-      const discountRow = root.querySelector('.cart-discount-row');
-      const discountVal = root.querySelector('.cart-discount-val');
-      const shippingMsg = root.querySelector('.shipping-msg');
-      const shippingFill = root.querySelector('.shipping-fill');
-      const shippingVal = root.querySelector('.cart-shipping-val');
-
-      const count = Cart.getCount();
-      const subtotal = Cart.getSubtotal();
-
-      countLabel.textContent = `${count} item${count === 1 ? '' : 's'}`;
-
-      if (subtotal >= FREE_SHIPPING_THRESHOLD) {
-        shippingMsg.innerHTML = '✦ You have unlocked <strong>Free Standard Shipping</strong>!';
-        shippingFill.style.width = '100%';
-        shippingVal.textContent = 'Free';
-      } else {
-        const remaining = (FREE_SHIPPING_THRESHOLD - subtotal).toFixed(2);
-        const percent = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
-        shippingMsg.innerHTML = `Add <strong>$${remaining}</strong> more for free shipping`;
-        shippingFill.style.width = `${percent}%`;
-        shippingVal.textContent = subtotal > 0 ? '$4.95' : '$0.00';
+      const totalCount = Cart.getCount();
+      if (countPill) {
+        countPill.textContent = `${totalCount} Item${totalCount === 1 ? '' : 's'}`;
       }
 
       if (items.length === 0) {
-        body.innerHTML = `
-          <div class="empty-cart-state">
-            <svg class="bottle" style="width:54px;opacity:0.35;margin:0 auto 1.2rem"><use href="#bottle"/></svg>
-            <h4>Your bag is empty</h4>
-            <p>Every bottle is slow made and freshly poured. Explore our botanical collection to begin.</p>
-            <a href="shop.html" class="btn" style="margin-top:1.2rem;display:inline-block">Shop All Formulas</a>
+        const starters = ['bloom-serum', 'calm-cream', 'peony-eye-elixir'].map(id => PRODUCTS[id]).filter(Boolean);
+        container.innerHTML = `
+          <div class="bag-empty-panel">
+            <div class="bag-empty-badge">✦ Refillable Small-Batch Storefront</div>
+            <h2>Your ritual bag is currently empty</h2>
+            <p>Begin with one of our slow-made botanical essentials below or explore all 20 formulas in the apothecary.</p>
+            <a href="shop.html" class="btn" style="margin-top:0.8rem">Explore All 20 Formulas →</a>
+
+            <div class="bag-starter-grid">
+              ${starters.map(prod => `
+                <div class="bag-starter-card">
+                  <a href="product.html?id=${encodeURIComponent(prod.id)}" class="bag-starter-media">
+                    <img src="${escapeHtml(prod.image)}" alt="${escapeHtml(prod.name)}">
+                  </a>
+                  <div class="bag-starter-meta">
+                    <span class="bag-starter-kicker">${escapeHtml(prod.kicker)}</span>
+                    <a href="product.html?id=${encodeURIComponent(prod.id)}" class="bag-starter-name">${escapeHtml(prod.name)}</a>
+                    <span class="bag-starter-tag">${escapeHtml(prod.tagline)}</span>
+                    <div class="bag-starter-foot">
+                      <strong>$${Number(prod.price).toFixed(0)}</strong>
+                      <button type="button" class="pill bag-starter-add" data-id="${escapeHtml(prod.id)}">+ Add to Bag</button>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
           </div>
         `;
-        footer.style.display = 'none';
-      } else {
-        footer.style.display = 'block';
 
-        let discountAmount = 0;
-        if (promoApplied) {
-          discountAmount = subtotal * promoApplied;
+        container.querySelectorAll('.bag-starter-add').forEach(btn => {
+          btn.addEventListener('click', () => {
+            Cart.addItem(btn.getAttribute('data-id'), 1);
+          });
+        });
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="bag-section-head">
+          <div>
+            <h3>Selected Formulations</h3>
+            <p>Small-batch vessels sealed for peak antioxidant potency.</p>
+          </div>
+          <button type="button" id="bag-clear-all-btn" class="bag-text-link">Clear Bag</button>
+        </div>
+        <div class="bag-items-stack">
+          ${items.map(item => {
+            const prodInfo = PRODUCTS[item.id] || {};
+            const thumbImg = item.image || prodInfo.image || 'images/serum-dropper.jpg';
+            const lineTotal = (item.price * item.qty).toFixed(2);
+            return `
+              <article class="bag-page-item" data-id="${escapeHtml(item.id)}" data-variant="${escapeHtml(item.variant)}">
+                <a href="product.html?id=${encodeURIComponent(item.id)}" class="bag-item-media">
+                  <img src="${escapeHtml(thumbImg)}" alt="${escapeHtml(item.name)}"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div class="svg-fallback"><svg class="bottle ${escapeHtml(item.colorClass || '')}"><use href="#${escapeHtml(prodInfo.vessel || 'bottle')}"/></svg></div>
+                </a>
+
+                <div class="bag-item-details">
+                  <div class="bag-item-top">
+                    <div>
+                      <span class="bag-item-kicker">${escapeHtml(item.kicker || prodInfo.kicker || 'Botanical Formula')}</span>
+                      <h4><a href="product.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a></h4>
+                      <div class="bag-item-variant">Edition: <strong>${escapeHtml(item.variant)}</strong> · $${Number(item.price).toFixed(0)} each</div>
+                    </div>
+                    <div class="bag-item-line-price">$${lineTotal}</div>
+                  </div>
+
+                  <div class="bag-item-status-row">
+                    <span class="bag-stock-tag">✓ In Stock · Ships within 24h</span>
+                    <span class="bag-refill-note">♻ Refillable Glass</span>
+                  </div>
+
+                  <div class="bag-item-controls">
+                    <div class="cart-qty-ctrl bag-qty-ctrl">
+                      <button type="button" class="qty-btn dec" aria-label="Decrease quantity">−</button>
+                      <span class="qty-num">${escapeHtml(item.qty)}</span>
+                      <button type="button" class="qty-btn inc" aria-label="Increase quantity">+</button>
+                    </div>
+                    <div class="bag-item-links">
+                      <button type="button" class="bag-action-link save-later-btn">Save for later</button>
+                      <span aria-hidden="true">·</span>
+                      <button type="button" class="bag-action-link danger remove-item-btn">Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+      `;
+
+      const clearBtn = document.getElementById('bag-clear-all-btn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          Cart.clear();
+          Toast.show('Cleared your shopping bag.');
+        });
+      }
+
+      container.querySelectorAll('.bag-page-item').forEach(row => {
+        const id = row.dataset.id;
+        const variant = row.dataset.variant;
+
+        row.querySelector('.qty-btn.dec').addEventListener('click', () => {
+          const item = Cart.getItems().find(i => i.id === id && i.variant === variant);
+          if (item) Cart.updateQty(id, variant, item.qty - 1);
+        });
+
+        row.querySelector('.qty-btn.inc').addEventListener('click', () => {
+          const item = Cart.getItems().find(i => i.id === id && i.variant === variant);
+          if (item) Cart.updateQty(id, variant, item.qty + 1);
+        });
+
+        row.querySelector('.save-later-btn').addEventListener('click', () => {
+          Cart.saveForLater(id, variant);
+        });
+
+        row.querySelector('.remove-item-btn').addEventListener('click', () => {
+          Cart.removeItem(id, variant);
+        });
+      });
+    },
+
+    renderSavedList: function () {
+      const section = document.getElementById('bag-saved-section');
+      const list = document.getElementById('bag-saved-list');
+      const countBadge = document.getElementById('bag-saved-count');
+      if (!section || !list) return;
+
+      const saved = Cart.getSaved();
+      if (!saved.length) {
+        section.style.display = 'none';
+        list.innerHTML = '';
+        return;
+      }
+
+      section.style.display = 'block';
+      if (countBadge) countBadge.textContent = `${saved.length} Saved`;
+
+      list.innerHTML = saved.map(item => `
+        <div class="bag-saved-row" data-id="${escapeHtml(item.id)}" data-variant="${escapeHtml(item.variant)}">
+          <img src="${escapeHtml(item.image || 'images/serum-dropper.jpg')}" alt="${escapeHtml(item.name)}" class="bag-saved-thumb">
+          <div class="bag-saved-info">
+            <a href="product.html?id=${encodeURIComponent(item.id)}" class="bag-saved-title">${escapeHtml(item.name)}</a>
+            <span>${escapeHtml(item.variant)} · $${Number(item.price).toFixed(0)}</span>
+          </div>
+          <div class="bag-saved-actions">
+            <button type="button" class="pill move-to-bag-btn">Move to Bag</button>
+            <button type="button" class="bag-action-link danger remove-saved-btn">Remove</button>
+          </div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.bag-saved-row').forEach(row => {
+        const id = row.dataset.id;
+        const variant = row.dataset.variant;
+        row.querySelector('.move-to-bag-btn').addEventListener('click', () => Cart.moveSavedToCart(id, variant));
+        row.querySelector('.remove-saved-btn').addEventListener('click', () => Cart.removeSaved(id, variant));
+      });
+    },
+
+    renderSamplesGrid: function () {
+      const grid = document.getElementById('bag-samples-grid');
+      const counter = document.getElementById('bag-samples-counter');
+      if (!grid) return;
+
+      const extras = Cart.getExtras();
+      if (counter) counter.textContent = `${extras.samples.length} / 2 Selected`;
+
+      grid.innerHTML = ATELIER_SAMPLES.map(s => {
+        const isSelected = extras.samples.includes(s.id);
+        return `
+          <button type="button" class="bag-sample-tile${isSelected ? ' selected' : ''}" data-sample-id="${escapeHtml(s.id)}" aria-pressed="${isSelected}">
+            <img src="${escapeHtml(s.img)}" alt="${escapeHtml(s.name)}" class="bag-sample-img">
+            <div class="bag-sample-copy">
+              <div class="bag-sample-head">
+                <strong>${escapeHtml(s.name)}</strong>
+                <span class="bag-sample-state">${isSelected ? '✓ Added' : '+ Select'}</span>
+              </div>
+              <span>${escapeHtml(s.size)} · ${escapeHtml(s.note)}</span>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.bag-sample-tile').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-sample-id');
+          const cur = Cart.getExtras();
+          if (cur.samples.includes(id)) {
+            cur.samples = cur.samples.filter(x => x !== id);
+          } else {
+            if (cur.samples.length >= 2) {
+              Toast.show('Select up to 2 complimentary samples (deselect one first).');
+              return;
+            }
+            cur.samples.push(id);
+          }
+          Cart.saveExtras(cur);
+          this.renderSamplesGrid();
+        });
+      });
+    },
+
+    renderSummaryAndExtras: function () {
+      const totals = calculateCartTotals();
+      const extras = Cart.getExtras();
+
+      const subtotalEl = document.getElementById('bag-subtotal-val');
+      const discountRow = document.getElementById('bag-discount-row');
+      const discountLabel = document.getElementById('bag-discount-label');
+      const discountVal = document.getElementById('bag-discount-val');
+      const shippingEl = document.getElementById('bag-shipping-val');
+      const totalEl = document.getElementById('bag-total-val');
+      const checkoutBtn = document.getElementById('bag-checkout-btn');
+      const samplesCountEl = document.getElementById('bag-summary-samples-count');
+      const elixirRow = document.getElementById('bag-elixir-bonus-row');
+      const giftRow = document.getElementById('bag-gift-summary-row');
+      const promoFeedback = document.getElementById('bag-promo-feedback');
+
+      if (subtotalEl) subtotalEl.textContent = `$${totals.subtotal.toFixed(2)}`;
+      if (samplesCountEl) samplesCountEl.textContent = String(extras.samples.length);
+      if (elixirRow) elixirRow.style.display = totals.elixirUnlocked ? 'flex' : 'none';
+      if (giftRow) giftRow.style.display = extras.giftWrap ? 'flex' : 'none';
+
+      if (discountRow && discountVal && discountLabel) {
+        if (totals.activePromo && totals.discount > 0) {
           discountRow.style.display = 'flex';
-          discountVal.textContent = `-$${discountAmount.toFixed(2)}`;
+          discountLabel.innerHTML = `Promo (${escapeHtml(totals.activePromo.code)}) <button type="button" id="bag-remove-promo-btn" class="bag-promo-clear">Remove</button>`;
+          discountVal.textContent = `-$${totals.discount.toFixed(2)}`;
+          const removePromoBtn = document.getElementById('bag-remove-promo-btn');
+          if (removePromoBtn) {
+            removePromoBtn.addEventListener('click', () => {
+              const promoInput = document.getElementById('bag-promo-input');
+              if (promoInput) promoInput.value = '';
+              if (promoFeedback) promoFeedback.textContent = '';
+              Cart.clearPromo();
+            });
+          }
+        } else if (totals.activePromo && totals.activePromo.type === 'shipping') {
+          discountRow.style.display = 'flex';
+          discountLabel.innerHTML = `Promo (${escapeHtml(totals.activePromo.code)}) <button type="button" id="bag-remove-promo-btn" class="bag-promo-clear">Remove</button>`;
+          discountVal.textContent = 'Free Shipping';
+          const removePromoBtn = document.getElementById('bag-remove-promo-btn');
+          if (removePromoBtn) {
+            removePromoBtn.addEventListener('click', () => {
+              const promoInput = document.getElementById('bag-promo-input');
+              if (promoInput) promoInput.value = '';
+              if (promoFeedback) promoFeedback.textContent = '';
+              Cart.clearPromo();
+            });
+          }
         } else {
           discountRow.style.display = 'none';
         }
-
-        const finalTotal = subtotal - discountAmount + (subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : 4.95);
-
-        subtotalVal.textContent = `$${subtotal.toFixed(2)}`;
-        totalVal.textContent = `$${finalTotal.toFixed(2)}`;
-
-        let itemsHtml = '<div class="cart-items-list">';
-        items.forEach(item => {
-          const prodInfo = PRODUCTS[item.id] || {};
-          const thumbImg = item.image || prodInfo.image || 'images/serum-dropper.jpg';
-          itemsHtml += `
-            <div class="cart-line-item" data-id="${escapeHtml(item.id)}" data-variant="${escapeHtml(item.variant)}">
-              <div class="cart-thumb">
-                <img src="${escapeHtml(thumbImg)}" alt="${escapeHtml(item.name)}"
-                  onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-                <svg class="bottle ${escapeHtml(item.colorClass)}" style="display:none"><use href="#bottle"/></svg>
-              </div>
-              <div class="cart-line-info">
-                <div class="cart-line-head">
-                  <span class="cart-item-title">${escapeHtml(item.name)}</span>
-                  <button class="cart-remove-btn" title="Remove item" aria-label="Remove ${escapeHtml(item.name)}">&times;</button>
-                </div>
-                <div class="cart-item-variant">${escapeHtml(item.variant)}</div>
-                <div class="cart-line-bottom">
-                  <div class="cart-qty-ctrl">
-                    <button class="qty-btn dec" aria-label="Decrease quantity">−</button>
-                    <span class="qty-num">${escapeHtml(item.qty)}</span>
-                    <button class="qty-btn inc" aria-label="Increase quantity">+</button>
-                  </div>
-                  <span class="cart-line-price">$${(item.price * item.qty).toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
-          `;
-        });
-        itemsHtml += '</div>';
-        body.innerHTML = itemsHtml;
-
-        body.querySelectorAll('.cart-line-item').forEach(el => {
-          const id = el.dataset.id;
-          const variant = el.dataset.variant;
-
-          el.querySelector('.cart-remove-btn').addEventListener('click', () => {
-            Cart.removeItem(id, variant);
-          });
-
-          el.querySelector('.qty-btn.dec').addEventListener('click', () => {
-            const currentItem = Cart.getItems().find(i => i.id === id && i.variant === variant);
-            if (currentItem) {
-              Cart.updateQty(id, variant, currentItem.qty - 1);
-            }
-          });
-
-          el.querySelector('.qty-btn.inc').addEventListener('click', () => {
-            const currentItem = Cart.getItems().find(i => i.id === id && i.variant === variant);
-            if (currentItem) {
-              Cart.updateQty(id, variant, currentItem.qty + 1);
-            }
-          });
-        });
       }
+
+      if (totals.promoPendingMinSpend && promoFeedback) {
+        promoFeedback.textContent = `Add $${(totals.promoPendingMinSpend.minSpend - totals.subtotal).toFixed(2)} more to activate ${totals.promoPendingMinSpend.code}.`;
+        promoFeedback.className = 'promo-feedback error';
+      } else if (totals.activePromo && promoFeedback && !promoFeedback.textContent) {
+        promoFeedback.textContent = `✓ ${totals.activePromo.description}`;
+        promoFeedback.className = 'promo-feedback success';
+      }
+
+      document.querySelectorAll('.bag-offer-chip').forEach(chip => {
+        const chipCode = chip.getAttribute('data-code');
+        chip.classList.toggle('active', Boolean(totals.activePromo && totals.activePromo.code === chipCode));
+      });
+
+      if (shippingEl) {
+        if (totals.subtotal === 0) {
+          shippingEl.textContent = '$0.00';
+          shippingEl.style.color = '';
+        } else if (totals.freeShippingUnlocked) {
+          shippingEl.textContent = 'FREE';
+          shippingEl.style.color = '#465339';
+          shippingEl.style.fontWeight = '600';
+        } else {
+          shippingEl.textContent = `$${totals.shipping.toFixed(2)}`;
+          shippingEl.style.color = '';
+          shippingEl.style.fontWeight = '';
+        }
+      }
+
+      if (totalEl) totalEl.textContent = `$${totals.total.toFixed(2)}`;
+      if (checkoutBtn) {
+        checkoutBtn.textContent = totals.count > 0
+          ? `Proceed to Checkout — $${totals.total.toFixed(2)}`
+          : 'Proceed to Checkout';
+      }
+    },
+
+    renderUpsells: function () {
+      const grid = document.getElementById('bag-upsell-grid');
+      if (!grid) return;
+
+      const inCartIds = new Set(Cart.getItems().map(i => i.id));
+      const candidates = Object.values(PRODUCTS).filter(p => !inCartIds.has(p.id));
+      const picks = (candidates.length >= 4 ? candidates : Object.values(PRODUCTS)).slice(0, 4);
+
+      grid.innerHTML = picks.map(renderProductCard).join('');
+      grid.querySelectorAll('.quick-add-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          Cart.addItem(btn.getAttribute('data-id'), 1);
+        });
+      });
     }
   };
 
@@ -1056,6 +1471,7 @@
         }
 
         const items = Cart.getItems();
+        const checkoutTotals = calculateCartTotals();
         let orderId = `VEL-${Math.floor(100000 + Math.random() * 900000)}`;
 
         // Attempt backend order placement
@@ -1066,7 +1482,7 @@
             body: JSON.stringify({
               items,
               customer: { firstName: fname, lastName: lname, email, address, city, state, zip },
-              promoCode: promoAppliedCode || null
+              promoCode: checkoutTotals.activePromo ? checkoutTotals.activePromo.code : null
             })
           });
           const json = await res.json();
@@ -1092,19 +1508,14 @@
     open: function () {
       this.init();
       const root = document.getElementById('veloura-checkout-modal');
-      const subtotal = Cart.getSubtotal();
-      const count = Cart.getCount();
+      const totals = calculateCartTotals();
 
-      if (count === 0) {
+      if (totals.count === 0) {
         Toast.show('Your bag is empty.');
         return;
       }
 
-      let discount = promoApplied ? subtotal * promoApplied : 0;
-      let shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 4.95;
-      let total = subtotal - discount + shipping;
-
-      root.querySelector('.chk-final-total').textContent = `$${total.toFixed(2)}`;
+      root.querySelector('.chk-final-total').textContent = `$${totals.total.toFixed(2)}`;
       root.querySelector('.checkout-view-form').style.display = 'block';
       root.querySelector('.checkout-view-success').style.display = 'none';
 
@@ -1391,6 +1802,7 @@
     // Enhance bag button
     if (bagEl) {
       const bagCount = Cart.getCount();
+      bagEl.classList.toggle('on', currentPath === 'bag.html');
       bagEl.setAttribute('role', 'button');
       bagEl.setAttribute('tabindex', '0');
       bagEl.setAttribute('aria-label', 'Shopping bag');
@@ -1447,6 +1859,7 @@
           <li><a href="ritual.html">The Ritual ✦</a></li>
           <li><a href="about.html">About Veloura</a></li>
           <li><a href="journal.html">Journal</a></li>
+          <li><a href="bag.html">Your Ritual Bag</a></li>
         </ul>
         <div class="mobile-menu-footer">
           <a href="shop.html" class="btn" style="width:100%;text-align:center">Explore Collection</a>
@@ -2353,6 +2766,7 @@
     runSafe(() => initJournalPage());
     runSafe(() => initRitualPage());
     runSafe(() => initHomePage());
+    runSafe(() => BagPage.init());
 
     runSafe(() => Drawer.init());
     runSafe(() => CheckoutModal.init());
@@ -2369,6 +2783,7 @@
 
   window.Veloura = {
     Cart: Cart,
+    BagPage: BagPage,
     Drawer: Drawer,
     Toast: Toast,
     Checkout: CheckoutModal,
